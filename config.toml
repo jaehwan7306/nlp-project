@@ -1,0 +1,25 @@
+# Main experiment only. No token retention target and no minimum generation length.
+seed = 42
+
+[models]
+compressor = "Qwen/Qwen2.5-7B-Instruct"
+judge = "Qwen/Qwen3-8B"
+
+[runtime]
+device = "cuda:0"
+quantization = "nf4"
+double_quant = true
+compute_dtype = "bfloat16"
+attention = "sdpa"
+context_limit = 32768
+local_files_only = true
+
+[generation]
+# Technical safety cap, not a requested summary length. Same cap in all four tasks.
+compressor_max_new_tokens = 4096
+judge_max_new_tokens = 32
+stop_strings = ["\nHuman:", "\nUser:", "\nAssistant:"]
+
+[analysis]
+bootstrap_repetitions = 10000
+bootstrap_seed = 42
