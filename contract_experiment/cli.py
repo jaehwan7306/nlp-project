@@ -11,6 +11,7 @@ from .experiment import compress, diagnose, freeze, initialize, inspect_inputs, 
 from .metrics import analyze
 from .prompts import prompt_spec
 from .runtime import download_models, lock_models
+from .review import write_review_report
 from .settings import load_config
 from .storage import read_json, write_json
 
@@ -25,6 +26,9 @@ def parser():
     audit.add_argument("--data", default="data")
     audit.add_argument("--out", default="data_audit")
     audit.add_argument("--threshold", type=float, default=0.95)
+    review = commands.add_parser("review-report", help="make an offline side-by-side source/label/evidence comparison")
+    review.add_argument("--audit", default="data_audit/audit.json")
+    review.add_argument("--out", help="HTML path; default: review_report.html beside audit.json")
     prepare = commands.add_parser("prepare", help="apply human duplicate reviews and freeze prepared data")
     prepare.add_argument("--audit", default="data_audit/audit.json")
     prepare.add_argument("--review", default="data_audit/review.csv")
@@ -74,6 +78,8 @@ def main(argv=None):
                 fetch_data(args.dest)
             case "audit-data":
                 audit_data(args.data, args.out, args.threshold)
+            case "review-report":
+                write_review_report(args.audit, args.out)
             case "prepare":
                 prepare_data(args.audit, args.review, args.out)
             case "lock-models":

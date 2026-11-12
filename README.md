@@ -60,10 +60,22 @@ python run_experiment.py audit-data --data data --out data_audit --threshold 0.9
 
 다음 파일을 먼저 확인한다.
 
+- **`data_audit/review_report.html`**: 브라우저에서 보는 원문 차이·가설별 라벨·Gold Evidence 비교 화면.
 - `data_audit/review.csv`: 후보별 검토 입력표.
 - `data_audit/candidate_documents.json`: 후보 문서 원문·가설·라벨·근거. 압축 입력과는 별개의 사람 검토 자료다.
 - `data_audit/audit.json`: 유사도·라벨 충돌·근거 텍스트 차이 등 후보 정보.
 - `data_audit/unit_checks.json`: 공식 span 사이의 내용 누락과 짧은 구간 점검 자료.
+
+새 `audit-data`는 HTML 보고서도 함께 만든다. 이미 감사 파일을 만들었다면 기존 자료에서 보고서만 생성할 수 있다. 아래 명령은 원문·CSV·제외 결정을 변경하지 않으며 모델을 실행하지 않는다.
+
+```powershell
+python run_experiment.py review-report --audit data_audit/audit.json
+Invoke-Item data_audit/review_report.html
+```
+
+보고서의 후보 목록에서 문서 쌍을 누르면 다른 원문 줄과 주변 3줄이 양쪽에 표시된다. 빨강은 삭제, 초록은 추가, 노랑은 변경이다. 전체 원문은 펼쳐서 볼 수 있다. 라벨이 다른 가설은 양쪽 라벨과 실제 Gold Evidence 본문·문자 위치를 함께 보여준다. 전체 17가설의 라벨·근거도 펼칠 수 있다.
+
+`similarity=0.98`은 문자나 계약 내용의 98%가 같다는 뜻이 아니다. **정규화한 연속 5단어 묶음 집합의 Jaccard 점수**다. `raw_exact`는 원문 완전 일치, `normalized_exact`는 정규화 후 일치, `similar`는 실제 차이를 검토해야 하는 후보를 뜻한다. 보고서의 차이와 원문을 읽고 CSV에 판단 근거를 남긴다. 보고서는 읽기 전용이므로 CSV의 메모를 바꾼 뒤 화면에도 반영하려면 보고서 명령을 다시 실행한다.
 
 **여기서 바로 다음 명령으로 넘어가지 않는다.** `review_required=True`인 모든 행의 `decision`과 `notes`를 사람이 채운 뒤 저장한다. CSV의 행이나 `pair_id`는 삭제·변경하지 않는다.
 
@@ -220,6 +232,7 @@ config.toml                   메인 설정, 길이 목표 없음
 requirements.txt              직접 의존성 고정
 contract_experiment/
   data.py                     공식 스키마·중복 검토·원문 단위
+  review.py                   오프라인 원문·라벨·Gold Evidence 비교 보고서
   prompts.py                  프롬프트 전문·ID/라벨 파싱
   runtime.py                  토크나이저·4bit 모델 어댑터
   experiment.py               단계 실행·재개·규칙 동결

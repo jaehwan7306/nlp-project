@@ -15,8 +15,9 @@ from contract_experiment.metrics import analyze, cluster_bootstrap, confusion_co
 from contract_experiment.prompts import (EXTRACTIVE_TASK, PRIORITY, compression_messages, parse_label, select_units)
 from contract_experiment.settings import ROOT, load_config
 from contract_experiment.runtime import first_stop
+from contract_experiment.review import write_review_report
 from contract_experiment.storage import (append_jsonl, read_csv, read_json, read_jsonl,
-                                         unique_index, write_json)
+                                         unique_index, write_json, digest, file_hash, write_csv)
 
 
 def document(key, text, labels=None):
@@ -126,6 +127,37 @@ class CoreTests(unittest.TestCase):
         from contract_experiment.settings import validate_config
         with self.assertRaises(ValueError):
             validate_config(config)
+
+    def test_review_report_shows_differences_and_preserves_inputs(self):
+        left = document("test:10", "Disclosure is prohibited.\nException: court order.\n<script>alert(1)</script>", ["Entailment"])
+        right = document("test:20", "Disclosure is prohibited.\nException: law enforcement.\n<script>alert(1)</script>", ["Entailment"])
+        right["annotations"]["nda-1"]["choice"] = "Contradiction"
+        pair = {"pair_id": "test:10|test:20", "left": left["key"], "right": right["key"],
+                "kind": "similar", "similarity": 0.96, "label_conflicts": ["nda-1"],
+                "evidence_text_equal": False, "review_required": True}
+        with tempfile.TemporaryDirectory() as temporary, contextlib.redirect_stdout(io.StringIO()):
+            root = Path(temporary)
+            audit = {"pairs": [pair]}
+            audit["audit_digest"] = digest(audit)
+            write_json(root / "audit.json", audit)
+            write_json(root / "candidate_documents.json", {"documents": [left, right],
+                "hypotheses": {f"nda-{i + 1}": f"Claim {i + 1}" for i in range(17)}})
+            write_csv(root / "review.csv", [{"pair_id": pair["pair_id"], "decision": "", "notes": ""}],
+                      ["pair_id", "decision", "notes"])
+            protected = {name: file_hash(root / name) for name in ("audit.json", "candidate_documents.json", "review.csv")}
+            path = write_review_report(root / "audit.json")
+            content = path.read_text(encoding="utf-8")
+            self.assertIn('<table class="diff"', content)
+            self.assertIn('class="conflict"', content)
+            self.assertIn("Contradiction", content)
+            self.assertIn("court order", content)
+            self.assertIn("law enforcement", content)
+            self.assertIn("chars [0,", content)
+            self.assertNotIn("<script>alert(1)</script>", content)
+            self.assertIn("&lt;script&gt;", content)
+            self.assertEqual(protected, {name: file_hash(root / name) for name in protected})
+            with self.assertRaises(ValueError):
+                write_review_report(root / "audit.json", root / "review.csv")
 
 
 class FakeTokenizer:

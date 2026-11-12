@@ -10,6 +10,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from . import LABELS
+from .review import write_review_report
 from .storage import digest, file_hash, now, read_csv, read_json, write_csv, write_json
 
 DATA_URL = "https://stanfordnlp.github.io/contract-nli/resources/contract-nli.zip"
@@ -190,6 +191,7 @@ def audit_data(folder, output, threshold=0.95):
         "hypotheses": dataset["hypotheses"], "documents": [d for d in docs if d["key"] in relevant]})
     write_json(out / "unit_checks.json", {"rule": "complete official spans plus substantive uncovered gaps",
                                           "warnings": dataset["unit_warnings"]})
+    write_review_report(out / "audit.json")
     print(f"Audit: {len(pairs)} candidates; {sum(p['review_required'] for p in pairs)} require human review. No exclusions yet.")
 
 
