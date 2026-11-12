@@ -79,10 +79,17 @@ Invoke-Item data_audit/review_report.html
 
 **여기서 바로 다음 명령으로 넘어가지 않는다.** `review_required=True`인 모든 행의 `decision`과 `notes`를 사람이 채운 뒤 저장한다. CSV의 행이나 `pair_id`는 삭제·변경하지 않는다.
 
-| 검토 결과 | `decision` | `notes` 예시 |
+| 사람이 선택한 처리 | `decision` | 적용 결과 |
 |---|---|---|
-| 실질적으로 같은 계약서로 확인 | `duplicate` | 어떤 표기·서명 차이가 있고 같은 계약서라고 판단한 근거 |
-| 비슷하지만 별개의 계약서 | `distinct` | 서로 다른 의무·기간·조항 등 차이 |
+| 중복 중 한 문서만 남김 | `duplicate` | Test 우선, 같은 split이면 작은 ID 하나 유지 |
+| 양쪽 문서 모두 제외 | `exclude_both` | 라벨 충돌 등 사람이 기록한 사유에 따라 두 문서 제외 |
+| 이 쌍을 이유로 제외하지 않음 | `distinct` | 이 쌍으로 추가 제외하지 않음 |
+
+Gold 라벨 불일치는 비교 자료로 표시할 뿐, 코드가 최종 처리 방식을 결정하지 않는다. 원문·라벨·근거를 사람이 검토하고 `decision`과 `notes`에 최종 처리를 기록한다. Gold 라벨은 변경하지 않는다.
+
+사용자가 정한 예시에서는 `test:52|test:97`에 `duplicate`를 입력하면 52를 유지하고 97을 제외한다. `test:537|test:539`는 **`exclude_both`**를 입력해야 537·539가 모두 제외된다. 이 ID들은 코드에 제외 목록으로 하드코딩하지 않는다.
+
+**기존 CSV를 사용하는 경우:** 이전 코드에서는 `duplicate`를 입력하면 라벨 충돌에 따라 코드가 양쪽 제외를 선택했다. 현재는 `duplicate`가 항상 한 문서 유지라는 뜻이다. 양쪽을 제외하려는 기존 행은 사람이 직접 `exclude_both`로 바꿔야 한다. 자동 변환하거나 CSV를 덮어쓰지 않는다. 같은 문서가 여러 후보에 걸쳐 있고 유지·제외 결정이 충돌하면 자동으로 해결하지 않고 해당 행을 다시 검토하도록 중단한다.
 
 Train과의 중복은 보고만 하므로 `review_required=False` 행은 비워도 된다. 정확히 같은 원문 후보도 이번에는 사람이 확인한다. 검토를 마쳤으면 실행한다.
 
@@ -90,9 +97,17 @@ Train과의 중복은 보고만 하므로 `review_required=False` 행은 비워�
 python run_experiment.py prepare --audit data_audit/audit.json --review data_audit/review.csv --out prepared
 ```
 
-미검토 후보가 있으면 `prepare`가 중단되는 것이 정상이다. 같은 계약서·같은 라벨인 그룹은 Test를 우선하고 같은 split에서는 작은 ID 하나를 유지한다. **같은 내용인데 라벨 충돌이 확인된 그룹은 전체 제외**하며 임의 재라벨링하지 않는다. 단순히 유사도와 라벨이 다르다는 이유만으로 제외하지 않는다. Dev/Test 교차 중복이면 Test를 유지하고 Dev에서 제외한다.
+미검토 후보가 있으면 `prepare`가 중단되는 것이 정상이다. `duplicate`로 연결된 그룹은 Test를 우선하고 같은 split에서는 작은 ID 하나를 유지한다. `exclude_both`는 그 행의 두 문서를 명시적으로 제외한다. 라벨 차이만으로 다른 문서를 자동 제외하지 않는다. Dev/Test 교차 중복에서 `duplicate`를 선택하면 Test를 유지하고 Dev에서 제외한다.
 
-`prepared/exclusions.csv`의 제외 사유와 `prepared/manifest.json`의 최종 문서 수를 확인한다. 과거의 119·122 등 문서 수를 강제하지 않는다. Test가 N문서이면 메인은 **5 × 17N**건이다. 데이터나 검토를 바꾸면 새 audit/prepared 폴더를 사용한다.
+`prepared/exclusions.csv`에는 제외 문서·유지 문서·최종 decision·검토한 pair ID·사람의 notes를 함께 기록한다. **이미 이전 방식으로 prepared를 만들었다면** 검토 CSV를 수정한 뒤 새 폴더로 준비한다. 이후 명령의 `--prepared`에도 같은 새 폴더를 지정한다.
+
+```powershell
+python run_experiment.py prepare --audit data_audit/audit.json --review data_audit/review.csv --out prepared_manual
+```
+
+아직 prepared를 만들지 않았다면 위의 기본 `--out prepared` 명령을 쓰면 된다. `data`와 `data_audit`는 그대로 사용할 수 있다.
+
+`prepared/exclusions.csv`의 제외 사유와 `prepared/manifest.json`의 최종 문서 수를 확인한다. 과거의 119·122 등 문서 수를 강제하지 않는다. Test가 N문서이면 메인은 **5 × 17N**건이다. 원본 데이터를 바꾸면 새 audit를 만들고, 검토 결정을 바꾸면 새 prepared 폴더를 사용한다.
 
 공식 span 전체를 후보로 사용하고, 사이에 원문의 비공백 내용이 있으면 그대로 별도 단위로 추가한다. 공백만 있는 틈은 생략한다. 모든 압축 조건이 같은 번호 붙은 원문을 받는다. 추출형 선택 결과는 원문 순서로 연결한다. **예외가 별도 단위로 나뉘어 있으면 예외를 선택하지 않을 수도 있다.** 원문 단위를 그대로 남긴다고 모든 예외가 자동 보존되는 것은 아니다.
 

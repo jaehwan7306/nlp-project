@@ -6,6 +6,8 @@
 
 공식 데이터 스키마의 `labels[hid].hypothesis`, `annotation_sets[0].annotations`, `spans`를 사용한다. 원본 문자 인덱스는 Python 문자열 기준의 start-inclusive/end-exclusive다. 공식 분할 크기 423/61/123과 17개 가설을 확인한다. 준비된 데이터에는 모델 실행용 Dev/Test만 넣고 Train은 감사에서만 읽는다.
 
+사람이 review.csv에서 `duplicate`·`exclude_both`·`distinct`를 선택한다. 최종 제외 처리는 이 명시적 선택만 적용하며 Gold 라벨 차이로 변경하지 않는다. 라벨 불일치 계산은 비교 자료의 표시용이다. 이전 자동 제외 정책의 prepared는 재사용하지 않고 새로 준비하며, 원본 데이터와 감사 자료는 유지한다.
+
 `compression_messages(condition, units)`는 가설이나 라벨을 매개변수로 받지 않는다. 모든 후보 단위를 같은 형식으로 제공한다. Gold Evidence는 중복 검토와 원본 스냅샷에 남아 있지만 압축 프롬프트에 삽입하지 않는다. 선택 결과의 provenance는 ID와 문자 위치로 남긴다.
 
 ## 프롬프트 경계
@@ -31,7 +33,7 @@
 - 같은 방식에서 우선 문장만 다른지, 압축 입력에 질문·길이 지시가 없는지.
 - 원문 span·비공백 gap·전체 단위 유지, 원문 순서, 중복/빈/없는 ID와 형식 실패.
 - 라벨 파싱과 실패의 Accuracy·Macro-F1 반영.
-- 사람 검토의 그룹 제외·라벨 충돌·Test 우선 유지.
+- 사람의 명시적 한 문서 유지·양쪽 제외·별개 결정과 Test 우선 유지, 서로 충돌하는 검토의 중단.
 - 행 기록의 중단 복구와 중복 키 차단.
 - 문항 대신 문서를 묶는 paired bootstrap.
 - 합성 데이터로 audit → prepare → Dev → freeze → Test → 분석과 재개. 모델 호출은 stub으로 대체한다.
@@ -41,3 +43,5 @@
 검증 기록(2026-11-12): Python 3.11.9에서 합성 데이터 CPU 테스트 9개 통과, compileall 구문 검사 통과, CLI 도움말·명령 인자·프롬프트 JSON·설정·UTF-8 검사 통과. CLI 점검 시 torch/transformers 모듈이 로드되지 않았음을 확인했다.
 
 추가 검증(2026-11-12): 중복 검토용 HTML 보고서의 원문 diff·라벨 충돌·Gold Evidence 표시, HTML 이스케이프, CSV/audit/후보 문서 비변경을 확인했다. 전체 CPU 테스트 10개와 `review-report --help` 점검이 통과했다. 기존 감사 자료만으로 보고서를 생성하며 모델이나 외부 라이브러리를 요구하지 않는다.
+
+수동 제외 변경 검증(2026-11-12): 라벨이 달라도 duplicate는 하나 유지하고, 라벨이 같아도 exclude_both는 둘 다 제외함을 확인했다. 겹친 행의 유지·제외 충돌은 중단하며, 이전 자동 정책의 prepared 재사용도 차단한다. HTML의 선택 처리 표시와 전체 합성 워크플로를 포함한 CPU 테스트 11개가 통과했다. 실제 데이터·모델 실행은 수행하지 않았다.

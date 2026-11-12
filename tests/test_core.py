@@ -9,7 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from contract_experiment import CONDITIONS, LABELS
-from contract_experiment.data import (audit_data, build_units, exclusion_decisions, prepare_data)
+from contract_experiment.data import (audit_data, build_units, exclusion_decisions, prepare_data, load_prepared)
 from contract_experiment.experiment import (compress, diagnose, freeze, initialize, judge, validated_results)
 from contract_experiment.metrics import analyze, cluster_bootstrap, confusion_counts, scores
 from contract_experiment.prompts import (EXTRACTIVE_TASK, PRIORITY, compression_messages, parse_label, select_units)
@@ -80,18 +80,44 @@ class CoreTests(unittest.TestCase):
         self.assertEqual(first_stop("Summary.\nUser: follow-up", stops), (8, "\nUser:"))
         self.assertIsNone(first_stop("The term Human: appears within this source sentence.", stops))
 
-    def test_review_groups_label_conflict_and_test_preference(self):
+    def test_explicit_human_review_actions_and_test_preference(self):
         docs = [document("test:1", "same", ["Entailment"]), document("test:2", "same", ["Entailment"]),
                 document("dev:3", "same", ["Entailment"]), document("test:4", "other", ["Entailment"]),
                 document("test:5", "other", ["Contradiction"])]
         links = [("test:1", "test:2"), ("test:2", "dev:3"), ("test:4", "test:5")]
         pairs = [{"pair_id": f"{a}|{b}", "left": a, "right": b, "review_required": True} for a, b in links]
         reviews = [{"pair_id": p["pair_id"], "decision": "duplicate", "notes": "human confirmed same content"} for p in pairs]
+        reviews[2]["decision"] = "exclude_both"
+        reviews[2]["notes"] = "human reviewed the labels and chose to exclude both"
         excluded = exclusion_decisions(docs, pairs, reviews)
         self.assertEqual({r["document"] for r in excluded}, {"test:2", "dev:3", "test:4", "test:5"})
         self.assertEqual(next(r["kept_document"] for r in excluded if r["document"] == "dev:3"), "test:1")
+        self.assertEqual({r["decision"] for r in excluded if r["document"] in {"test:4", "test:5"}}, {"exclude_both"})
+        self.assertTrue(all(r["review_notes"] for r in excluded))
+        # Different Gold labels do not change a human's explicit keep-one decision.
+        reviews[2]["decision"] = "duplicate"
+        keep_one = exclusion_decisions(docs, pairs, reviews)
+        self.assertNotIn("test:4", {r["document"] for r in keep_one})
+        self.assertIn("test:5", {r["document"] for r in keep_one})
+        # Exclude-both is a human action even when both Gold labels agree.
+        docs[4]["annotations"] = {key: dict(value) for key, value in docs[3]["annotations"].items()}
+        reviews[2]["decision"] = "exclude_both"
+        remove_both = exclusion_decisions(docs, pairs, reviews)
+        self.assertTrue({"test:4", "test:5"}.issubset({r["document"] for r in remove_both}))
+        reviews[2]["decision"] = "distinct"
+        no_action = exclusion_decisions(docs, pairs, reviews)
+        self.assertTrue({"test:4", "test:5"}.isdisjoint({r["document"] for r in no_action}))
         reviews[0]["notes"] = ""
         with self.assertRaises(ValueError):
+            exclusion_decisions(docs, pairs, reviews)
+
+    def test_conflicting_overlapping_review_actions_stop_instead_of_guessing(self):
+        docs = [document(f"test:{i}", "same", ["Entailment"]) for i in range(1, 4)]
+        pairs = [{"pair_id": "test:1|test:2", "left": "test:1", "right": "test:2", "review_required": True},
+                 {"pair_id": "test:1|test:3", "left": "test:1", "right": "test:3", "review_required": True}]
+        reviews = [{"pair_id": pairs[0]["pair_id"], "decision": "duplicate", "notes": "keep one"},
+                   {"pair_id": pairs[1]["pair_id"], "decision": "exclude_both", "notes": "remove both"}]
+        with self.assertRaisesRegex(ValueError, "Conflicting reviews"):
             exclusion_decisions(docs, pairs, reviews)
 
     def test_journal_resume_and_duplicate_detection(self):
@@ -156,6 +182,15 @@ class CoreTests(unittest.TestCase):
             self.assertNotIn("<script>alert(1)</script>", content)
             self.assertIn("&lt;script&gt;", content)
             self.assertEqual(protected, {name: file_hash(root / name) for name in protected})
+            self.assertIn("처리 방식 미선택", content)
+            write_csv(root / "review.csv", [{"pair_id": pair["pair_id"], "decision": "duplicate", "notes": "keep one"}],
+                      ["pair_id", "decision", "notes"])
+            keep_one = write_review_report(root / "audit.json").read_text(encoding="utf-8")
+            self.assertIn("test:10 유지 / test:20 제외", keep_one)
+            write_csv(root / "review.csv", [{"pair_id": pair["pair_id"], "decision": "exclude_both", "notes": "remove both"}],
+                      ["pair_id", "decision", "notes"])
+            remove_both = write_review_report(root / "audit.json").read_text(encoding="utf-8")
+            self.assertIn("test:10 및 test:20 모두 제외", remove_both)
             with self.assertRaises(ValueError):
                 write_review_report(root / "audit.json", root / "review.csv")
 
@@ -257,6 +292,11 @@ class WorkflowTests(unittest.TestCase):
             (test / "predictions.jsonl").write_text("\n".join(json.dumps(row) for row in rows[:-1]) + "\n", encoding="utf-8")
             with self.assertRaises(ValueError):
                 validated_results(test, dataset)
+            legacy = read_json(prepared / "manifest.json")
+            legacy.pop("review_action_policy")
+            write_json(prepared / "manifest.json", legacy)
+            with self.assertRaisesRegex(ValueError, "previous automatic review policy"):
+                load_prepared(prepared)
 
 
 if __name__ == "__main__":

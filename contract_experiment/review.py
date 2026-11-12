@@ -54,6 +54,20 @@ def pair_section(pair, left, right, hypotheses, review, anchor):
             context=True, numlines=3) + '</div>'
     notes = review.get("notes", "")
     decision = review.get("decision", "") or "미입력"
+    action = decision.strip().lower()
+    if not pair["review_required"]:
+        action_text = "Train 교차 보고 전용 · 이 행으로 평가 대상을 제외하지 않음"
+    elif action == "duplicate":
+        tests = [doc for doc in (left, right) if doc["split"] == "test"]
+        keep = min(tests or [left, right], key=lambda doc: doc["id"])
+        remove = right if keep is left else left
+        action_text = f"{keep['key']} 유지 / {remove['key']} 제외"
+    elif action == "exclude_both":
+        action_text = f"{left['key']} 및 {right['key']} 모두 제외"
+    elif action == "distinct":
+        action_text = "이 쌍을 이유로 추가 제외하지 않음"
+    else:
+        action_text = "처리 방식 미선택 · duplicate / exclude_both / distinct 중 직접 선택"
     conflicts = len(pair["label_conflicts"])
     label_summary = (f'<p class="danger">Gold 라벨 불일치: {conflicts}개 가설. 라벨을 고르거나 고칠 필요는 없습니다.</p>'
                      if conflicts else '<p class="same">Gold 라벨 불일치 없음.</p>')
@@ -65,6 +79,7 @@ def pair_section(pair, left, right, hypotheses, review, anchor):
 <p>원문 길이: {escape(left['key'])} {len(left['text']):,}자 / {escape(right['key'])} {len(right['text']):,}자.
 줄 단위로 바뀐 영역: 왼쪽 {changed_a}줄 / 오른쪽 {changed_b}줄. 줄바꿈 차이도 포함합니다.</p>
 <p>현재 CSV 결정: <strong>{escape(decision)}</strong><br>메모: {escape(notes) or '미입력'}</p>
+<p><strong>선택한 처리:</strong> {escape(action_text)} <small>(이 쌍 기준. 겹치는 중복 그룹은 최종 exclusions.csv 확인)</small></p>
 <h3>① 원문에서 다른 부분</h3>
 <p class="muted">바뀐 부분과 주변 3줄을 표시합니다. 왼쪽은 원문 A, 오른쪽은 원문 B입니다.
 <span class="diff_sub">삭제</span> · <span class="diff_add">추가</span> · <span class="diff_chg">변경</span>.
@@ -80,6 +95,8 @@ def pair_section(pair, left, right, hypotheses, review, anchor):
 <details><summary>17개 가설 전체의 라벨·근거 보기</summary>{label_table(left, right, hypotheses)}</details>
 <h3>③ 검토 기록</h3><p>위 내용을 확인한 뒤 <code>review.csv</code>의
 <code>{escape(pair['pair_id'])}</code> 행에 <code>decision</code>과 <code>notes</code>를 입력하세요.
+<code>duplicate</code>는 한 문서 유지, <code>exclude_both</code>는 양쪽 제외,
+<code>distinct</code>는 이 쌍으로 추가 제외하지 않음을 뜻합니다.
 이 보고서는 읽기 전용이며 CSV를 변경하지 않습니다.</p>
 <p><a href="#top">목록으로 돌아가기</a></p></section>'''
 
@@ -131,9 +148,12 @@ summary{{cursor:pointer;color:#125db4;font-weight:600;padding:10px 0}}code{{back
 <p><strong>similarity는 원문 문자의 일치율이 아닙니다.</strong> 정규화한 연속 5단어 묶음 집합의 Jaccard 점수입니다.
 예를 들어 0.98을 ‘계약 내용의 98%가 같다’로 해석하지 말고, 아래 실제 변경 내용을 확인하세요.</p>
 <p><code>raw_exact</code>: 원문 완전 일치 · <code>normalized_exact</code>: 정규화 후 일치 · <code>similar</code>: 유사 후보.</p>
-<p>같은 계약서로 확인되면 CSV에 <code>duplicate</code>, 별개 계약서면 <code>distinct</code>와 판단 근거를 적습니다.
-같은 내용인데 라벨이 충돌하는 Dev/Test 그룹은 prepare에서 전체 제외합니다. Train 교차 후보는 보고만 합니다.
-라벨을 직접 선택하거나 수정하지 않습니다.</p>
+<p><strong>최종 처리 방식은 사람이 CSV에 직접 선택합니다.</strong>
+<code>duplicate</code>: 한 문서 유지(Test 우선, 같은 split은 작은 ID).
+<code>exclude_both</code>: 양쪽 문서 모두 제외. <code>distinct</code>: 이 쌍으로 추가 제외하지 않음.
+라벨 불일치 표시는 비교 자료이며 코드가 이를 보고 처리 방식을 바꾸지 않습니다.</p>
+<p>동일 계약서의 라벨 충돌을 사람이 확인해 양쪽 제외하기로 정했다면 <code>exclude_both</code>와 근거를 적습니다.
+Train 교차 후보는 보고만 합니다. Gold 라벨은 수정하지 않습니다.</p>
 <p>Gold Evidence는 중복을 검토하는 사람에게 제공하는 자료이며 압축 프롬프트에는 들어가지 않습니다.</p>
 <ul>{''.join(links) or '<li>후보 없음</li>'}</ul></header>{''.join(sections)}</main></body></html>'''
     path = Path(output) if output is not None else audit_path.parent / "review_report.html"

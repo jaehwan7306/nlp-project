@@ -18,6 +18,7 @@ SPLITS = ("train", "dev", "test")
 EXPECTED_COUNTS = {"train": 423, "dev": 61, "test": 123}
 NORMALIZATION = "Unicode NFKC, casefold, collapse all whitespace; duplicate detection only"
 SIMILARITY = "Jaccard similarity of sets of consecutive 5-word shingles on normalized text"
+REVIEW_POLICY = "human_explicit_actions"
 
 
 def fetch_data(destination):
@@ -196,7 +197,7 @@ def audit_data(folder, output, threshold=0.95):
 
 
 def exclusion_decisions(documents, pairs, reviews):
-    """Human decisions form groups; label conflicts exclude the entire confirmed group."""
+    """Apply explicit human actions. Gold label differences never select an action."""
     docs = {doc["key"]: doc for doc in documents}
     if len(reviews) != len({row["pair_id"] for row in reviews}):
         raise ValueError("Duplicate pair IDs in review.csv")
@@ -211,31 +212,53 @@ def exclusion_decisions(documents, pairs, reviews):
             key = parents[key]
         return key
 
+    decisions = {}
+    manual_exclusions = defaultdict(list)
     for pair in pairs:
         if not pair["review_required"]:
             continue
         row = review[pair["pair_id"]]
         decision = row["decision"].strip().lower()
-        if decision not in {"duplicate", "distinct"} or not row["notes"].strip():
-            raise ValueError(f"Review {pair['pair_id']}: set decision=duplicate/distinct and write notes.")
+        if decision not in {"duplicate", "exclude_both", "distinct"} or not row["notes"].strip():
+            raise ValueError(f"Review {pair['pair_id']}: set decision=duplicate/exclude_both/distinct and write notes.")
+        decisions[pair["pair_id"]] = decision
         if decision == "duplicate":
             parents[root(pair["right"])] = root(pair["left"])
+        elif decision == "exclude_both":
+            for key in (pair["left"], pair["right"]):
+                manual_exclusions[key].append(pair)
+    for pair in pairs:
+        if decisions.get(pair["pair_id"]) == "distinct" and root(pair["left"]) == root(pair["right"]):
+            raise ValueError(f"Conflicting reviews: {pair['pair_id']} is distinct but linked by duplicate decisions. Recheck these rows.")
     groups = defaultdict(list)
     for key in parents:
         groups[root(key)].append(docs[key])
     exclusions = []
+
+    def provenance(related_pairs):
+        return {"review_pair_ids": ";".join(p["pair_id"] for p in related_pairs),
+                "review_notes": " | ".join(f"{p['pair_id']}: {review[p['pair_id']]['notes'].strip()}" for p in related_pairs)}
+
+    for key, selected_pairs in manual_exclusions.items():
+        related = sorted({member for pair in selected_pairs for member in (pair["left"], pair["right"])})
+        exclusions.append({"document": key, "related_ids": ";".join(related), "kept_document": "",
+                           "reason": "human_exclude_both", "decision": "exclude_both", **provenance(selected_pairs)})
     for members in groups.values():
         if len(members) < 2:
             continue
         related = ";".join(sorted(doc["key"] for doc in members))
-        conflict = any(label_conflicts(members[0], doc) for doc in members[1:])
         tests = [doc for doc in members if doc["split"] == "test"]
-        keep = None if conflict else min(tests or members, key=lambda doc: doc["id"])["key"]
-        reason = "confirmed_same_content_label_conflict" if conflict else "confirmed_duplicate_keep_test_then_smallest_id"
+        keep = min(tests or members, key=lambda doc: doc["id"])["key"]
+        if all(doc["key"] in manual_exclusions for doc in members):
+            continue  # Every removal was explicitly requested; never propagate it to other documents.
+        if keep in manual_exclusions:
+            raise ValueError(f"Conflicting reviews: duplicate group {related} would keep {keep}, but exclude_both removes it. Recheck the overlapping rows.")
+        related_pairs = [p for p in pairs if decisions.get(p["pair_id"]) == "duplicate" and root(p["left"]) == root(keep)]
         for doc in members:
-            if doc["key"] != keep:
+            if doc["key"] != keep and doc["key"] not in manual_exclusions:
                 exclusions.append({"document": doc["key"], "related_ids": related,
-                                   "kept_document": keep or "", "reason": reason})
+                                   "kept_document": keep, "reason": "human_duplicate_keep_one",
+                                   "decision": "duplicate", **provenance(related_pairs)})
     return sorted(exclusions, key=lambda row: row["document"])
 
 
@@ -259,12 +282,14 @@ def prepare_data(audit_path, review_path, output):
     out.mkdir(parents=True, exist_ok=True)
     write_json(out / "dataset.json", {"hypotheses": dataset["hypotheses"], "documents": documents})
     write_json(out / "review_snapshot.json", {"audit": audit, "review_rows": reviews})
-    write_csv(out / "exclusions.csv", exclusions, ["document", "related_ids", "kept_document", "reason"])
+    write_csv(out / "exclusions.csv", exclusions,
+              ["document", "related_ids", "kept_document", "reason", "decision", "review_pair_ids", "review_notes"])
     write_json(out / "manifest.json", {
         "created_utc": now(), "source_hashes": dataset["source_hashes"], "audit_digest": claimed,
         "review_sha256": file_hash(review_path), "exclusions_sha256": file_hash(out / "exclusions.csv"),
         "dataset_sha256": file_hash(out / "dataset.json"), "review_snapshot_sha256": file_hash(out / "review_snapshot.json"),
         "counts": dict(Counter(doc["split"] for doc in documents)), "excluded": exclusions,
+        "review_action_policy": REVIEW_POLICY,
         "unit_rule": "complete official spans plus substantive gaps; concatenate selected units in source order with two newlines",
     })
     counts = Counter(doc["split"] for doc in documents)
@@ -274,6 +299,8 @@ def prepare_data(audit_path, review_path, output):
 def load_prepared(folder):
     path = Path(folder)
     manifest = read_json(path / "manifest.json")
+    if manifest.get("review_action_policy") != REVIEW_POLICY:
+        raise ValueError("Prepared data uses the previous automatic review policy. Choose duplicate/exclude_both/distinct explicitly and prepare into a new directory.")
     for name, key in (("dataset.json", "dataset_sha256"), ("exclusions.csv", "exclusions_sha256"),
                       ("review_snapshot.json", "review_snapshot_sha256")):
         if file_hash(path / name) != manifest[key]:
