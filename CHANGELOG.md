@@ -1,5 +1,14 @@
 # 변경 이력
 
+## 2026-11-14 · 실제 greedy 적용 오류 수정과 Dev 압축 복구
+
+- Qwen3에서 Transformers 4.57.1의 모델 기본값 상속이 `do_sample=False`를 `True`로 바꾸던 오류 수정.
+- 매 생성 호출에서 `use_model_defaults=False`, `do_sample=False`, `num_beams=1`을 명시하고 실제 적용 설정을 검증·기록.
+- 실제 Transformers 설정 병합을 사용하는 CPU 회귀 검사 추가. 가중치·GPU 추론 없이 경고와 원인을 재현.
+- 검증된 이전 Qwen2.5 전체 Dev 압축만 새 run에 옮기는 `reuse-compression` 추가. 이전 판단은 복사하지 않음.
+- 원본 run·protocol은 보존하고 새 greedy Dev 판단 → 새 동결 → 새 Test로 진행. 프롬프트·길이·5조건 설계는 변경하지 않음.
+- 결정 D012와 README에 영향 범위·실행 복구·시간 출처 기록. 실험 추론은 사용자 로컬에서 수행.
+
 ## 2026-11-14 · 추가 분석의 질문 제공 방식을 17개 가설 목록으로 확정
 
 - 추가 분석 1·2의 질문 조건을 가설별 개별 압축에서 고정 17개 가설 목록 제공으로 변경.

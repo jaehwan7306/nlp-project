@@ -62,6 +62,10 @@ def parser():
     frozen = commands.add_parser("freeze", help="freeze completed full Dev technical protocol, without selecting on accuracy")
     frozen.add_argument("--run", required=True)
     frozen.add_argument("--out", default="protocol")
+    reuse = commands.add_parser("reuse-compression", help="recover verified D012 legacy Dev compressor outputs only; CPU/tokenizers, no weights")
+    reuse.add_argument("--source-run", required=True)
+    reuse.add_argument("--run", required=True, help="fresh full Dev run initialized with the fixed code")
+    reuse.add_argument("--check-only", action="store_true", help="verify compatibility without copying contexts")
     prompts = commands.add_parser("show-prompts", help="print/save every exact instruction and insertion format; no models")
     prompts.add_argument("--out")
     return cli
@@ -100,6 +104,9 @@ def main(argv=None):
                 analyze(args.run, args.conditions)
             case "freeze":
                 freeze(args.run, args.out)
+            case "reuse-compression":
+                from .recovery import reuse_compression
+                reuse_compression(args.source_run, args.run, args.check_only)
             case "show-prompts":
                 if args.out:
                     write_json(args.out, prompt_spec())

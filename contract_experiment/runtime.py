@@ -65,6 +65,24 @@ def first_stop(text, stops):
     return min(matches) if matches else None
 
 
+DECODING_POLICY = "explicit_greedy_v1"
+
+
+def greedy_overrides():
+    # In transformers 4.57, fields equal to GenerationConfig's global defaults
+    # can otherwise be replaced by model defaults (Qwen3 has do_sample=True).
+    return {"use_model_defaults": False, "do_sample": False,
+            "num_beams": 1, "use_cache": True}
+
+
+def effective_greedy_config(model, requested, cap):
+    effective, _ = model._prepare_generation_config(
+        requested, **greedy_overrides(), max_new_tokens=cap, logits_to_keep=1)
+    if effective.do_sample or effective.num_beams != 1:
+        raise ValueError("Effective decoding is not greedy; no inference was started.")
+    return effective
+
+
 class LocalModel:
     def __init__(self, config, lock, role):
         os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
@@ -113,10 +131,14 @@ class LocalModel:
             eos_token_id=sorted(self.eos_ids), pad_token_id=self.tokenizer.eos_token_id,
             repetition_penalty=1.0, no_repeat_ngram_size=0,
         )
+        cap = config["generation"][f"{role}_max_new_tokens"]
+        self.generation_config = effective_greedy_config(self.model, self.generation_config, cap)
+        print(f"Decoding verified: {role} / do_sample=False / num_beams=1 / model defaults disabled", flush=True)
         self.details = {**environment(), "role": role, "gpu": torch.cuda.get_device_name(),
             "cuda_version": torch.version.cuda, "device": self.device,
             "model_revision": model["revision"], "load_seconds": self.load_seconds,
             "quantization": quant.to_dict(), "attention": runtime["attention"],
+            "decoding_policy": DECODING_POLICY, "generation_overrides": greedy_overrides(),
             "generation_config": self.generation_config.to_dict(),
             "chat_template": self.tokenizer.chat_template, "eos_token_ids": sorted(self.eos_ids),
             "context_limit": self.context_limit, "deterministic_algorithms": "enabled, warn_only=True"}
@@ -143,6 +165,7 @@ class LocalModel:
         with torch.inference_mode():
             output = self.model.generate(
                 **inputs, generation_config=self.generation_config, max_new_tokens=cap,
+                **greedy_overrides(),
                 stopping_criteria=StoppingCriteriaList([StopOnDialogue()]),
                 # Avoid allocating a full [prompt_length, vocabulary_size] logits tensor.
                 logits_to_keep=1,
@@ -161,6 +184,7 @@ class LocalModel:
             reason = "eos" if ids and ids[-1] in self.eos_ids else "max_tokens"
         return {
             "text": clean, "raw_text": raw_text, "raw_token_ids": ids,
+            "decoding_policy": DECODING_POLICY,
             "stop_reason": reason, "matched_stop_string": matched,
             "cap_reached": len(ids) >= cap, "max_new_tokens": cap,
             "dialogue_flag": bool(re.search(r"(?:^|\n)(?:Human|User|Assistant):", text)),

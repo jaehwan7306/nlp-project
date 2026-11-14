@@ -14,6 +14,8 @@ Python **3.11** 프로젝트다. ContractNLI 원문과 질문 없는 압축 4조
 
 모델은 자연 종료하며 최소 생성 길이를 강제하지 않는다. `4096` 생성 토큰은 네 압축 작업에 공통으로 적용하는 **실행 안전 상한의 초기값**이다. 목표 보존율이나 원문 길이에 따른 예산이 아니다. 상한 도달·가짜 대화·빈 출력·원문 전체 복사 등을 기록하고 Dev에서 적절성을 확인한다. 결과가 같거나 실제 길이가 같다고 가정하지 않는다.
 
+**2026-11-14 디코딩 수정:** 이전 코드에서는 Qwen3의 모델 기본값이 요청한 `do_sample=False`를 덮어써 실제 판단이 샘플링으로 실행됐다. 수정판은 모델 기본값 상속을 끄고 매 생성 호출에서 greedy를 명시하며, 적용된 설정을 검증·기록한다. 이전 run은 아래 **기존 실행 복구** 절차를 따른다. 기존 Test에 `--resume`으로 새 판단을 섞지 않는다.
+
 ## 1. 실행 환경 준비
 
 프로젝트를 내려받아 **README.md와 run_experiment.py가 있는 폴더를 IDE에서 열고**, 그 IDE의 터미널에서 실행한다. 특정 사용자 경로나 폴더 이름으로 이동하는 명령은 필요 없다. 아래 명령은 Windows PowerShell 기준이다.
@@ -212,7 +214,7 @@ python run_experiment.py analyze --run runs/test
 - `predictions.jsonl`: 판단 출력·파싱 결과·프롬프트 해시·판단 시간.
 - `dataset.json`, `prepared_manifest.json`: 해당 실행의 문서·Gold와 새 전처리 해시.
 - `prompts.json`, `config.json`, `models.json`: 실제 지시·설정·모델 리비전.
-- `runtime_compressor.json`, `runtime_judge.json`: 실제 GPU·전체 패키지 버전·채팅 템플릿·생성/양자화 설정.
+- `runtime_compressor.json`, `runtime_judge.json`: 실제 GPU·전체 패키지 버전·채팅 템플릿·생성/양자화 설정. 수정판은 적용된 `generation_config`, `generation_overrides`, `decoding_policy=explicit_greedy_v1`을 기록한다.
 - `source/`, `manifest.json`: 실행 시점 소스 사본과 무결성 해시.
 - `events.jsonl`: 모델 로딩 시간 등 실행 이벤트.
 
@@ -238,6 +240,42 @@ python run_experiment.py judge --run runs/test --resume
 3. 동결 전 변경이라면 새 Dev run. 동결한 소스·설정·Test 결과는 덮어쓰지 않는다.
 
 같은 하드웨어·버전에서 재현할 수 있도록 seed와 결정적 연산 설정을 기록한다. greedy라도 다른 GPU·라이브러리 사이의 비트 단위 일치를 보장하지는 않는다. 결정적 구현이 없는 연산 경고도 실행 로그와 함께 보관한다.
+
+## 기존 실행 복구 — 2026-11-14 greedy 설정 수정
+
+이전 실행 중이라면 `Ctrl+C`로 중단한다. GitHub 최신 코드를 업데이트하되 **`.venv`, `data`, `data_audit`, `prepared`, `model_lock.json`, 기존 `runs`·`protocol`은 보존**한다. 같은 고정 의존성을 쓰면 재설치·모델 재다운로드·중복 검수는 필요 없다. 이전 `manifest.json`이나 `protocol.json`의 해시를 고치지 않는다.
+
+수정 전 Qwen3 판단은 샘플링이므로 Dev/Test의 이전 판단을 새 greedy 결과로 이어 쓰지 않는다. Qwen2.5 압축은 모델 설정의 버전 차이로 기존에도 greedy였다. `reuse-compression`은 알려진 이전 소스, 데이터·모델·프롬프트·환경, 실제 디코딩 설정의 동등성, 모든 압축 문맥을 검사한 뒤 **압축 결과만** 새 전체 Dev에 복사한다. 출력 실패·상한 도달도 그대로 포함하며 판단은 한 건도 복사하지 않는다. CPU와 캐시된 토크나이저/설정만 사용하고 모델 가중치는 로드하지 않는다.
+
+다음은 기존 전체 Dev가 `runs/dev`에 있는 경우다. 새 폴더는 이전 샘플링 결과와 분리하기 위한 이름이다.
+
+```powershell
+python -m unittest discover -s tests -v
+python run_experiment.py init-run --split dev --out runs/dev_greedy
+python run_experiment.py reuse-compression --source-run runs/dev --run runs/dev_greedy --check-only
+python run_experiment.py reuse-compression --source-run runs/dev --run runs/dev_greedy
+python run_experiment.py judge --run runs/dev_greedy
+python run_experiment.py diagnose --run runs/dev_greedy
+```
+
+검사에서 불일치가 나오면 오류를 무시하거나 해시를 수정하지 않는다. 원인을 확인하고, 호환성이 없는 압축은 새 Dev에서 다시 생성해야 한다. 복구 명령은 새로 초기화한 Dev에만 적용한다. 복구 후 `compress`를 다시 실행할 필요는 없다. 판단 도중 중단하면 **새** 폴더에서 `judge --run runs/dev_greedy --resume`으로 이어간다.
+
+새 greedy Dev 진단을 확인한 다음, 새 protocol과 Test를 만든다.
+
+```powershell
+python run_experiment.py freeze --run runs/dev_greedy --out protocol_greedy
+python run_experiment.py init-run --split test --protocol protocol_greedy --out runs/test_greedy
+python run_experiment.py judge --run runs/test_greedy --conditions original
+python run_experiment.py analyze --run runs/test_greedy --conditions original
+python run_experiment.py compress --run runs/test_greedy
+python run_experiment.py judge --run runs/test_greedy --resume
+python run_experiment.py diagnose --run runs/test_greedy
+python run_experiment.py analyze --run runs/test_greedy
+```
+
+로딩 직후 `Decoding verified: judge / do_sample=False / num_beams=1 / model defaults disabled`를 확인한다. `torch_dtype is deprecated`는 별도의 API 명칭 경고이며 이 샘플링 문제의 원인은 아니다.
+
+복구의 출처·해시·동등성 검사·판단 미복사 여부는 `compression_reuse.json`에 남는다. `compression_seconds`는 원래 실제로 걸린 압축 시간을 유지한다. 재사용했다고 압축 비용이 0이었던 것으로 보고하지 않는다. 이전 Dev의 보존율과 압축 특성 관측은 유효하지만 판단 출력·파싱·시간은 샘플링 실행의 관측으로 구분한다. 오류 수정 때문에 새 실행을 시작한 이유는 결정 D012에 기록한다.
 
 ## 추가 분석의 확정 설계 — 실행 기능은 추후 구현
 
