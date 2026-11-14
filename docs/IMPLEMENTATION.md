@@ -60,6 +60,8 @@
 
 ## 전체 문맥 메모리 확장 · 2026-11-15
 
+아래는 D013 당시 구현/검증 기록이다. 현재 실행 흐름은 다음 D014 항목의 「처음부터 동일 정책」을 따른다.
+
 `memory_support/attention.py`는 토큰 축을 자르지 않고 head 축을 순차 실행한다. GQA에서는 query head 번호를 query/KV head 비율로 나눈 원래 KV head에 연결한다. mask에 head 축이 있으면 해당 head만 취하고, 나머지 길이·causal·scale을 유지한다. native math SDPA의 결과를 원래 head 순서로 합친다. 1,024 이하의 query와 decode는 기존 native 호출이다. 예외에서도 전역 함수 교체를 복원한다. 단일 모델·단일 추론 프로세스의 기존 실행 구조를 전제로 한다.
 
 `memory_support/runner.py`는 기존 `load_run`, 환경·runtime 검사를 재사용한다. 원래 패키지/entry point의 무결성 검사를 우회하거나 동결 해시를 고치지 않는다. 별도 확장의 소스와 해시·검증 보고서·적용 경계를 추가 보관하며, 원래 runtime JSON은 기본 모델 설정, `runtime_memory_policy.json`은 실제 추가 실행 정책을 설명한다. 모델 단계는 보완 entry point로 통일하고 출력마다 정책을 기록한다. 일반 entry point로 생성해 정책 기록을 빠뜨린 이후 행은 보완 재개가 거부한다.
@@ -67,3 +69,15 @@
 Dev 출력 검사는 longest Original 문서 1개에서 판단 5개와 압축 4개를 대조한다. exact token sequence 등을 비교하며 Gold나 정확도는 사용하지 않는다. 이 9개만 실제 모델로 실행하는 절차는 사용자 로컬 명령이다. 에이전트는 작은 CPU 텐서와 stub 모델의 합성 흐름만 검증한다. 기존 Dev/Test 원본 기록과 동결 파일에는 쓰지 않는다.
 
 검증 결과: Python 3.11.9에서 CPU 테스트 21개 통과. 기존 Dev 5,185건과 Test 544건의 기본 source identity가 그대로 일치함을 확인했다. Dev 판단 SHA256은 `39ed13e2e35569680b5f04f62ef3496e121db16f78f7ddb7825022a9c52fb4cb`, Test 판단은 `9ccc37c5c77ef6aa06e31cb88c4b6c4b0af381d78c3a473631917a664f96b0e0`로 보존했다. 추가 실행 파일 구문·CLI·torch 비로딩 import 검사도 통과했다. GPU 모델의 실제 메모리와 출력 비교는 아직 실행하지 않았다.
+
+## 처음부터 동일 정책인 Test · D014
+
+`init-test`는 기본 모델의 full Dev protocol을 읽고 기존 식별자/환경을 확인한다. 새 `protocol.json`의 `memory_execution.mode=from_start`에 보완 정책과 기술 점검을 결합하고, 두 모델 runtime에 정책 marker를 추가한다. 새 protocol 디렉터리의 새 Test 등록은 기존 initializer가 수행하며, 원본 protocol의 Test 등록을 지우지 않는다.
+
+일반 Main 소스와 config는 그대로여서 기본 Dev source identity가 유지된다. 추가 소스의 사본·해시는 별도로 동결하며, 메모리 모델의 실제 runtime에도 같은 해시를 기록한다. 따라서 canonical `model_details` 비교가 native 모델 실행을 생성 전에 거부한다. 기존 해시 검사를 완화하거나 원래 manifest를 고치지 않는다.
+
+초기 run은 원문 문맥만 N개, 예측 0개여야 한다. `runtime_memory_policy.json`이 최초 생성부터 이 정책을 고정하고, 이후의 모든 모델 출력은 같은 hash를 가져야 한다. 이미 모델 출력이 있는 이전 Test를 채택할 수 없다. 검사 보고서는 run/protocol 안에 보관하므로 초기화 뒤 외부 검사 경로에 계속 의존하지 않는다.
+
+`check-dev`의 새 schema는 형식·동일 입력·greedy·메모리 정책의 기술 통과와 기존 출력 동일성을 구분한다. 서로 다른 정상 출력도 기술 점검을 통과할 수 있다. 모든 새 출력은 별도 `outputs.jsonl`에 기록한다. 오래된 schema의 PASS/FAIL을 편집해 재사용하지 않는다.
+
+검증 결과: Python 3.11.9 CPU 테스트 22개 통과. 합성 데이터로 새 동결과 초기화, native 진입 차단, 5조건의 모든 새 판단, 재개 중복 방지, 진단/분석, 새 protocol 덮어쓰기 차단과 이전 결과 비변경을 확인했다. 실제 GPU 모델 실험은 수행하지 않았다.

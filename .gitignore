@@ -6,6 +6,7 @@ data_audit/
 prepared/
 runs/
 protocol/
+protocol_*/
 model_lock.json
 environment-lock.txt
 .env

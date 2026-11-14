@@ -1,1 +1,1 @@
-"""Explicit, separately audited memory extension for frozen Main runs (D013)."""
+"""Audited memory execution and fresh uniform Test protocols (D013/D014)."""

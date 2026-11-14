@@ -1,4 +1,4 @@
-"""Audited full-context memory extension; see README and decision D013."""
+"""Uniform full-context memory Test entry point; see README and decision D014."""
 
 from memory_support.runner import main
 

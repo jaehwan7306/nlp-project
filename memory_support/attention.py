@@ -47,7 +47,7 @@ def headwise_sdpa(native, query, key, value, attn_mask=None, dropout_p=0.0,
     outputs = []
     # Selecting the math kernel explicitly avoids switching to a different fused
     # kernel merely because the head count has changed. Floating-point roundoff
-    # can still differ; the CLI requires a recorded Dev output comparison.
+    # can still differ; the CLI records a technical Dev check and starts fresh Test outputs.
     with sdpa_kernel(SDPBackend.MATH):
         for head in range(heads):
             kv_head = head // group_size
@@ -88,10 +88,16 @@ def memory_attention(stats):
         functional.scaled_dot_product_attention = native
 
 
-def memory_model(base, spec):
+def runtime_policy_marker(spec):
+    return {"id": spec["id"], "policy_sha256": digest(spec)}
+
+
+def memory_model(base, spec, stamp_runtime=False):
     class MemorySafeModel(base):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
+            if stamp_runtime:
+                self.details = {**self.details, "attention_memory_policy": runtime_policy_marker(spec)}
             print(f"Memory policy: {spec['id']} / long prefill / one head per call / full context", flush=True)
 
         def generate(self, messages):

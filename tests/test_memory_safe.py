@@ -8,9 +8,12 @@ from pathlib import Path
 from unittest.mock import patch
 
 from contract_experiment import CONDITIONS
+from contract_experiment.data import build_units
+from contract_experiment.settings import ROOT, environment, identity, load_config, load_run
 from contract_experiment.storage import (append_jsonl, digest, read_json, read_jsonl, write_json)
-from memory_support.attention import headwise_sdpa, memory_attention, memory_model, policy_spec
-from memory_support.runner import add_report_note, adopt, check_dev, verify_new_rows, verify_report
+from memory_support.attention import headwise_sdpa, memory_attention, memory_model, policy_spec, runtime_policy_marker
+from memory_support.runner import (CHECK_SCHEMA, add_report_note, adopt, check_dev, execute, initialize_test,
+                                   verify_new_rows, verify_report, verify_technical_report)
 
 try:
     import torch
@@ -90,10 +93,12 @@ class AttentionTests(unittest.TestCase):
             source, target, check = root / "dev", root / "test", root / "check"
             source.mkdir()
             target.mkdir()
-            doc = {"key": "dev:1", "units": [{"id": 1, "text": "A source clause."}]}
+            source_text = "A source clause."
+            doc = {"key": "dev:1", "units": build_units(source_text, [[0, len(source_text)]])}
             dataset = {"documents": [doc], "hypotheses": {f"h{i}": f"Claim {i}" for i in range(17)}}
             manifest = {"split": "dev", "identity": {"synthetic": "frozen"},
-                        "expected_contexts": 5, "expected_judgments": 85}
+                        "expected_contexts": 5, "expected_judgments": 85,
+                        "document_count": 1, "document_keys": ["dev:1"]}
             generated = {"raw_token_ids": [10, 11], "text": "same tokens", "stop_reason": "eos",
                          "rendered_prompt_sha256": "same prompt", "input_tokens": 2000}
             for condition in CONDITIONS:
@@ -106,14 +111,17 @@ class AttentionTests(unittest.TestCase):
             for role, details in runtime.items():
                 write_json(source / f"runtime_{role}.json", details)
             write_json(source / "environment.json", {})
-            write_json(target / "frozen_protocol.json", {"runtime": runtime})
 
             class FakeModel:
                 def __init__(self, config, models, role):
+                    self.role = role
                     self.details = runtime[role]
 
                 def generate(self, messages):
-                    return dict(generated)
+                    text = "Entailment" if self.role == "judge" else (
+                        "[1]" if "JSON" in messages[1]["content"] else "A changed summary.")
+                    return {**generated, "raw_token_ids": [12, 13], "text": text,
+                            "decoding_policy": "explicit_greedy_v1"}
 
                 def close(self):
                     pass
@@ -126,17 +134,26 @@ class AttentionTests(unittest.TestCase):
             report = read_json(check / "report.json")
             self.assertEqual(len(report["checks"]), 9)
             self.assertTrue(all(row["passed"] for row in report["checks"]))
+            self.assertEqual(report["identical_output_count"], 0)
+            marker = runtime_policy_marker(policy_spec())
+            write_json(target / "frozen_protocol.json", {"runtime": {
+                role: {**details, "attention_memory_policy": marker} for role, details in runtime.items()},
+                "memory_execution": {"mode": "from_start", "policy": policy_spec(), "check_report_sha256": digest(report)}})
             with patch("memory_support.runner.environment", return_value={}):
                 verify_report(report, manifest, target)
-                report["checks"][0]["equal"]["raw_token_ids"] = False
+                report["checks"][0]["technical"]["greedy"] = False
                 with self.assertRaisesRegex(ValueError, "passing"):
-                    verify_report(report, manifest, target)
-                report["checks"][0]["equal"]["raw_token_ids"] = True
+                    verify_technical_report(report, manifest["identity"], runtime)
+                report["checks"][0]["technical"]["greedy"] = True
             prefix = {"generation": {"text": "old result"}}
             append_jsonl(target / "predictions.jsonl", prefix)
+            with self.assertRaisesRegex(ValueError, "zero judgments"):
+                adopt(target, manifest, report)
+            (target / "predictions.jsonl").unlink()
+            append_jsonl(target / "contexts.jsonl", {"document": "dev:1", "condition": "original", "generation": None})
             record = adopt(target, manifest, report)
-            self.assertEqual(record["journal_boundaries"]["predictions.jsonl"], 1)
-            self.assertEqual(read_jsonl(target / "predictions.jsonl"), [prefix])
+            self.assertEqual(record["journal_boundaries"]["predictions.jsonl"], 0)
+            self.assertEqual(read_jsonl(target / "predictions.jsonl"), [])
             self.assertTrue((target / "memory_extension_source" / "run_memory_safe.py").exists())
             self.assertEqual(adopt(target, manifest, report), record)
             write_json(target / "results" / "analysis.json", {"metrics": "unchanged"})
@@ -144,7 +161,8 @@ class AttentionTests(unittest.TestCase):
             add_report_note(target)
             analysis = read_json(target / "results" / "analysis.json")
             self.assertEqual(analysis["metrics"], "unchanged")
-            self.assertEqual(analysis["attention_memory_execution"]["preserved_journal_prefix"]["predictions.jsonl"], 1)
+            self.assertEqual(analysis["attention_memory_execution"]["previous_judgments_reused"], 0)
+            self.assertEqual(analysis["attention_memory_execution"]["execution_mode"], "from_start")
 
 
 class MemoryJournalTests(unittest.TestCase):
@@ -165,6 +183,106 @@ class MemoryJournalTests(unittest.TestCase):
             record["journal_prefix_digests"]["predictions.jsonl"] = digest([])
             with self.assertRaisesRegex(ValueError, "Pre-extension"):
                 verify_new_rows(run, record)
+
+    def test_fresh_test_uniform_policy_and_native_entry_is_blocked(self):
+        from contract_experiment.experiment import judge
+
+        class Tokenizer:
+            def encode(self, text, **kwargs):
+                return text.split()
+
+        class Model:
+            generated = 0
+
+            def __init__(self, config, models, role):
+                self.role = role
+                self.details = {"role": role, "load_seconds": 0.0, "decoding_policy": "explicit_greedy_v1"}
+
+            def generate(self, messages):
+                Model.generated += 1
+                text = "Entailment" if self.role == "judge" else (
+                    "[1]" if "JSON" in messages[1]["content"] else "New summary.")
+                return {"text": text, "raw_text": text, "raw_token_ids": [], "stop_reason": "eos",
+                    "cap_reached": False, "dialogue_flag": False, "input_tokens": 10,
+                    "generated_tokens": 2, "generation_seconds": 0.0,
+                    "rendered_prompt_sha256": "synthetic", "decoding_policy": "explicit_greedy_v1"}
+
+            def close(self):
+                pass
+
+        @contextlib.contextmanager
+        def cpu_stub(stats):
+            yield
+
+        with tempfile.TemporaryDirectory() as temporary, contextlib.redirect_stdout(io.StringIO()):
+            root = Path(temporary)
+            old_protocol, old_test = root / "old_protocol", root / "old_test"
+            protocol, target = root / "memory_protocol", root / "memory_test"
+            old_test.mkdir()
+            append_jsonl(old_test / "predictions.jsonl", {"text": "old output must never be imported"})
+            old_before = (old_test / "predictions.jsonl").read_bytes()
+            config_path = root / "config.toml"
+            config_path.write_text((ROOT / "config.toml").read_text(encoding="utf-8").replace(
+                "bootstrap_repetitions = 10000", "bootstrap_repetitions = 30"), encoding="utf-8")
+            config = load_config(config_path)
+            models = {"models": {role: {"repo_id": repo, "revision": "a" * 40} for role, repo in config["models"].items()}}
+            models_path = root / "models.json"
+            write_json(models_path, models)
+            prepared = {"counts": {"train": 1, "dev": 1, "test": 1}, "synthetic": True}
+            hypotheses = {f"h{i}": f"Claim {i}" for i in range(17)}
+            text = "An original contract clause."
+            doc = {"key": "test:1", "id": 1, "split": "test", "text": text,
+                   "units": build_units(text, [[0, len(text)]]),
+                   "annotations": {hid: {"choice": "Entailment", "spans": [0]} for hid in hypotheses}}
+            dataset = {"documents": [doc], "hypotheses": hypotheses}
+            base_identity = identity(config, prepared, models)
+            runtimes = {role: {"role": role, "decoding_policy": "explicit_greedy_v1"} for role in ("judge", "compressor")}
+            base = {"identity": base_identity, "environment": environment(), "runtime": runtimes}
+            write_json(old_protocol / "protocol.json", base)
+            write_json(old_protocol / "test_run.json", {"run_directory": str(old_test)})
+            base_before = (old_protocol / "protocol.json").read_bytes()
+            roles = [("judge", c) for c in CONDITIONS] + [("compressor", c) for c in CONDITIONS[1:]]
+            technical = dict.fromkeys(("same_rendered_prompt", "same_input_tokens", "valid_output_format", "greedy", "memory_policy"), True)
+            report = {"schema": CHECK_SCHEMA, "status": "complete", "passed": True,
+                "policy": policy_spec(), "identity": base_identity, "environment": environment(), "runtime": runtimes,
+                "checks": [{"role": r, "condition": c, "technical": dict(technical), "passed": True,
+                            "equal": {"raw_token_ids": False}, "output_identical": False} for r, c in roles]}
+            report_path = root / "check.json"
+            write_json(report_path, report)
+            with contextlib.ExitStack() as stack:
+                stack.enter_context(patch("contract_experiment.data.load_prepared", return_value=(dataset, prepared)))
+                stack.enter_context(patch("contract_experiment.experiment.load_prepared", return_value=(dataset, prepared)))
+                stack.enter_context(patch("contract_experiment.experiment.load_tokenizer", return_value=Tokenizer()))
+                stack.enter_context(patch("contract_experiment.experiment.LocalModel", Model))
+                stack.enter_context(patch("memory_support.attention.memory_attention", cpu_stub))
+                initialize_test(config_path, root / "prepared", models_path, old_protocol, protocol, target, report_path)
+                self.assertFalse((target / "predictions.jsonl").exists())
+                self.assertEqual(len(read_jsonl(target / "contexts.jsonl")), 1)
+                record = read_json(target / "runtime_memory_policy.json")
+                self.assertEqual(record["journal_boundaries"]["predictions.jsonl"], 0)
+                self.assertEqual(record["previous_compressed_contexts_reused"], 0)
+                with self.assertRaisesRegex(ValueError, "frozen Dev execution"):
+                    judge(target, ["original"])
+                self.assertEqual(Model.generated, 0)  # Native entry cannot generate even one unmarked row.
+                self.assertEqual(execute(["judge", "--run", str(target), "--conditions", "original"]), 0)
+                self.assertEqual(execute(["compress", "--run", str(target)]), 0)
+                self.assertEqual(execute(["judge", "--run", str(target), "--resume"]), 0)
+                before = Model.generated
+                self.assertEqual(execute(["judge", "--run", str(target), "--resume"]), 0)
+                self.assertEqual(Model.generated, before)
+                self.assertEqual(execute(["diagnose", "--run", str(target)]), 0)
+                self.assertEqual(execute(["analyze", "--run", str(target)]), 0)
+                with self.assertRaisesRegex(ValueError, "already contains"):
+                    initialize_test(config_path, root / "prepared", models_path, old_protocol, protocol, target, report_path)
+            rows = read_jsonl(target / "predictions.jsonl")
+            self.assertEqual(len(rows), 85)
+            self.assertTrue(all(r["generation"]["attention_memory_policy"]["policy_sha256"] == digest(policy_spec()) for r in rows))
+            self.assertEqual(len(read_jsonl(target / "contexts.jsonl")), 5)
+            self.assertEqual((old_test / "predictions.jsonl").read_bytes(), old_before)
+            self.assertEqual((old_protocol / "protocol.json").read_bytes(), base_before)
+            load_run(target)  # The ordinary immutable-source/snapshot validation remains intact.
+            analysis = read_json(target / "results" / "analysis.json")
+            self.assertEqual(analysis["attention_memory_execution"]["execution_mode"], "from_start")
 
 
 if __name__ == "__main__":
