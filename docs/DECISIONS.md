@@ -108,6 +108,19 @@
 - 검증: 실제 Transformers 설정 병합 CPU 검사, 생산 `generate` 호출의 명시 인자 검사, 샘플링 압축 재사용 거부, 복사 전후 판단 격리·원본 비변경 검사. 실제 기존 Dev의 244개 압축 출력 모두 CPU/토크나이저 검증을 통과했다. 모델 가중치 로드·GPU 추론·Dev/Test 재실행은 하지 않았다.
 - 한계: 이전 표준 라이브러리 stub 검사만으로는 Transformers 내부 설정 병합을 잡지 못했다. 의존성 설치 후 실제 라이브러리 설정 회귀 검사도 실행한다. 수정된 모델의 실제 추론 검증은 로컬 Dev에서 수행한다.
 
+## D013 · 2026-11-15 · 긴 입력의 전체 attention을 head별로 실행
+
+- 관측: `test:58 original`의 첫 판단에서 CUDA OOM이 발생했고, 새 프로세스로 재개해도 같은 위치에서 실패했다. traceback은 Qwen3 → Transformers SDPA → `scaled_dot_product_attention`을 가리켰다. 기존 544개 판단은 정상 저장됐으며 greedy 설정은 유지됐다.
+- 입력 범위: Test 최장 원문은 7,908토큰, Dev 최장 원문은 6,378토큰이었다. Dev 처리 성공만으로 모든 Test 길이를 처리할 수 있다고 판단할 수 없었다. 사용자 Windows PyTorch 2.8.0+cu128 빌드에 FlashAttention이 포함되지 않은 것도 확인했다. 특정 native 커널의 실제 선택을 프로파일링한 것은 아니다.
+- 근거: [PyTorch 2.8 SDPA 명세](https://docs.pytorch.org/docs/2.8/generated/torch.nn.functional.scaled_dot_product_attention.html)의 attention은 각 head에서 독립적으로 수행하며, math 경로는 half/bf16 입력에도 float 중간값을 사용한다. GQA head와 KV head의 대응을 유지하면 head별 분할은 전체 토큰 간 attention을 유지한다.
+- 선택: `run_memory_safe.py`의 명시적 메모리 보완을 추가한다. query 길이가 1,024를 초과하는 prefill에서 한 head씩 native SDPA MATH를 실행하고 원래 head 순서로 합친다. 모든 query/key 토큰·mask·causal 인자·scale을 유지하며 GQA head는 원래 KV head에 연결한다. 짧은 query와 decode는 기존 native 경로다. dropout은 0만 허용한다.
+- 유지: 모델·4bit NF4·compute dtype·프롬프트·greedy·문맥·가설·출력 상한·평가 분모. 긴 문서를 자르거나 제외하지 않는다. 라이브러리 재설치·모델 교체·CPU offload를 우선 해결책으로 적용하지 않는다.
+- 수치 검증: 계산의 수학적 형태는 같아도 native 커널 선택과 배치 형태에 따른 반올림 차이는 가능하다. GPU에서 무조건 비트 일치한다고 주장하지 않는다. longest Original 기준으로 사전 선택한 Dev 1문서에 대해 압축 4회·첫 고정 가설의 판단 5회, 총 9개 생성의 raw token ID·본문·종료·렌더링 해시·입력 길이가 기존 greedy와 일치해야 Test 재개를 허용한다. 정확도·Gold를 보고 보완 방식을 고르지 않는다. 원본 Dev는 보존한다. 불일치가 있으면 보고서를 남기고 자동 재개를 거부한다.
+- 실행 기록: 기존 Main source/manifest/protocol의 무결성 검사는 그대로 실행한다. 원래 동결 대상은 고치지 않으며, 별도 보완 실행 파일의 모든 소스·해시, 검증 보고서, 적용 전 journal 접두 경계를 run에 추가 보관한다. 새 generation에는 정책 해시와 실제 분할 호출·최대 Q/K 길이를 남긴다. 재개 시 기존 기록의 비변경과 새 정책 표시를 검사한다.
+- 이전 결과: 성공한 544개 판단은 prefix로 보존하고 이후 출력과 소프트웨어 적용 경계를 구분한다. 이는 샘플링 오류를 greedy로 바꾸는 D012와 달리, 같은 실험 설정에서 계산 실행 방식을 추가한 변경이다. 표본 검사만으로 모든 출력의 비트 일치를 증명하지는 못한다.
+- 보고: 결과 Markdown과 analysis.json에 보완 도입·출처·접두 경계와 한계를 표시한다. 속도는 도입 전후 구현이 섞인 관측이며 동일 커널 간 효율 비교로 주장하지 않는다. 다른 조건을 임의로 재생성하거나 실패 관측을 제외하지 않는다.
+- 에이전트 검증 범위: 작은 CPU 텐서의 native MATH 대 head별 결과, float32/bf16·GQA·mask·causal/decode·scale, 전체 토큰 축 유지, 예외 시 함수 복원, 정책 메타데이터와 journal 보존, 합성 9-output 검사/도입 흐름. 모델 가중치 로드·GPU 모델 추론은 실행하지 않았다. 실제 Dev 출력 일치와 58번 통과는 사용자의 로컬 실행으로 확인한다.
+
 ## 이후 기록 양식
 
 ```text

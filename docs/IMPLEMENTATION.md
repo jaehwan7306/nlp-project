@@ -57,3 +57,13 @@
 기존 로컬 Dev를 읽는 CPU 검증에서 61문서·244개 압축의 원본 출력, 프롬프트 해시, 추출 조합, 토큰 수와 실제 디코딩 동등성을 확인했다. 원본 파일은 수정하지 않았다. GPU 모델 추론과 실험 재실행은 수행하지 않았다.
 
 검증 결과: Python 3.11.9 / Transformers 4.57.1에서 CPU 테스트 16개 통과. 작업 폴더의 별도 검증용 run으로 기존 244개 압축 복사까지 확인했으며 판단 0건, 원본 파일 비변경을 확인했다. 실제 사용자 run에 쓰거나 GPU 모델을 로드하지 않았다.
+
+## 전체 문맥 메모리 확장 · 2026-11-15
+
+`memory_support/attention.py`는 토큰 축을 자르지 않고 head 축을 순차 실행한다. GQA에서는 query head 번호를 query/KV head 비율로 나눈 원래 KV head에 연결한다. mask에 head 축이 있으면 해당 head만 취하고, 나머지 길이·causal·scale을 유지한다. native math SDPA의 결과를 원래 head 순서로 합친다. 1,024 이하의 query와 decode는 기존 native 호출이다. 예외에서도 전역 함수 교체를 복원한다. 단일 모델·단일 추론 프로세스의 기존 실행 구조를 전제로 한다.
+
+`memory_support/runner.py`는 기존 `load_run`, 환경·runtime 검사를 재사용한다. 원래 패키지/entry point의 무결성 검사를 우회하거나 동결 해시를 고치지 않는다. 별도 확장의 소스와 해시·검증 보고서·적용 경계를 추가 보관하며, 원래 runtime JSON은 기본 모델 설정, `runtime_memory_policy.json`은 실제 추가 실행 정책을 설명한다. 모델 단계는 보완 entry point로 통일하고 출력마다 정책을 기록한다. 일반 entry point로 생성해 정책 기록을 빠뜨린 이후 행은 보완 재개가 거부한다.
+
+Dev 출력 검사는 longest Original 문서 1개에서 판단 5개와 압축 4개를 대조한다. exact token sequence 등을 비교하며 Gold나 정확도는 사용하지 않는다. 이 9개만 실제 모델로 실행하는 절차는 사용자 로컬 명령이다. 에이전트는 작은 CPU 텐서와 stub 모델의 합성 흐름만 검증한다. 기존 Dev/Test 원본 기록과 동결 파일에는 쓰지 않는다.
+
+검증 결과: Python 3.11.9에서 CPU 테스트 21개 통과. 기존 Dev 5,185건과 Test 544건의 기본 source identity가 그대로 일치함을 확인했다. Dev 판단 SHA256은 `39ed13e2e35569680b5f04f62ef3496e121db16f78f7ddb7825022a9c52fb4cb`, Test 판단은 `9ccc37c5c77ef6aa06e31cb88c4b6c4b0af381d78c3a473631917a664f96b0e0`로 보존했다. 추가 실행 파일 구문·CLI·torch 비로딩 import 검사도 통과했다. GPU 모델의 실제 메모리와 출력 비교는 아직 실행하지 않았다.

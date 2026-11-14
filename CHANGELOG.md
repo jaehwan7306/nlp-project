@@ -1,5 +1,15 @@
 # 변경 이력
 
+## 2026-11-15 · 긴 문서 SDPA 메모리 보완 실행 파일
+
+- Test 58번에서 재시작 직후 SDPA 연산 OOM이 재현돼 `run_memory_safe.py`와 `memory_support/` 추가.
+- 긴 prefill의 attention을 query head 하나씩 native MATH로 계산. 전체 토큰·GQA 대응·마스크를 유지.
+- Dev 최장 원문 1문서의 9개 출력이 기존 greedy 결과와 정확히 일치하는지 로컬 확인 후 재개하도록 검사.
+- 기존 Main 실행 파일·패키지·config·동결 해시는 변경하지 않고, 보완 소스·검사·적용 경계를 별도 보관. 이후 출력에 정책 기록.
+- 완료된 판단을 보존하며 구현 변경과 시간 비교 한계를 결과 보고서에도 명시. 결정 D013과 README 실행 명령 추가.
+- 최소 검증은 작은 CPU 텐서와 합성 run으로 수행. 모델 가중치 로드·GPU 모델 추론은 수행하지 않음.
+- 검증 결과: Python 3.11 CPU 테스트 21개 통과, 기존 Dev/Test source identity와 저장 판단 비변경 확인.
+
 ## 2026-11-14 · 실제 greedy 적용 오류 수정과 Dev 압축 복구
 
 - Qwen3에서 Transformers 4.57.1의 모델 기본값 상속이 `do_sample=False`를 `True`로 바꾸던 오류 수정.

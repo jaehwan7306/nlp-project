@@ -277,6 +277,41 @@ python run_experiment.py analyze --run runs/test_greedy
 
 복구의 출처·해시·동등성 검사·판단 미복사 여부는 `compression_reuse.json`에 남는다. `compression_seconds`는 원래 실제로 걸린 압축 시간을 유지한다. 재사용했다고 압축 비용이 0이었던 것으로 보고하지 않는다. 이전 Dev의 보존율과 압축 특성 관측은 유효하지만 판단 출력·파싱·시간은 샘플링 실행의 관측으로 구분한다. 오류 수정 때문에 새 실행을 시작한 이유는 결정 D012에 기록한다.
 
+## 긴 문서에서 CUDA OOM이 반복될 때 · 전체 문맥 메모리 보완
+
+2026-11-15 Test 58번(원문 7,908토큰)에서 재시작 직후에도 SDPA attention 연산의 OOM이 재현됐다. 완료된 544건은 저장되어 있었다. 이 경우 단순 재개만으로 해결됐다고 가정하지 않는다.
+
+추가 실행 파일 `run_memory_safe.py`는 긴 입력을 읽는 attention 계산을 head 하나씩 순차 실행한다. 각 head에는 전체 query/key 토큰을 그대로 제공하고, GQA의 대응 KV head와 마스크·인과 관계를 유지한다. query 길이가 1,024를 초과하면 native SDPA MATH로 나눠 계산하고, 짧은 입력·후속 1토큰 생성은 기존 native 호출을 사용한다. 원문·프롬프트·4bit 정밀도·greedy·출력 상한은 유지한다. 모델을 CPU로 옮기거나 긴 문서를 제외하지 않는다.
+
+실행 구현의 추가 변경이므로 모든 출력이 비트 단위로 같다고 가정하지 않는다. 먼저 **Dev에서 가장 긴 원문 1문서**의 압축 4회와 첫 고정 가설에 대한 판단 5회, 총 **9개 출력**을 기존 greedy 결과와 대조한다. raw token ID·본문·종료·입력 해시가 모두 일치해야 Test 재개를 허용한다. Gold나 정확도로 설정을 고르지 않으며 원본 Dev 결과에는 쓰지 않는다. 이 표본 검사가 모든 Test 출력의 일치를 증명하는 것은 아니다.
+
+최신 저장소의 **`run_memory_safe.py`와 `memory_support/` 폴더**를 프로젝트에 추가한다. 기존 `contract_experiment/`, `run_experiment.py`, `config.toml`은 이번 보완에서 변경하지 않았다. 의존성 설치·데이터 준비·전체 Dev 판단을 반복하는 절차가 아니다. `.venv`, 데이터·검수 자료·prepared, 기존 run·protocol을 보존한다.
+
+```powershell
+python -m unittest discover -s tests -v
+python run_memory_safe.py check-dev --run runs/dev_greedy --out runs/memory_check
+```
+
+`Dev memory check: PASS`를 확인한 뒤 기존 Test를 재개한다. FAIL이면 결과를 강제로 통과시키거나 기존 판단을 덮어쓰지 않는다. 중간에 검사 자체가 중단됐다면 남은 검사 보고서를 보존하고 새 `--out`으로 다시 검사한다. 다른 검사 폴더를 썼다면 이후 명령에도 `--check-report 해당폴더/report.json`을 붙인다.
+
+```powershell
+python run_memory_safe.py --debug judge --run runs/test_greedy --conditions original --resume
+```
+
+완료된 544건을 보존한 경우 남은 `1/1479`에서 시작한다. 로딩 후 기존 greedy 확인과 함께 `Memory policy: headwise_math_prefill_v1 ... full context`가 출력된다. GPU에서 긴 문서가 실제로 처리되는지는 로컬 재개로 확인해야 한다. 에이전트는 모델 가중치를 로드하거나 이 실험을 대신 실행하지 않았다.
+
+이후 이 Test의 모델 실행·분석은 보완 실행 파일로 통일한다.
+
+```powershell
+python run_memory_safe.py analyze --run runs/test_greedy --conditions original
+python run_memory_safe.py compress --run runs/test_greedy --resume
+python run_memory_safe.py judge --run runs/test_greedy --resume
+python run_memory_safe.py diagnose --run runs/test_greedy
+python run_memory_safe.py analyze --run runs/test_greedy
+```
+
+**기록 방식:** 기존 동결 소스·protocol의 해시를 바꾸거나 검사에서 제외하지 않는다. 추가 실행 파일은 별도 확장으로서 소스 사본·해시·검증 보고서·적용 전 journal 경계를 `runtime_memory_policy.json`과 `memory_extension_source/`에 남긴다. 이후 생성 기록마다 `attention_memory_policy`를 추가한다. 재개 때 기존 접두 기록의 비변경과 이후 정책 표시를 검사한다. `report.md`, `analysis.json`에도 실행 구현 변경을 명시한다. 메모리 보완 이전/이후의 시간이 섞이므로 처리시간을 동일한 커널의 공정한 속도 비교로 해석하지 않는다. 결정 D013 참조.
+
 ## 추가 분석의 확정 설계 — 실행 기능은 추후 구현
 
 메인은 위의 질문 없는 5조건과 기존 프롬프트·설정으로 진행한다. 다음은 2026-11-14에 확정한 추가 분석의 설계이며 현재 CLI에 실행 기능은 포함하지 않는다.
