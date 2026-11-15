@@ -1,8 +1,10 @@
 # ContractNLI 문맥 압축 Main Experiment
 
-Python **3.11** 프로젝트다. ContractNLI 원문과 질문 없는 압축 4조건을 같은 판단 모델로 평가한다. 이전 실험의 코드·결과·중복 제외 목록을 가져오지 않았다. 질문 제공, 목표 보존율 제약, Gold Evidence 오류 사례 분석은 이번 구현에 포함하지 않는다.
+Python **3.11** 프로젝트다. ContractNLI 원문과 질문 없는 압축 4조건을 같은 판단 모델로 평가한다. 프로젝트를 새로 구성할 때 이전 실험의 코드·결과·중복 제외 목록을 가져오지 않았다. **추가 분석 1(17개 가설 목록 제공)**은 별도 실행 파일로 구현했다. 목표 보존율 제약과 Gold Evidence 오류 사례 분석은 이후 구현한다.
 
 **현재 Test 실행은 `run_memory_safe.py`로 처음부터 통일한다.** 이미 `runs/dev_greedy`와 `protocol_greedy`를 완료한 경우 아래 **「OOM 보완으로 Test 전체를 새로 실행」** 절차부터 진행한다. 기존 Test 판단·압축 결과는 새 Test로 가져오지 않는다.
+
+**`runs/test_memory_safe` 분석까지 완료했다면 「추가 분석 1: 17개 가설 목록 제공」부터 진행한다.** Main을 다시 실행하거나 데이터를 다시 검수할 필요는 없다. 추가 분석은 `run_question_analysis.py`를 사용한다.
 
 | 조건 ID | 조건 | 압축 출력 |
 |---|---|---|
@@ -337,19 +339,96 @@ Original은 이미 완료했으므로 마지막 판단의 `--resume`이 이를 �
 
 짧은 입력/긴 입력의 실제 연산은 동일한 고정 규칙으로 분기하므로 모든 호출의 커널이나 시간이 같다는 뜻은 아니다. 실제 GPU에서 Test 최장 문서가 처리되는지는 로컬 실행으로 확인해야 한다. 에이전트는 모델 가중치 로드·GPU 모델 추론을 수행하지 않았다. D013의 혼합 실행 제안은 D014로 대체됐다.
 
-## 추가 분석의 확정 설계 — 실행 기능은 추후 구현
+## 추가 분석 1: 17개 가설 목록 제공
 
-메인은 위의 질문 없는 5조건과 기존 프롬프트·설정으로 진행한다. 다음은 2026-11-14에 확정한 추가 분석의 설계이며 현재 CLI에 실행 기능은 포함하지 않는다.
+질문 없는 Main을 **Q0**, 같은 계약서에 고정 17개 가설 목록을 함께 제공한 조건을 **Q17**로 비교한다. 네 압축 방법 각각 문서당 한 번만 압축하고, 만든 문맥을 17개 가설 판단에 재사용한다. 판단 모델은 Main과 똑같이 문맥과 가설 **한 개씩** 받는다.
 
-| 분석 | 질문 제공과 재사용 방식 |
+변경은 압축 user 입력에 공통 가설 안내와 17개 목록을 추가하는 것뿐이다. Main의 system·기본 작업 지시·보존 우선 문장, 모델 리비전, NF4 4bit·bfloat16, 명시적 greedy, thinking off, 안전 상한·정지 문자열, 추출 단위와 원문 순서 조합, 파싱·실패 처리, OOM 보완 정책을 유지한다. 길이 목표·최소 길이·재생성은 추가하지 않는다. 가설은 검증할 주장이라는 안내를 넣고 Gold Label·Gold Evidence는 제공하지 않는다.
+
+**업데이트:** 최신 GitHub ZIP을 내려받아 코드·문서를 업데이트한다. 특히 `run_question_analysis.py`, **`question_support/` 전체**, `tests/test_questions.py`가 있어야 한다. `.venv`, 데이터·검수 자료·prepared·model_lock.json, 기존 run·protocol은 보존한다. 기존 Main 패키지와 OOM 보완 소스·config·의존성 버전은 이번 변경에서 수정하지 않았다. 설치·다운로드·중복 검수·전체 Dev 판단을 반복하지 않는다.
+
+완료한 Main의 데이터·제외 목록·설정을 읽으므로 추가 분석용 config를 따로 편집하지 않는다. Main과 동일한 가상환경을 활성화한 IDE 터미널에서 아래 순서로 실행한다. 예시는 현재 완료한 `runs/test_memory_safe`와 `runs/dev_greedy`를 기준으로 한다. 자신의 run 이름이 다를 때만 해당 인자를 변경한다.
+
+### 1. 최소 검사와 소규모 Dev 점검
+
+```powershell
+python -m unittest discover -s tests -v
+python run_question_analysis.py --debug preflight --main-run runs/test_memory_safe --dev-run runs/dev_greedy --out runs/questions17_preflight --documents 1
+```
+
+Q17 입력이 가장 긴 Dev 1문서를 토크나이저로 고른다. 압축 4회와 다섯 조건 × 17가설 = 85개 판단을 실행해 입력 증가 후의 메모리·추출 ID·라벨 형식과 설정을 점검한다. **Dev 정확도는 계산하지 않는다.** `Q17 preflight: PASS`를 확인한 다음 진행한다. 길이·상한 도달·대화 플래그는 진단에 남기며 이를 이용해 유리한 출력을 골라내지 않는다. 실패하면 `diagnostics/technical_summary.json`과 오류를 먼저 확인한다.
+
+사전 점검이 중단됐을 때는 같은 명령에 `--resume`을 붙인다. 완료된 출력과 실패 기록은 유지하며, 자동으로 재생성하지 않는다.
+
+### 2. 별도 Test 초기화
+
+```powershell
+python run_question_analysis.py init --main-run runs/test_memory_safe --preflight runs/questions17_preflight --out runs/questions17
+```
+
+사전 점검의 프롬프트·실제 runtime·코드를 확인하고 `frozen_protocol.json`에 Q17 규칙을 동결한다. Main의 Original 문맥과 판단 결과만 정확히 복사한다. 질문 없는 네 압축 방법은 비교 기준으로 참조하며 Q17 출력으로 복사하지 않는다. 데이터 제외 목록과 문서·가설은 Main과 완전히 같다.
+
+119문서라면 **새 압축 476회, 새 판단 8,092건, Original 재사용 2,023건**이다. 저장 결과에는 Original을 포함한 10,115건이 있으므로 새 모델 호출 수와 구분한다. 압축 실패는 기존 정책대로 오답 기록으로 남아 실제 모델 판단 호출 수가 줄 수 있다. 한 사전 점검으로 Test 하나만 초기화하며 기존 폴더를 덮어쓰지 않는다.
+
+### 3. 압축 → 판단 → 진단 → 비교 분석
+
+```powershell
+python run_question_analysis.py --debug compress --run runs/questions17
+python run_question_analysis.py --debug judge --run runs/questions17
+python run_question_analysis.py diagnose --run runs/questions17
+python run_question_analysis.py analyze --run runs/questions17
+```
+
+Original은 다시 판단하지 않는다. 진행 표시의 전체 저장 목표에는 이미 복사한 Original이 포함될 수 있다. Q17 모델 단계는 반드시 `run_question_analysis.py`로 실행한다. 다른 실행 파일로 Q17 run을 처리하면 프롬프트·소스 식별자가 달라 거부된다. 추가 분석을 시작한 뒤 Main run·코드·모델·환경을 바꾸지 않는다. 비교·재개 시에도 Main의 무결성을 검사하므로 참조 Main 폴더를 유지한다.
+
+컴퓨터 종료 등으로 중단되면 **중단된 단계**만 다음처럼 재개한다. `--resume`은 완료한 성공·실패 행을 모두 건너뛰며 마지막 불완전 기록만 복구한다. 초기화 명령은 다시 실행하지 않는다.
+
+```powershell
+python run_question_analysis.py --debug compress --run runs/questions17 --resume
+python run_question_analysis.py --debug judge --run runs/questions17 --resume
+```
+
+### 4. 확인할 결과와 프롬프트
+
+결과 위치는 `runs/questions17/results/`다.
+
+| 파일 | 내용 |
 |---|---|
-| 추가 분석 1: 질문 제공 효과 | 질문 없는 메인과 비교해, 계약서에 고정 17개 가설 목록을 한꺼번에 추가한다. 문서·압축방법별 한 번 만든 문맥으로 가설을 17번 각각 판단한다. |
-| 추가 분석 2: 길이 제약 비교 | 질문 없음과 17개 가설 목록 제공에 같은 원문 기준 예산을 적용한다. 목표 보존율·문서·방법·질문 유무별 한 번 만든 문맥을 17개 가설에 재사용한다. |
-| 추가 분석 3: 근거·오류 분석 | 이미 생성된 공유 문맥을 각 가설의 Gold Evidence와 대조한다. 가설별 재압축은 하지 않는다. |
+| `report.md` | Q0와 Q17의 방법별 성능·보존율·실패·추가 실행 시간 요약 |
+| `question_effects.csv` | **질문 효과의 주 비교**: Q17−Q0 Accuracy·Macro-F1과 paired 문서 부트스트랩 95% CI, 보존율·실패·정답 전환 |
+| `question_label_effects.csv` | 클래스별 Recall과 예측 라벨 수의 변화 |
+| `question_times.csv` | Main 관측 시간과 새 실행 시간, Original 재사용 구분 |
+| `question_analysis.json` | 비교 정의·설정·비용·효과 전체 |
+| `metrics.csv`, `comparisons.csv` | Q17 다섯 조건의 성능 및 **Original−Q17** 비교. Q17−Q0와 구분 |
 
-Qwen3에는 기존처럼 압축 문맥과 판단할 가설 한 개씩 제공한다. 가설 목록은 참으로 가정할 사실이 아니며 Gold Label·Gold Evidence를 압축에 제공하지 않는다. 결론은 ‘평가할 가설 목록을 미리 아는 효과’로 한정한다. 추가 분석 2의 목표 보존율과 허용오차 등 세부는 이후 정한다.
+같은 문서의 17문항을 함께 복원추출하고 Main과 Q17에 같은 문서 표본을 적용한다. 10,000회·seed 42는 Main 설정을 그대로 읽고, 매 반복 Macro-F1을 재계산한다. CI는 다중 비교를 보정하지 않은 탐색적 결과다. 실패 문서를 분모에서 제거하지 않으며 형식 실패 변화도 성능 차이의 원인일 수 있다. 실제 길이가 달라질 수 있어 **길이와 무관한 질문 효과**라고 단정하지 않는다.
 
-자세한 설계는 [설계서](design/EXPERIMENT_DESIGN.md), 변경 이유는 [의사결정 기록](docs/DECISIONS.md)의 D011에 기록한다.
+추가된 공통 안내 전문은 다음과 같다. 이어서 `H1`부터 `H17`까지 Main 스냅샷 순서의 가설 텍스트를 넣는다. H 번호는 원문 단위 ID와 구별하기 위한 표시이며 공식 가설 ID·순서는 스냅샷에 함께 남긴다.
+
+```text
+Use the following hypotheses to guide which contract information to retain. They are claims that will be evaluated, not facts to assume. Do not add information that is absent from the contract, and do not answer the hypotheses.
+
+<evaluation_hypotheses>
+H1: ...
+...
+H17: ...
+</evaluation_hypotheses>
+```
+
+실제 17개 문장과 네 방법의 프롬프트 전문은 생성된 run의 `prompts.json`에서 확인한다. 실행 전 모델을 로드하지 않고 보려면 다음 명령을 쓴다.
+
+```powershell
+python run_question_analysis.py show-prompts --main-run runs/test_memory_safe --out runs/questions17_prompts.json
+```
+
+결론은 ‘평가할 고정 가설 목록을 미리 아는 효과’로 한정한다. 가설별 맞춤 재압축이나 정답 제공 실험이 아니다. 설계는 [설계서](design/EXPERIMENT_DESIGN.md), 변경 이유와 검증 범위는 [의사결정 기록](docs/DECISIONS.md)의 D015를 참고한다.
+
+## 이후 추가 분석 — 아직 실행 기능 없음
+
+| 분석 | 확정한 범위 |
+|---|---|
+| 추가 분석 2: 길이 제약 비교 | 질문 없음과 17개 가설 목록 제공에 같은 원문 기준 예산 적용. 목표 보존율·문서·방법·질문 유무별 문맥 하나를 17가설에 재사용. 수치·허용오차는 이후 결정. |
+| 추가 분석 3: 근거·오류 분석 | 이미 생성된 공유 문맥을 각 가설의 Gold Evidence와 대조. 가설별 재압축 없음. |
 
 ## 파일 구성과 프롬프트
 
@@ -357,6 +436,12 @@ Qwen3에는 기존처럼 압축 문맥과 판단할 가설 한 개씩 제공한�
 run_experiment.py             CLI 진입점
 run_memory_safe.py            처음부터 통일한 OOM 대비 Test CLI
 memory_support/               전체 문맥 attention·기술 점검·새 Test 동결
+run_question_analysis.py      추가 분석 1: 17개 가설 목록 제공 CLI
+question_support/
+  prompts.py                  Main 지시 + 공통 17가설 목록
+  state.py                    Main 참조 검증·Q17 스냅샷·별도 식별자
+  runner.py                   기술 점검·초기화·압축·판단·재개
+  comparison.py               Q17−Q0 paired 비교·길이·실패·시간
 config.toml                   메인 설정, 길이 목표 없음
 requirements.txt              직접 의존성 고정
 contract_experiment/
@@ -369,7 +454,7 @@ contract_experiment/
   settings.py                 설정·해시·환경
   storage.py                  JSON/CSV·내구성 기록·실행 잠금
   cli.py                      명령어 정의
-tests/                       합성 워크플로·설정·attention·새 Test 최소 검증
+tests/                       Main·OOM·Q17 합성 워크플로와 CPU 최소 검증
 design/EXPERIMENT_DESIGN.md   합의한 설계
 design/DESIGN_COMPARISON.md   팀 공유용 비교 문서
 docs/DECISIONS.md             의사결정과 추가 기록 양식
@@ -377,6 +462,6 @@ docs/IMPLEMENTATION.md        구현 규칙과 검증 범위
 CHANGELOG.md                  변경 이력
 ```
 
-프롬프트 전문은 [contract_experiment/prompts.py](contract_experiment/prompts.py)에 있고 `show-prompts`로 출력할 수 있다. 실행 당시 전문과 삽입 형식은 각 run의 `prompts.json`에 보존한다. 압축 입력에는 가설·Gold가 없고, 판단 입력에는 문맥과 가설이 들어간다. 추출형 ID는 판단 문맥에 들어가지 않는다.
+Main 프롬프트 전문은 [contract_experiment/prompts.py](contract_experiment/prompts.py), Q17의 추가 블록은 [question_support/prompts.py](question_support/prompts.py)에 있다. 각 실행 파일의 `show-prompts`로 출력할 수 있고 전문·삽입 형식은 run의 `prompts.json`에 보존한다. Main 압축에는 가설이 없고 Q17 압축에는 전체 가설 목록이 있다. 어느 압축에도 Gold를 넣지 않으며, 판단에는 문맥과 가설 한 개가 들어간다. 추출형 ID는 판단 문맥에 들어가지 않는다.
 
 구현에 확인한 공식 자료: [ContractNLI 스키마·배포](https://stanfordnlp.github.io/contract-nli/), [Qwen3 thinking off](https://huggingface.co/Qwen/Qwen3-8B#enable_thinkingfalse), [Transformers 4bit 양자화](https://huggingface.co/docs/transformers/v4.57.1/en/quantization/bitsandbytes), [bitsandbytes Windows 배포](https://pypi.org/project/bitsandbytes/0.48.1/).
