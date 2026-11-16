@@ -1,5 +1,15 @@
 # 변경 이력
 
+## 2026-11-16 · README를 파이프라인 중심으로 정리
+
+- README를 전체 데이터 처리·Dev·Main·질문 제공·평가 파이프라인과 조건 설명 중심으로 축약.
+- `docs/RESULTS.md`에 현재 119문서 Main·Q17 성능, 실제 보존율, 제외 결정, 출력 형식 변화와 해석 범위를 정리.
+- `docs/REPRODUCIBILITY.md`에 환경·수동 검수·Dev·전체 문맥 Main·Q17·중단 재개·결과 확인 명령을 모으고 README에서 연결.
+- 실제 실행의 고정 SHA를 `docs/model_revisions.json`으로 제공해 재현 시 최신 모델 리비전을 새로 선택하지 않도록 안내.
+- 이전 greedy 오류 복구·OOM 보완 도입 절차는 `docs/archive/EXECUTION_HISTORY.md`에 보존.
+- 실험 코드·config·의존성과 기존 run/protocol은 수정하지 않음. 문서 링크·CLI 인자·결과 표·고정 리비전과 기존 실행 무결성만 최소 검증.
+- 검증 결과: 로컬 링크·앵커 28개, 실행하지 않고 parser로 확인한 CLI 명령 58개, PowerShell 구문 블록 24개 통과. 표·고정 SHA 일치와 기존 Main/Q17 소스 정체성 유지 확인. 모델 추론은 실행하지 않음.
+
 ## 2026-11-15 · 추가 분석 1: 17개 가설 목록 제공
 
 - `run_question_analysis.py`와 `question_support/`를 추가. 문서·방법별 압축 한 번에 고정 17가설 목록을 함께 제공하고, 같은 문맥으로 17가설을 각각 판단.
