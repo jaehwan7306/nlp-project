@@ -101,7 +101,9 @@ CI는 같은 문서의 17문항을 함께 추출하는 paired 문서 부트스�
 
 ## 결과 출처와 재현 자료
 
-성능·길이·시간 CSV, 집계 JSON, 상세 분석과 PNG/PDF 그림은 [공개 결과 폴더](../results/README.md)에서 확인할 수 있다. CSV는 원본 바이트를 유지했고 JSON의 로컬 컴퓨터 경로와 보고서 링크는 공개 구조에 맞게 정리했다. 파일별 원본·공개본 SHA256과 변환 내역은 [manifest.json](../results/manifest.json)에 기록했다. 문항별 Gold·예측 CSV는 로컬 원본 run에 보관한다.
+성능·길이·시간 CSV, 집계 JSON, 상세 분석과 PNG/PDF 그림은 [공개 결과 폴더](../results/README.md)에서 확인할 수 있다. 사용자의 명시적 공개 승인에 따라 [Main 문항별 Gold·예측](../results/main/predictions.csv)과 [Q17 문항별 Gold·예측](../results/questions17/predictions.csv)도 포함했다. 두 파일은 각각 10,115행이며 문서·조건·가설 ID, Gold, 예측, 상태, 판단 시간을 담고 있다.
+
+CSV는 원본 바이트를 유지했고 JSON의 로컬 컴퓨터 경로와 보고서 링크는 공개 구조에 맞게 정리했다. 파일별 원본·공개본 SHA256과 변환 내역은 [manifest.json](../results/manifest.json)에 기록했다.
 
 로컬 원본 결과 위치는 다음과 같다. 데이터·모델 캐시·전체 원시 run은 팀에서 별도로 보관한다.
 

@@ -8,7 +8,7 @@
   "q17_prediction_records": 10115,
   "q17_reused_original_records": 2023,
   "q17_new_model_judgments": 8092,
-  "per_question_predictions_published": false,
+  "per_question_predictions_published": true,
   "source_journal_sha256": {
     "runs/test_memory_safe/contexts.jsonl": "0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813",
     "runs/test_memory_safe/predictions.jsonl": "4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b",
@@ -20,16 +20,16 @@
   "files": [
     {
       "path": "results/README.md",
-      "bytes": 3414,
-      "sha256": "52743eac94930dc7c1c30d43115da7e188cc16efd0c23cab59e19e8da133911a",
+      "bytes": 3340,
+      "sha256": "40a78139918dca44f127619d8caae4826e70c8effad87c81055b5139d08515ff",
       "source": null,
       "source_sha256": null,
       "transformation": "generated artifact index"
     },
     {
       "path": "results/analysis/QUESTION_EFFECTS.md",
-      "bytes": 14754,
-      "sha256": "5a43bf87909da5572d099a531ce9f9daaafb68613cdf3f51d0341cec3d2fb745",
+      "bytes": 14739,
+      "sha256": "f41ff855b7b201ce55b7f2e2006298701a2935805c3683cb253747f1b7612090",
       "source": "analysis/questions17_2026-11-16/REPORT.md",
       "source_sha256": "95802f77d121fa3b21766b30c8368fba0b84bf84f15718c896c1318e293e9248",
       "transformation": "preserve findings; replace local-only source appendix with links to published artifacts"
@@ -131,6 +131,14 @@
       "transformation": "none"
     },
     {
+      "path": "results/main/predictions.csv",
+      "bytes": 808033,
+      "sha256": "ed2ff6dc315ebdc0313f07e666e91238314102017d8a98bdbdef7f920da615f3",
+      "source": "runs/test_memory_safe/results/predictions.csv",
+      "source_sha256": "ed2ff6dc315ebdc0313f07e666e91238314102017d8a98bdbdef7f920da615f3",
+      "transformation": "none"
+    },
+    {
       "path": "results/main/report.md",
       "bytes": 1479,
       "sha256": "23866fabd58f60def0eae968f521904c9c8c6a82480c93fa2349011b0d144eb8",
@@ -184,6 +192,14 @@
       "sha256": "e4598093119651e071a2d798d4978f7c5ffa54ee3df80d04a6da0a2dcd84b67a",
       "source": "runs/questions17/results/metrics.csv",
       "source_sha256": "e4598093119651e071a2d798d4978f7c5ffa54ee3df80d04a6da0a2dcd84b67a",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/predictions.csv",
+      "bytes": 808146,
+      "sha256": "1d8436ee86f0f750f063b768af4b8a13cc5fb06dd91800c2c5257e2cef767215",
+      "source": "runs/questions17/results/predictions.csv",
+      "source_sha256": "1d8436ee86f0f750f063b768af4b8a13cc5fb06dd91800c2c5257e2cef767215",
       "transformation": "none"
     },
     {

@@ -6,8 +6,8 @@
 
 | 실행 | 보고서 | 성능·비교 | 문항별 예측 |
 |---|---|---|---|
-| Main: 질문 없음 | [report.md](main/report.md) | [metrics.csv](main/metrics.csv) · [Original 대비](main/comparisons.csv) | 로컬 Main run 보관 |
-| Q17: 질문 목록 제공 | [report.md](questions17/report.md) | [질문 효과](questions17/question_effects.csv) · [metrics.csv](questions17/metrics.csv) | 로컬 Q17 run 보관 |
+| Main: 질문 없음 | [report.md](main/report.md) | [metrics.csv](main/metrics.csv) · [Original 대비](main/comparisons.csv) | [predictions.csv](main/predictions.csv) |
+| Q17: 질문 목록 제공 | [report.md](questions17/report.md) | [질문 효과](questions17/question_effects.csv) · [metrics.csv](questions17/metrics.csv) | [predictions.csv](questions17/predictions.csv) |
 
 **질문 효과는 `question_effects.csv`의 Q17−Q0다.** 각 실행의 `comparisons.csv`는 Original−압축 조건이므로 부호와 기준을 구분한다. CSV의 `0.30`은 30%다. 실패 문항도 성능 분모에 유지했다.
 
@@ -39,5 +39,3 @@ Main은 10,115개 판단 기록, Q17도 재사용 Original 2,023개를 포함해
 [manifest.json](manifest.json)에 각 파일의 원본 위치·원본 SHA256·공개본 SHA256·변환 내역을 기록했다. CSV는 원본 그대로 복사했고 수치를 고치지 않았다. 일부 JSON의 컴퓨터 절대경로와 보고서 링크만 공개 구조에 맞게 정리했다. 전체 원시 run과 계약서·모델 캐시는 별도 보관한다.
 
 실험 규칙·제외 결정·출력 문제와 한계는 [결과 요약](../docs/RESULTS.md), 고정 모델과 실행 명령은 [재현 안내](../docs/REPRODUCIBILITY.md)에 있다.
-
-문항별 Gold·예측 CSV는 이 공개 스냅샷에 포함하지 않았으며 로컬 원본 run에 보관한다.

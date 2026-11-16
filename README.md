@@ -4,7 +4,7 @@
 
 | 문서 | 확인할 내용 |
 |---|---|
-| [실험 결과 요약](docs/RESULTS.md) · [결과 파일·그림](results/README.md) | Main·질문 제공 실험의 성능, 실제 보존율, 길이·시간표와 분석 |
+| [실험 결과 요약](docs/RESULTS.md) · [결과 파일·그림](results/README.md) | Main·질문 제공 실험의 성능, 보존율, 문항별 Gold·예측과 분석 |
 | [재현 및 터미널 실행 명령](docs/REPRODUCIBILITY.md) | 환경 준비, 전처리, Dev, Main Test, 질문 제공, 중단 후 재개 |
 | [전체 실험 설계](design/EXPERIMENT_DESIGN.md) | 비교 목적, 변인 통제, 평가와 후속 분석의 범위 |
 

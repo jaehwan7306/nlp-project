@@ -168,6 +168,14 @@
 - 공개 범위: 집계표·길이·시간·사후 분석 수치·PNG/PDF다. 문항별 정답/예측, 계약서 전체와 토큰 로그를 포함한 원시 run, 데이터·모델 캐시는 별도로 보관한다. 형식 점검은 정의·요약을 공개하고 원문/출력 발췌를 포함한 로컬 중간 자료와 구분한다.
 - 검증: 두 실행의 예측 키·Gold·건수·Original 동일성, CSV 바이트 일치, 로컬 경로 제거, 파일별 SHA256과 문서 링크를 확인한다. 실험 코드·설정은 변경하지 않으며 새 모델 추론은 실행하지 않는다.
 
+## D018 · 2026-11-16 · 문항별 Gold·예측의 공개 승인 반영
+
+- 사용자 결정: 공개 저장소에서 누구나 내려받을 수 있다는 안내와 두 CSV의 내용·규모를 확인한 뒤 “문항별 Gold·예측도 공개”를 명시적으로 선택했다. D017에서 별도로 확인하던 공개 범위를 확정한다.
+- 공개 파일: `results/main/predictions.csv`, `results/questions17/predictions.csv`. 열은 document·condition·hypothesis·gold·prediction·status·judgment_seconds이며 각 10,115행이다.
+- 원본 보존: 완료한 run의 CSV를 바이트 단위로 복사한다. 실패 기록을 지우거나 Gold·예측을 수정하지 않고, Q17의 Original 2,023건이 Main과 동일함을 확인한다. 원본/공개본 SHA256을 manifest에 남긴다.
+- 문서 변경: 결과 목록·상세 분석·요약에서 문항별 파일을 직접 연결하고 manifest의 `per_question_predictions_published`를 true로 기록한다. 결과 스냅샷은 기존 집계·그림을 포함해 30개 파일이다.
+- 검증: 원본과 사본 해시, 10,115개 고유 키·Gold의 일치, 재사용 Original 동일성, 공개 링크와 GitHub blob을 확인한다. 새로운 모델 추론이나 실험 소스·설정 변경은 하지 않는다.
+
 ## 이후 기록 양식
 
 ```text

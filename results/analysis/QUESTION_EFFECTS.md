@@ -129,8 +129,8 @@ Q17 압축 실패 0건, 판단 파싱 실패 0건이고 모든 판단은 eos로 
 
 **공개 결과와 출처**
 
-- [Main 성능](../main/metrics.csv)
-- [Q17−Q0 질문 효과](../questions17/question_effects.csv)
+- [Main 성능](../main/metrics.csv) · [문항별 예측](../main/predictions.csv)
+- [Q17−Q0 질문 효과](../questions17/question_effects.csv) · [Q17 문항별 예측](../questions17/predictions.csv)
 - [라벨 변화](../questions17/question_label_effects.csv) · [실행 시간](../questions17/question_times.csv)
 - [문서별 변화](document_effects.json) · [가설별 변화](hypothesis_effects.json)
 - [형식 점검 정의와 요약](format_audit_summary.json) · [입력 해시 표본 점검](prompt_check.json)
@@ -138,5 +138,3 @@ Q17 압축 실패 0건, 판단 파싱 실패 0건이고 모든 판단은 eos로 
 - [공개 파일의 원본·공개본 SHA256](../manifest.json) · [실행 재현 안내](../../docs/REPRODUCIBILITY.md)
 
 공개본은 로컬 분석 보고서의 수치를 유지하고 출처 링크를 공개 파일로 연결했다. CSV는 원본 바이트를 유지했다. JSON의 로컬 컴퓨터 경로는 프로젝트 상대경로로 정리했다. 원문 계약서·모델 캐시·전체 토큰 로그를 포함한 원시 run은 별도로 보관하며, 그 journal 해시는 manifest.json에 남겼다. 이 보고서의 형식 점검·부분집합은 사후 탐색으로 주 비교와 구분한다.
-
-문항별 Gold·모델 예측 CSV는 로컬 원본 run에 보관하며 이 공개 스냅샷에 포함하지 않았다.

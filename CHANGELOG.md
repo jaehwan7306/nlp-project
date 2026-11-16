@@ -1,5 +1,12 @@
 # 변경 이력
 
+## 2026-11-16 · 사용자 승인에 따라 문항별 Gold·예측 공개
+
+- 사용자가 공개 GitHub에 문항별 Gold 정답·모델 예측 CSV를 올리도록 명시적으로 승인.
+- `results/main/predictions.csv`, `results/questions17/predictions.csv` 추가. 각 10,115행의 원본 바이트를 유지하고, Q17의 재사용 Original 2,023건 동일성 검증.
+- 결과 목록·상세 분석·요약 문서에서 CSV 링크 연결. manifest의 공개 범위와 총 결과 파일 수를 30개로 갱신.
+- D018에 공개 승인과 포함 열·건수·원본 보존을 기록. 실험 소스·설정·기존 run을 수정하거나 모델을 재실행하지 않음.
+
 ## 2026-11-16 · Main·Q17 실제 결과 파일 공개
 
 - `results/main/`, `results/questions17/`에 성능·길이·혼동행렬·시간 CSV와 집계 JSON·보고서 공개. 문항별 Gold·예측 CSV는 로컬 원본 run에 보관.
