@@ -1,0 +1,4830 @@
+[
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-11",
+    "text": "Receiving Party shall not reverse engineer any objects which embody Disclosing Party's Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 115,
+      "accuracy": 0.9663865546218487,
+      "macro_f1": 0.6090953072085147,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 13,
+          "correct": 11,
+          "recall": 0.8461538461538461,
+          "f1": 0.8461538461538461
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 106,
+          "correct": 104,
+          "recall": 0.9811320754716981,
+          "f1": 0.9811320754716981
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 116,
+      "accuracy": 0.9747899159663865,
+      "macro_f1": 0.6273992190507617,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 16,
+          "correct": 13,
+          "recall": 1,
+          "f1": 0.896551724137931
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 103,
+          "correct": 103,
+          "recall": 0.9716981132075472,
+          "f1": 0.9856459330143541
+        }
+      ]
+    },
+    "gain": 0.008403361344537785,
+    "correct_gain": 1
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-16",
+    "text": "Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 63,
+      "accuracy": 0.5294117647058824,
+      "macro_f1": 0.35333333333333333,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 76,
+          "correct": 28,
+          "recall": 0.7777777777777778,
+          "f1": 0.5
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 43,
+          "correct": 35,
+          "recall": 0.4268292682926829,
+          "f1": 0.56
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 68,
+      "accuracy": 0.5714285714285714,
+      "macro_f1": 0.3822285578522215,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 79,
+          "correct": 32,
+          "recall": 0.8888888888888888,
+          "f1": 0.5565217391304348
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 40,
+          "correct": 36,
+          "recall": 0.43902439024390244,
+          "f1": 0.5901639344262295
+        }
+      ]
+    },
+    "gain": 0.04201680672268904,
+    "correct_gain": 5
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-15",
+    "text": "Agreement shall not grant Receiving Party any right to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 73,
+      "accuracy": 0.6134453781512605,
+      "macro_f1": 0.4070317782285328,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 59,
+          "correct": 51,
+          "recall": 0.5930232558139535,
+          "f1": 0.7034482758620689
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 8,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 52,
+          "correct": 22,
+          "recall": 0.6666666666666666,
+          "f1": 0.5176470588235295
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3802380238023802,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 46,
+          "correct": 40,
+          "recall": 0.46511627906976744,
+          "f1": 0.6060606060606061
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 5,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 68,
+          "correct": 27,
+          "recall": 0.8181818181818182,
+          "f1": 0.5346534653465347
+        }
+      ]
+    },
+    "gain": -0.050420168067226934,
+    "correct_gain": -6
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-10",
+    "text": "Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.",
+    "q0": {
+      "questions": 119,
+      "correct": 81,
+      "accuracy": 0.680672268907563,
+      "macro_f1": 0.3638176638176638,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 8,
+          "correct": 7,
+          "recall": 0.1590909090909091,
+          "f1": 0.2692307692307692
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 6,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 105,
+          "correct": 74,
+          "recall": 0.9866666666666667,
+          "f1": 0.8222222222222222
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 86,
+      "accuracy": 0.7226890756302521,
+      "macro_f1": 0.4353584056573449,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 17,
+          "correct": 14,
+          "recall": 0.3181818181818182,
+          "f1": 0.45901639344262296
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 7,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 95,
+          "correct": 72,
+          "recall": 0.96,
+          "f1": 0.8470588235294118
+        }
+      ]
+    },
+    "gain": 0.04201680672268904,
+    "correct_gain": 5
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-2",
+    "text": "Confidential Information shall only include technical information.",
+    "q0": {
+      "questions": 119,
+      "correct": 47,
+      "accuracy": 0.3949579831932773,
+      "macro_f1": 0.2686433063791554,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 21,
+          "correct": 20,
+          "recall": 0.23529411764705882,
+          "f1": 0.37735849056603776
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 98,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.42857142857142855
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 53,
+      "accuracy": 0.44537815126050423,
+      "macro_f1": 0.3046528345851615,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 28,
+          "correct": 26,
+          "recall": 0.3058823529411765,
+          "f1": 0.46017699115044247
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 91,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.453781512605042
+        }
+      ]
+    },
+    "gain": 0.050420168067226934,
+    "correct_gain": 6
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-1",
+    "text": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+    "q0": {
+      "questions": 119,
+      "correct": 71,
+      "accuracy": 0.5966386554621849,
+      "macro_f1": 0.43670959508063584,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 11,
+          "correct": 10,
+          "recall": 0.43478260869565216,
+          "f1": 0.5882352941176471
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 108,
+          "correct": 61,
+          "recall": 1,
+          "f1": 0.7218934911242604
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 66,
+      "accuracy": 0.5546218487394958,
+      "macro_f1": 0.3523809523809524,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 12,
+          "correct": 6,
+          "recall": 0.2608695652173913,
+          "f1": 0.34285714285714286
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 107,
+          "correct": 60,
+          "recall": 0.9836065573770492,
+          "f1": 0.7142857142857143
+        }
+      ]
+    },
+    "gain": -0.04201680672268904,
+    "correct_gain": -5
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-19",
+    "text": "Some obligations of Agreement may survive termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 85,
+      "accuracy": 0.7142857142857143,
+      "macro_f1": 0.4394848712178045,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 96,
+          "correct": 69,
+          "recall": 0.9078947368421053,
+          "f1": 0.8023255813953488
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 23,
+          "correct": 16,
+          "recall": 0.41025641025641024,
+          "f1": 0.5161290322580645
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 87,
+      "accuracy": 0.7310924369747899,
+      "macro_f1": 0.44846647082977986,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 97,
+          "correct": 71,
+          "recall": 0.9342105263157895,
+          "f1": 0.8208092485549133
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 22,
+          "correct": 16,
+          "recall": 0.41025641025641024,
+          "f1": 0.5245901639344263
+        }
+      ]
+    },
+    "gain": 0.01680672268907557,
+    "correct_gain": 2
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-12",
+    "text": "Receiving Party may independently develop information similar to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 55,
+      "accuracy": 0.46218487394957986,
+      "macro_f1": 0.27967294780160273,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 10,
+          "correct": 10,
+          "recall": 0.14084507042253522,
+          "f1": 0.24691358024691357
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 5,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 104,
+          "correct": 45,
+          "recall": 0.9375,
+          "f1": 0.5921052631578947
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3724346838318819,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 24,
+          "correct": 23,
+          "recall": 0.323943661971831,
+          "f1": 0.4842105263157895
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 91,
+          "correct": 44,
+          "recall": 0.9166666666666666,
+          "f1": 0.6330935251798561
+        }
+      ]
+    },
+    "gain": 0.10084033613445376,
+    "correct_gain": 12
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-20",
+    "text": "Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 69,
+      "accuracy": 0.5798319327731093,
+      "macro_f1": 0.5212430821626225,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 27,
+          "correct": 20,
+          "recall": 0.6451612903225806,
+          "f1": 0.6896551724137931
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 15,
+          "correct": 5,
+          "recall": 0.16666666666666666,
+          "f1": 0.2222222222222222
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 77,
+          "correct": 44,
+          "recall": 0.7586206896551724,
+          "f1": 0.6518518518518519
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 73,
+      "accuracy": 0.6134453781512605,
+      "macro_f1": 0.5639277550302695,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 39,
+          "correct": 23,
+          "recall": 0.7419354838709677,
+          "f1": 0.6571428571428571
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 17,
+          "correct": 8,
+          "recall": 0.26666666666666666,
+          "f1": 0.3404255319148936
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 63,
+          "correct": 42,
+          "recall": 0.7241379310344828,
+          "f1": 0.6942148760330579
+        }
+      ]
+    },
+    "gain": 0.03361344537815125,
+    "correct_gain": 4
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-3",
+    "text": "Confidential Information may include verbally conveyed information.",
+    "q0": {
+      "questions": 119,
+      "correct": 74,
+      "accuracy": 0.6218487394957983,
+      "macro_f1": 0.41794087665647295,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 55,
+          "correct": 42,
+          "recall": 0.5915492957746479,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 64,
+          "correct": 32,
+          "recall": 0.7111111111111111,
+          "f1": 0.5871559633027523
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 85,
+      "accuracy": 0.7142857142857143,
+      "macro_f1": 0.4805295950155763,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 57,
+          "correct": 48,
+          "recall": 0.676056338028169,
+          "f1": 0.75
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 62,
+          "correct": 37,
+          "recall": 0.8222222222222222,
+          "f1": 0.6915887850467289
+        }
+      ]
+    },
+    "gain": 0.09243697478991597,
+    "correct_gain": 11
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-18",
+    "text": "Receiving Party shall not solicit some of Disclosing Party's representatives.",
+    "q0": {
+      "questions": 119,
+      "correct": 103,
+      "accuracy": 0.865546218487395,
+      "macro_f1": 0.4996491228070175,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 13,
+          "correct": 11,
+          "recall": 0.44,
+          "f1": 0.5789473684210527
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 106,
+          "correct": 92,
+          "recall": 0.9787234042553191,
+          "f1": 0.92
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 105,
+      "accuracy": 0.8823529411764706,
+      "macro_f1": 0.5220841047341973,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 13,
+          "correct": 12,
+          "recall": 0.48,
+          "f1": 0.631578947368421
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 1,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 105,
+          "correct": 93,
+          "recall": 0.9893617021276596,
+          "f1": 0.9346733668341709
+        }
+      ]
+    },
+    "gain": 0.01680672268907557,
+    "correct_gain": 2
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-7",
+    "text": "Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors).",
+    "q0": {
+      "questions": 119,
+      "correct": 40,
+      "accuracy": 0.33613445378151263,
+      "macro_f1": 0.33138760880696366,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 19,
+          "correct": 17,
+          "recall": 0.22972972972972974,
+          "f1": 0.3655913978494624
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 50,
+          "correct": 15,
+          "recall": 0.6,
+          "f1": 0.4
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 50,
+          "correct": 8,
+          "recall": 0.4,
+          "f1": 0.22857142857142856
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 54,
+      "accuracy": 0.453781512605042,
+      "macro_f1": 0.4287122148757369,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 32,
+          "correct": 28,
+          "recall": 0.3783783783783784,
+          "f1": 0.5283018867924528
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 53,
+          "correct": 18,
+          "recall": 0.72,
+          "f1": 0.46153846153846156
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 34,
+          "correct": 8,
+          "recall": 0.4,
+          "f1": 0.2962962962962963
+        }
+      ]
+    },
+    "gain": 0.11764705882352938,
+    "correct_gain": 14
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-17",
+    "text": "Receiving Party may create a copy of some Confidential Information in some circumstances.",
+    "q0": {
+      "questions": 119,
+      "correct": 80,
+      "accuracy": 0.6722689075630253,
+      "macro_f1": 0.5193511038259896,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 41,
+          "correct": 20,
+          "recall": 0.8333333333333334,
+          "f1": 0.6153846153846154
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 2,
+          "correct": 2,
+          "recall": 0.08,
+          "f1": 0.14814814814814814
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 76,
+          "correct": 58,
+          "recall": 0.8285714285714286,
+          "f1": 0.7945205479452054
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 74,
+      "accuracy": 0.6218487394957983,
+      "macro_f1": 0.48016742429887965,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 47,
+          "correct": 19,
+          "recall": 0.7916666666666666,
+          "f1": 0.5352112676056338
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 2,
+          "correct": 2,
+          "recall": 0.08,
+          "f1": 0.14814814814814814
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 70,
+          "correct": 53,
+          "recall": 0.7571428571428571,
+          "f1": 0.7571428571428571
+        }
+      ]
+    },
+    "gain": -0.050420168067226934,
+    "correct_gain": -6
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-8",
+    "text": "Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 86,
+      "accuracy": 0.7226890756302521,
+      "macro_f1": 0.4815835984446801,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 48,
+          "correct": 45,
+          "recall": 0.6,
+          "f1": 0.7317073170731707
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 71,
+          "correct": 41,
+          "recall": 0.9318181818181818,
+          "f1": 0.7130434782608696
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 92,
+      "accuracy": 0.773109243697479,
+      "macro_f1": 0.5147194438533021,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 52,
+          "correct": 50,
+          "recall": 0.6666666666666666,
+          "f1": 0.7874015748031497
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 67,
+          "correct": 42,
+          "recall": 0.9545454545454546,
+          "f1": 0.7567567567567568
+        }
+      ]
+    },
+    "gain": 0.050420168067226934,
+    "correct_gain": 6
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-13",
+    "text": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+    "q0": {
+      "questions": 119,
+      "correct": 27,
+      "accuracy": 0.226890756302521,
+      "macro_f1": 0.13125978090766824,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 2,
+          "correct": 2,
+          "recall": 0.02127659574468085,
+          "f1": 0.041666666666666664
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 117,
+          "correct": 25,
+          "recall": 1,
+          "f1": 0.352112676056338
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 29,
+      "accuracy": 0.24369747899159663,
+      "macro_f1": 0.1504583548379169,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 5,
+          "correct": 5,
+          "recall": 0.05319148936170213,
+          "f1": 0.10101010101010101
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 2,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 112,
+          "correct": 24,
+          "recall": 0.96,
+          "f1": 0.35036496350364965
+        }
+      ]
+    },
+    "gain": 0.016806722689075626,
+    "correct_gain": 2
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-5",
+    "text": "Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "q0": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.4024242424242424,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 52,
+          "correct": 52,
+          "recall": 0.5714285714285714,
+          "f1": 0.7272727272727273
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 24,
+          "correct": 1,
+          "recall": 1,
+          "f1": 0.08
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 43,
+          "correct": 14,
+          "recall": 0.5185185185185185,
+          "f1": 0.4
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 65,
+      "accuracy": 0.5462184873949579,
+      "macro_f1": 0.368028107158542,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 52,
+          "correct": 52,
+          "recall": 0.5714285714285714,
+          "f1": 0.7272727272727273
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 25,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 42,
+          "correct": 13,
+          "recall": 0.48148148148148145,
+          "f1": 0.37681159420289856
+        }
+      ]
+    },
+    "gain": -0.01680672268907568,
+    "correct_gain": -2
+  },
+  {
+    "condition": "generative_general",
+    "hypothesis": "nda-4",
+    "text": "Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 99,
+      "accuracy": 0.8319327731092437,
+      "macro_f1": 0.46454990326618867,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 101,
+          "correct": 92,
+          "recall": 0.9108910891089109,
+          "f1": 0.9108910891089109
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 18,
+          "correct": 7,
+          "recall": 0.6363636363636364,
+          "f1": 0.4827586206896552
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 101,
+      "accuracy": 0.8487394957983193,
+      "macro_f1": 0.4851782363977486,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 104,
+          "correct": 94,
+          "recall": 0.9306930693069307,
+          "f1": 0.9170731707317074
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 15,
+          "correct": 7,
+          "recall": 0.6363636363636364,
+          "f1": 0.5384615384615384
+        }
+      ]
+    },
+    "gain": 0.01680672268907557,
+    "correct_gain": 2
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-11",
+    "text": "Receiving Party shall not reverse engineer any objects which embody Disclosing Party's Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 117,
+      "accuracy": 0.9831932773109243,
+      "macro_f1": 0.6378809869375908,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 13,
+          "correct": 12,
+          "recall": 0.9230769230769231,
+          "f1": 0.9230769230769231
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 106,
+          "correct": 105,
+          "recall": 0.9905660377358491,
+          "f1": 0.9905660377358491
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 106,
+      "accuracy": 0.8907563025210085,
+      "macro_f1": 0.5337800111669458,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 26,
+          "correct": 13,
+          "recall": 1,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 93,
+          "correct": 93,
+          "recall": 0.8773584905660378,
+          "f1": 0.9346733668341709
+        }
+      ]
+    },
+    "gain": -0.09243697478991586,
+    "correct_gain": -11
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-16",
+    "text": "Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 63,
+      "accuracy": 0.5294117647058824,
+      "macro_f1": 0.35387248609328203,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 78,
+          "correct": 29,
+          "recall": 0.8055555555555556,
+          "f1": 0.5087719298245614
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 41,
+          "correct": 34,
+          "recall": 0.4146341463414634,
+          "f1": 0.5528455284552846
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 58,
+      "accuracy": 0.48739495798319327,
+      "macro_f1": 0.3276113864349159,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 81,
+          "correct": 28,
+          "recall": 0.7777777777777778,
+          "f1": 0.47863247863247865
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 1,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 37,
+          "correct": 30,
+          "recall": 0.36585365853658536,
+          "f1": 0.5042016806722689
+        }
+      ]
+    },
+    "gain": -0.04201680672268909,
+    "correct_gain": -5
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-15",
+    "text": "Agreement shall not grant Receiving Party any right to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 75,
+      "accuracy": 0.6302521008403361,
+      "macro_f1": 0.4120728751270623,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 61,
+          "correct": 52,
+          "recall": 0.6046511627906976,
+          "f1": 0.7074829931972789
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 54,
+          "correct": 23,
+          "recall": 0.696969696969697,
+          "f1": 0.5287356321839081
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3759124087591241,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 51,
+          "correct": 43,
+          "recall": 0.5,
+          "f1": 0.6277372262773723
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 5,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 63,
+          "correct": 24,
+          "recall": 0.7272727272727273,
+          "f1": 0.5
+        }
+      ]
+    },
+    "gain": -0.0672268907563025,
+    "correct_gain": -8
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-10",
+    "text": "Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.",
+    "q0": {
+      "questions": 119,
+      "correct": 83,
+      "accuracy": 0.6974789915966386,
+      "macro_f1": 0.3867163252638113,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 10,
+          "correct": 9,
+          "recall": 0.20454545454545456,
+          "f1": 0.3333333333333333
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 5,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 104,
+          "correct": 74,
+          "recall": 0.9866666666666667,
+          "f1": 0.8268156424581006
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 88,
+      "accuracy": 0.7394957983193278,
+      "macro_f1": 0.4709474885844749,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 29,
+          "correct": 21,
+          "recall": 0.4772727272727273,
+          "f1": 0.5753424657534246
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 5,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 85,
+          "correct": 67,
+          "recall": 0.8933333333333333,
+          "f1": 0.8375
+        }
+      ]
+    },
+    "gain": 0.04201680672268915,
+    "correct_gain": 5
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-2",
+    "text": "Confidential Information shall only include technical information.",
+    "q0": {
+      "questions": 119,
+      "correct": 48,
+      "accuracy": 0.40336134453781514,
+      "macro_f1": 0.2748411214953271,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 22,
+          "correct": 21,
+          "recall": 0.24705882352941178,
+          "f1": 0.3925233644859813
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 97,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.432
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 45,
+      "accuracy": 0.37815126050420167,
+      "macro_f1": 0.2590191940508491,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 1,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 22,
+          "correct": 20,
+          "recall": 0.23529411764705882,
+          "f1": 0.37383177570093457
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 96,
+          "correct": 25,
+          "recall": 0.8928571428571429,
+          "f1": 0.4032258064516129
+        }
+      ]
+    },
+    "gain": -0.025210084033613467,
+    "correct_gain": -3
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-1",
+    "text": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+    "q0": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.360427807486631,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 10,
+          "correct": 6,
+          "recall": 0.2608695652173913,
+          "f1": 0.36363636363636365
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 109,
+          "correct": 61,
+          "recall": 1,
+          "f1": 0.7176470588235294
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 60,
+      "accuracy": 0.5042016806722689,
+      "macro_f1": 0.2976269682856509,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 13,
+          "correct": 4,
+          "recall": 0.17391304347826086,
+          "f1": 0.2222222222222222
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 106,
+          "correct": 56,
+          "recall": 0.9180327868852459,
+          "f1": 0.6706586826347305
+        }
+      ]
+    },
+    "gain": -0.05882352941176472,
+    "correct_gain": -7
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-19",
+    "text": "Some obligations of Agreement may survive termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 85,
+      "accuracy": 0.7142857142857143,
+      "macro_f1": 0.4465695474722198,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 91,
+          "correct": 67,
+          "recall": 0.881578947368421,
+          "f1": 0.8023952095808383
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 28,
+          "correct": 18,
+          "recall": 0.46153846153846156,
+          "f1": 0.5373134328358209
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 83,
+      "accuracy": 0.6974789915966386,
+      "macro_f1": 0.4336219336219336,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 92,
+          "correct": 66,
+          "recall": 0.868421052631579,
+          "f1": 0.7857142857142857
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 27,
+          "correct": 17,
+          "recall": 0.4358974358974359,
+          "f1": 0.5151515151515151
+        }
+      ]
+    },
+    "gain": -0.01680672268907568,
+    "correct_gain": -2
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-12",
+    "text": "Receiving Party may independently develop information similar to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 59,
+      "accuracy": 0.4957983193277311,
+      "macro_f1": 0.3076190476190476,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 13,
+          "correct": 13,
+          "recall": 0.18309859154929578,
+          "f1": 0.30952380952380953
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 102,
+          "correct": 46,
+          "recall": 0.9583333333333334,
+          "f1": 0.6133333333333333
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 69,
+      "accuracy": 0.5798319327731093,
+      "macro_f1": 0.3841176470588235,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 29,
+          "correct": 26,
+          "recall": 0.36619718309859156,
+          "f1": 0.52
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 2,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 88,
+          "correct": 43,
+          "recall": 0.8958333333333334,
+          "f1": 0.6323529411764706
+        }
+      ]
+    },
+    "gain": 0.08403361344537819,
+    "correct_gain": 10
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-20",
+    "text": "Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 68,
+      "accuracy": 0.5714285714285714,
+      "macro_f1": 0.5151014791881665,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 26,
+          "correct": 18,
+          "recall": 0.5806451612903226,
+          "f1": 0.631578947368421
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 15,
+          "correct": 6,
+          "recall": 0.2,
+          "f1": 0.26666666666666666
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 78,
+          "correct": 44,
+          "recall": 0.7586206896551724,
+          "f1": 0.6470588235294118
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 66,
+      "accuracy": 0.5546218487394958,
+      "macro_f1": 0.5042850970048531,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 42,
+          "correct": 23,
+          "recall": 0.7419354838709677,
+          "f1": 0.6301369863013698
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 16,
+          "correct": 6,
+          "recall": 0.2,
+          "f1": 0.2608695652173913
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 61,
+          "correct": 37,
+          "recall": 0.6379310344827587,
+          "f1": 0.6218487394957983
+        }
+      ]
+    },
+    "gain": -0.01680672268907557,
+    "correct_gain": -2
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-3",
+    "text": "Confidential Information may include verbally conveyed information.",
+    "q0": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.37997196848871484,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 43,
+          "correct": 32,
+          "recall": 0.4507042253521127,
+          "f1": 0.5614035087719298
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 76,
+          "correct": 35,
+          "recall": 0.7777777777777778,
+          "f1": 0.5785123966942148
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 82,
+      "accuracy": 0.6890756302521008,
+      "macro_f1": 0.46286020249221177,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 57,
+          "correct": 47,
+          "recall": 0.6619718309859155,
+          "f1": 0.734375
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 62,
+          "correct": 35,
+          "recall": 0.7777777777777778,
+          "f1": 0.6542056074766355
+        }
+      ]
+    },
+    "gain": 0.12605042016806722,
+    "correct_gain": 15
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-18",
+    "text": "Receiving Party shall not solicit some of Disclosing Party's representatives.",
+    "q0": {
+      "questions": 119,
+      "correct": 105,
+      "accuracy": 0.8823529411764706,
+      "macro_f1": 0.5264309764309765,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 15,
+          "correct": 13,
+          "recall": 0.52,
+          "f1": 0.65
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 104,
+          "correct": 92,
+          "recall": 0.9787234042553191,
+          "f1": 0.9292929292929293
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 93,
+      "accuracy": 0.7815126050420168,
+      "macro_f1": 0.4331219806763285,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 21,
+          "correct": 10,
+          "recall": 0.4,
+          "f1": 0.43478260869565216
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 98,
+          "correct": 83,
+          "recall": 0.8829787234042553,
+          "f1": 0.8645833333333334
+        }
+      ]
+    },
+    "gain": -0.10084033613445376,
+    "correct_gain": -12
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-7",
+    "text": "Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors).",
+    "q0": {
+      "questions": 119,
+      "correct": 50,
+      "accuracy": 0.42016806722689076,
+      "macro_f1": 0.40464166898617576,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 27,
+          "correct": 25,
+          "recall": 0.33783783783783783,
+          "f1": 0.49504950495049505
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 58,
+          "correct": 16,
+          "recall": 0.64,
+          "f1": 0.3855421686746988
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 34,
+          "correct": 9,
+          "recall": 0.45,
+          "f1": 0.3333333333333333
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 51,
+      "accuracy": 0.42857142857142855,
+      "macro_f1": 0.38430898929620155,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 41,
+          "correct": 32,
+          "recall": 0.43243243243243246,
+          "f1": 0.5565217391304348
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 47,
+          "correct": 13,
+          "recall": 0.52,
+          "f1": 0.3611111111111111
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 31,
+          "correct": 6,
+          "recall": 0.3,
+          "f1": 0.23529411764705882
+        }
+      ]
+    },
+    "gain": 0.008403361344537785,
+    "correct_gain": 1
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-17",
+    "text": "Receiving Party may create a copy of some Confidential Information in some circumstances.",
+    "q0": {
+      "questions": 119,
+      "correct": 81,
+      "accuracy": 0.680672268907563,
+      "macro_f1": 0.4861230946218004,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 37,
+          "correct": 20,
+          "recall": 0.8333333333333334,
+          "f1": 0.6557377049180327
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 82,
+          "correct": 61,
+          "recall": 0.8714285714285714,
+          "f1": 0.8026315789473685
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 73,
+      "accuracy": 0.6134453781512605,
+      "macro_f1": 0.47773807871131474,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 50,
+          "correct": 20,
+          "recall": 0.8333333333333334,
+          "f1": 0.5405405405405406
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 2,
+          "correct": 2,
+          "recall": 0.08,
+          "f1": 0.14814814814814814
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 67,
+          "correct": 51,
+          "recall": 0.7285714285714285,
+          "f1": 0.7445255474452555
+        }
+      ]
+    },
+    "gain": -0.0672268907563025,
+    "correct_gain": -8
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-8",
+    "text": "Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 86,
+      "accuracy": 0.7226890756302521,
+      "macro_f1": 0.48179271708683474,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 44,
+          "correct": 43,
+          "recall": 0.5733333333333334,
+          "f1": 0.7226890756302521
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 75,
+          "correct": 43,
+          "recall": 0.9772727272727273,
+          "f1": 0.7226890756302521
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 91,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.5072713356295445,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 59,
+          "correct": 53,
+          "recall": 0.7066666666666667,
+          "f1": 0.7910447761194029
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 60,
+          "correct": 38,
+          "recall": 0.8636363636363636,
+          "f1": 0.7307692307692307
+        }
+      ]
+    },
+    "gain": 0.04201680672268904,
+    "correct_gain": 5
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-13",
+    "text": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+    "q0": {
+      "questions": 119,
+      "correct": 26,
+      "accuracy": 0.2184873949579832,
+      "macro_f1": 0.12356766040976568,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 1,
+          "correct": 1,
+          "recall": 0.010638297872340425,
+          "f1": 0.021052631578947368
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 118,
+          "correct": 25,
+          "recall": 1,
+          "f1": 0.34965034965034963
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 34,
+      "accuracy": 0.2857142857142857,
+      "macro_f1": 0.1897469238363553,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 15,
+          "correct": 13,
+          "recall": 0.13829787234042554,
+          "f1": 0.23853211009174313
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 2,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 102,
+          "correct": 21,
+          "recall": 0.84,
+          "f1": 0.33070866141732286
+        }
+      ]
+    },
+    "gain": 0.0672268907563025,
+    "correct_gain": 8
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-5",
+    "text": "Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "q0": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3794105437941055,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 52,
+          "correct": 52,
+          "recall": 0.5714285714285714,
+          "f1": 0.7272727272727273
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 21,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 46,
+          "correct": 15,
+          "recall": 0.5555555555555556,
+          "f1": 0.410958904109589
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 69,
+      "accuracy": 0.5798319327731093,
+      "macro_f1": 0.4113422177938307,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 57,
+          "correct": 55,
+          "recall": 0.6043956043956044,
+          "f1": 0.7432432432432432
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 27,
+          "correct": 1,
+          "recall": 1,
+          "f1": 0.07142857142857142
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 35,
+          "correct": 13,
+          "recall": 0.48148148148148145,
+          "f1": 0.41935483870967744
+        }
+      ]
+    },
+    "gain": 0.01680672268907568,
+    "correct_gain": 2
+  },
+  {
+    "condition": "generative_priority",
+    "hypothesis": "nda-4",
+    "text": "Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 94,
+      "accuracy": 0.7899159663865546,
+      "macro_f1": 0.40630182421227196,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 100,
+          "correct": 89,
+          "recall": 0.8811881188118812,
+          "f1": 0.8855721393034826
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 19,
+          "correct": 5,
+          "recall": 0.45454545454545453,
+          "f1": 0.3333333333333333
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 95,
+      "accuracy": 0.7983193277310925,
+      "macro_f1": 0.4256989247311828,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 99,
+          "correct": 89,
+          "recall": 0.8811881188118812,
+          "f1": 0.89
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 20,
+          "correct": 6,
+          "recall": 0.5454545454545454,
+          "f1": 0.3870967741935484
+        }
+      ]
+    },
+    "gain": 0.008403361344537896,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-11",
+    "text": "Receiving Party shall not reverse engineer any objects which embody Disclosing Party's Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 114,
+      "accuracy": 0.957983193277311,
+      "macro_f1": 0.607485721229797,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 13,
+          "correct": 11,
+          "recall": 0.8461538461538461,
+          "f1": 0.8461538461538461
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 105,
+          "correct": 103,
+          "recall": 0.9716981132075472,
+          "f1": 0.976303317535545
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 115,
+      "accuracy": 0.9663865546218487,
+      "macro_f1": 0.6090953072085147,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 13,
+          "correct": 11,
+          "recall": 0.8461538461538461,
+          "f1": 0.8461538461538461
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 106,
+          "correct": 104,
+          "recall": 0.9811320754716981,
+          "f1": 0.9811320754716981
+        }
+      ]
+    },
+    "gain": 0.008403361344537785,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-16",
+    "text": "Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 65,
+      "accuracy": 0.5462184873949579,
+      "macro_f1": 0.3635220125786163,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 70,
+          "correct": 26,
+          "recall": 0.7222222222222222,
+          "f1": 0.49056603773584906
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 48,
+          "correct": 39,
+          "recall": 0.47560975609756095,
+          "f1": 0.6
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 69,
+      "accuracy": 0.5798319327731093,
+      "macro_f1": 0.3807785888077859,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 64,
+          "correct": 25,
+          "recall": 0.6944444444444444,
+          "f1": 0.5
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 55,
+          "correct": 44,
+          "recall": 0.5365853658536586,
+          "f1": 0.6423357664233577
+        }
+      ]
+    },
+    "gain": 0.03361344537815136,
+    "correct_gain": 4
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-15",
+    "text": "Agreement shall not grant Receiving Party any right to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 79,
+      "accuracy": 0.6638655462184874,
+      "macro_f1": 0.4406478578892372,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 59,
+          "correct": 53,
+          "recall": 0.6162790697674418,
+          "f1": 0.7310344827586207
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 55,
+          "correct": 26,
+          "recall": 0.7878787878787878,
+          "f1": 0.5909090909090909
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 69,
+      "accuracy": 0.5798319327731093,
+      "macro_f1": 0.38164251207729466,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 55,
+          "correct": 47,
+          "recall": 0.5465116279069767,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 5,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 59,
+          "correct": 22,
+          "recall": 0.6666666666666666,
+          "f1": 0.4782608695652174
+        }
+      ]
+    },
+    "gain": -0.08403361344537807,
+    "correct_gain": -10
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-10",
+    "text": "Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.",
+    "q0": {
+      "questions": 119,
+      "correct": 78,
+      "accuracy": 0.6554621848739496,
+      "macro_f1": 0.3406593406593406,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 8,
+          "correct": 6,
+          "recall": 0.13636363636363635,
+          "f1": 0.23076923076923078
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 3,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 107,
+          "correct": 72,
+          "recall": 0.96,
+          "f1": 0.7912087912087912
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 84,
+      "accuracy": 0.7058823529411765,
+      "macro_f1": 0.38945064109246325,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 9,
+          "correct": 9,
+          "recall": 0.20454545454545456,
+          "f1": 0.33962264150943394
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 106,
+          "correct": 75,
+          "recall": 1,
+          "f1": 0.8287292817679558
+        }
+      ]
+    },
+    "gain": 0.050420168067226934,
+    "correct_gain": 6
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-2",
+    "text": "Confidential Information shall only include technical information.",
+    "q0": {
+      "questions": 119,
+      "correct": 35,
+      "accuracy": 0.29411764705882354,
+      "macro_f1": 0.1881244499663509,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 9,
+          "correct": 8,
+          "recall": 0.09411764705882353,
+          "f1": 0.1702127659574468
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 109,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.39416058394160586
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 42,
+      "accuracy": 0.35294117647058826,
+      "macro_f1": 0.23641448114277078,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 16,
+          "correct": 15,
+          "recall": 0.17647058823529413,
+          "f1": 0.297029702970297
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 103,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.4122137404580153
+        }
+      ]
+    },
+    "gain": 0.05882352941176472,
+    "correct_gain": 7
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-1",
+    "text": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+    "q0": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3728542914171657,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 12,
+          "correct": 7,
+          "recall": 0.30434782608695654,
+          "f1": 0.4
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 106,
+          "correct": 60,
+          "recall": 0.9836065573770492,
+          "f1": 0.718562874251497
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3739412924933287,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 11,
+          "correct": 7,
+          "recall": 0.30434782608695654,
+          "f1": 0.4117647058823529
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 108,
+          "correct": 60,
+          "recall": 0.9836065573770492,
+          "f1": 0.7100591715976331
+        }
+      ]
+    },
+    "gain": 0,
+    "correct_gain": 0
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-19",
+    "text": "Some obligations of Agreement may survive termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 85,
+      "accuracy": 0.7142857142857143,
+      "macro_f1": 0.4492832516784612,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 91,
+          "correct": 67,
+          "recall": 0.881578947368421,
+          "f1": 0.8023952095808383
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 27,
+          "correct": 18,
+          "recall": 0.46153846153846156,
+          "f1": 0.5454545454545454
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 91,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.5,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 80,
+          "correct": 65,
+          "recall": 0.8552631578947368,
+          "f1": 0.8333333333333334
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 39,
+          "correct": 26,
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666
+        }
+      ]
+    },
+    "gain": 0.05042016806722682,
+    "correct_gain": 6
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-12",
+    "text": "Receiving Party may independently develop information similar to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 62,
+      "accuracy": 0.5210084033613446,
+      "macro_f1": 0.3298125711918815,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 16,
+          "correct": 16,
+          "recall": 0.22535211267605634,
+          "f1": 0.367816091954023
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 2,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 100,
+          "correct": 46,
+          "recall": 0.9583333333333334,
+          "f1": 0.6216216216216216
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 58,
+      "accuracy": 0.48739495798319327,
+      "macro_f1": 0.29947604989494403,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 12,
+          "correct": 12,
+          "recall": 0.16901408450704225,
+          "f1": 0.2891566265060241
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 103,
+          "correct": 46,
+          "recall": 0.9583333333333334,
+          "f1": 0.609271523178808
+        }
+      ]
+    },
+    "gain": -0.03361344537815131,
+    "correct_gain": -4
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-20",
+    "text": "Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 73,
+      "accuracy": 0.6134453781512605,
+      "macro_f1": 0.5281251400654385,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 35,
+          "correct": 22,
+          "recall": 0.7096774193548387,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 7,
+          "correct": 4,
+          "recall": 0.13333333333333333,
+          "f1": 0.21621621621621623
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 76,
+          "correct": 47,
+          "recall": 0.8103448275862069,
+          "f1": 0.7014925373134329
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 75,
+      "accuracy": 0.6302521008403361,
+      "macro_f1": 0.5604044642596963,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 31,
+          "correct": 21,
+          "recall": 0.6774193548387096,
+          "f1": 0.6774193548387096
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 11,
+          "correct": 6,
+          "recall": 0.2,
+          "f1": 0.2926829268292683
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 77,
+          "correct": 48,
+          "recall": 0.8275862068965517,
+          "f1": 0.7111111111111111
+        }
+      ]
+    },
+    "gain": 0.01680672268907557,
+    "correct_gain": 2
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-3",
+    "text": "Confidential Information may include verbally conveyed information.",
+    "q0": {
+      "questions": 119,
+      "correct": 91,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.510790818271944,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 70,
+          "correct": 58,
+          "recall": 0.8169014084507042,
+          "f1": 0.8226950354609929
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 48,
+          "correct": 33,
+          "recall": 0.7333333333333333,
+          "f1": 0.7096774193548387
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 76,
+      "accuracy": 0.6386554621848739,
+      "macro_f1": 0.430968615503651,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 42,
+          "correct": 36,
+          "recall": 0.5070422535211268,
+          "f1": 0.6371681415929203
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 77,
+          "correct": 40,
+          "recall": 0.8888888888888888,
+          "f1": 0.6557377049180327
+        }
+      ]
+    },
+    "gain": -0.12605042016806722,
+    "correct_gain": -15
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-18",
+    "text": "Receiving Party shall not solicit some of Disclosing Party's representatives.",
+    "q0": {
+      "questions": 119,
+      "correct": 99,
+      "accuracy": 0.8319327731092437,
+      "macro_f1": 0.46216216216216216,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 12,
+          "correct": 9,
+          "recall": 0.36,
+          "f1": 0.4864864864864865
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 106,
+          "correct": 90,
+          "recall": 0.9574468085106383,
+          "f1": 0.9
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 100,
+      "accuracy": 0.8403361344537815,
+      "macro_f1": 0.44385316580438533,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 8,
+          "correct": 7,
+          "recall": 0.28,
+          "f1": 0.42424242424242425
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 111,
+          "correct": 93,
+          "recall": 0.9893617021276596,
+          "f1": 0.9073170731707317
+        }
+      ]
+    },
+    "gain": 0.008403361344537785,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-7",
+    "text": "Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors).",
+    "q0": {
+      "questions": 119,
+      "correct": 45,
+      "accuracy": 0.37815126050420167,
+      "macro_f1": 0.3709094176043843,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 23,
+          "correct": 21,
+          "recall": 0.28378378378378377,
+          "f1": 0.4329896907216495
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 47,
+          "correct": 16,
+          "recall": 0.64,
+          "f1": 0.4444444444444444
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 48,
+          "correct": 8,
+          "recall": 0.4,
+          "f1": 0.23529411764705882
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 46,
+      "accuracy": 0.3865546218487395,
+      "macro_f1": 0.38872275385433275,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 22,
+          "correct": 19,
+          "recall": 0.25675675675675674,
+          "f1": 0.3958333333333333
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 41,
+          "correct": 15,
+          "recall": 0.6,
+          "f1": 0.45454545454545453
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 56,
+          "correct": 12,
+          "recall": 0.6,
+          "f1": 0.3157894736842105
+        }
+      ]
+    },
+    "gain": 0.00840336134453784,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-17",
+    "text": "Receiving Party may create a copy of some Confidential Information in some circumstances.",
+    "q0": {
+      "questions": 119,
+      "correct": 80,
+      "accuracy": 0.6722689075630253,
+      "macro_f1": 0.5034881859145909,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 35,
+          "correct": 19,
+          "recall": 0.7916666666666666,
+          "f1": 0.6440677966101694
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 1,
+          "correct": 1,
+          "recall": 0.04,
+          "f1": 0.07692307692307693
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 82,
+          "correct": 60,
+          "recall": 0.8571428571428571,
+          "f1": 0.7894736842105263
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 73,
+      "accuracy": 0.6134453781512605,
+      "macro_f1": 0.4146829810901001,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 34,
+          "correct": 14,
+          "recall": 0.5833333333333334,
+          "f1": 0.4827586206896552
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 85,
+          "correct": 59,
+          "recall": 0.8428571428571429,
+          "f1": 0.7612903225806451
+        }
+      ]
+    },
+    "gain": -0.05882352941176472,
+    "correct_gain": -7
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-8",
+    "text": "Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 95,
+      "accuracy": 0.7983193277310925,
+      "macro_f1": 0.5330447330447331,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 57,
+          "correct": 54,
+          "recall": 0.72,
+          "f1": 0.8181818181818182
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 61,
+          "correct": 41,
+          "recall": 0.9318181818181818,
+          "f1": 0.780952380952381
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 89,
+      "accuracy": 0.7478991596638656,
+      "macro_f1": 0.49830220713073,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 49,
+          "correct": 47,
+          "recall": 0.6266666666666667,
+          "f1": 0.7580645161290323
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 70,
+          "correct": 42,
+          "recall": 0.9545454545454546,
+          "f1": 0.7368421052631579
+        }
+      ]
+    },
+    "gain": -0.050420168067226934,
+    "correct_gain": -6
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-13",
+    "text": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+    "q0": {
+      "questions": 119,
+      "correct": 26,
+      "accuracy": 0.2184873949579832,
+      "macro_f1": 0.12438843587842846,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 1,
+          "correct": 1,
+          "recall": 0.010638297872340425,
+          "f1": 0.021052631578947368
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 117,
+          "correct": 25,
+          "recall": 1,
+          "f1": 0.352112676056338
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 25,
+      "accuracy": 0.21008403361344538,
+      "macro_f1": 0.11574074074074074,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 119,
+          "correct": 25,
+          "recall": 1,
+          "f1": 0.3472222222222222
+        }
+      ]
+    },
+    "gain": -0.008403361344537813,
+    "correct_gain": -1
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-5",
+    "text": "Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "q0": {
+      "questions": 119,
+      "correct": 61,
+      "accuracy": 0.5126050420168067,
+      "macro_f1": 0.3858961602245184,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 43,
+          "correct": 43,
+          "recall": 0.4725274725274725,
+          "f1": 0.6417910447761194
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 24,
+          "correct": 1,
+          "recall": 1,
+          "f1": 0.08
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 51,
+          "correct": 17,
+          "recall": 0.6296296296296297,
+          "f1": 0.4358974358974359
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 59,
+      "accuracy": 0.4957983193277311,
+      "macro_f1": 0.3721500721500721,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 41,
+          "correct": 41,
+          "recall": 0.45054945054945056,
+          "f1": 0.6212121212121212
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 20,
+          "correct": 1,
+          "recall": 1,
+          "f1": 0.09523809523809523
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 58,
+          "correct": 17,
+          "recall": 0.6296296296296297,
+          "f1": 0.4
+        }
+      ]
+    },
+    "gain": -0.01680672268907557,
+    "correct_gain": -2
+  },
+  {
+    "condition": "extractive_general",
+    "hypothesis": "nda-4",
+    "text": "Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 96,
+      "accuracy": 0.8067226890756303,
+      "macro_f1": 0.43988684582743987,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 101,
+          "correct": 90,
+          "recall": 0.8910891089108911,
+          "f1": 0.8910891089108911
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 17,
+          "correct": 6,
+          "recall": 0.5454545454545454,
+          "f1": 0.42857142857142855
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 84,
+      "accuracy": 0.7058823529411765,
+      "macro_f1": 0.398224043715847,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 82,
+          "correct": 75,
+          "recall": 0.7425742574257426,
+          "f1": 0.819672131147541
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 37,
+          "correct": 9,
+          "recall": 0.8181818181818182,
+          "f1": 0.375
+        }
+      ]
+    },
+    "gain": -0.10084033613445376,
+    "correct_gain": -12
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-11",
+    "text": "Receiving Party shall not reverse engineer any objects which embody Disclosing Party's Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 116,
+      "accuracy": 0.9747899159663865,
+      "macro_f1": 0.6219718309859155,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 12,
+          "correct": 11,
+          "recall": 0.8461538461538461,
+          "f1": 0.88
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 107,
+          "correct": 105,
+          "recall": 0.9905660377358491,
+          "f1": 0.9859154929577465
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 118,
+      "accuracy": 0.9915966386554622,
+      "macro_f1": 0.6527412088233573,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 13,
+          "predicted": 14,
+          "correct": 13,
+          "recall": 1,
+          "f1": 0.9629629629629629
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 106,
+          "predicted": 105,
+          "correct": 105,
+          "recall": 0.9905660377358491,
+          "f1": 0.995260663507109
+        }
+      ]
+    },
+    "gain": 0.01680672268907568,
+    "correct_gain": 2
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-16",
+    "text": "Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 64,
+      "accuracy": 0.5378151260504201,
+      "macro_f1": 0.35686556434219985,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 71,
+          "correct": 26,
+          "recall": 0.7222222222222222,
+          "f1": 0.48598130841121495
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 48,
+          "correct": 38,
+          "recall": 0.4634146341463415,
+          "f1": 0.5846153846153846
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 69,
+      "accuracy": 0.5798319327731093,
+      "macro_f1": 0.3807785888077859,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 36,
+          "predicted": 64,
+          "correct": 25,
+          "recall": 0.6944444444444444,
+          "f1": 0.5
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 82,
+          "predicted": 55,
+          "correct": 44,
+          "recall": 0.5365853658536586,
+          "f1": 0.6423357664233577
+        }
+      ]
+    },
+    "gain": 0.04201680672268915,
+    "correct_gain": 5
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-15",
+    "text": "Agreement shall not grant Receiving Party any right to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 75,
+      "accuracy": 0.6302521008403361,
+      "macro_f1": 0.4160756501182033,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 55,
+          "correct": 49,
+          "recall": 0.5697674418604651,
+          "f1": 0.6950354609929078
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 3,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 61,
+          "correct": 26,
+          "recall": 0.7878787878787878,
+          "f1": 0.5531914893617021
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 63,
+      "accuracy": 0.5294117647058824,
+      "macro_f1": 0.3523383084577114,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 86,
+          "predicted": 48,
+          "correct": 40,
+          "recall": 0.46511627906976744,
+          "f1": 0.5970149253731343
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 4,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 33,
+          "predicted": 67,
+          "correct": 23,
+          "recall": 0.696969696969697,
+          "f1": 0.46
+        }
+      ]
+    },
+    "gain": -0.10084033613445376,
+    "correct_gain": -12
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-10",
+    "text": "Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.",
+    "q0": {
+      "questions": 119,
+      "correct": 81,
+      "accuracy": 0.680672268907563,
+      "macro_f1": 0.3638176638176638,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 8,
+          "correct": 7,
+          "recall": 0.1590909090909091,
+          "f1": 0.2692307692307692
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 6,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 105,
+          "correct": 74,
+          "recall": 0.9866666666666667,
+          "f1": 0.8222222222222222
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 83,
+      "accuracy": 0.6974789915966386,
+      "macro_f1": 0.39092843841447195,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 44,
+          "predicted": 12,
+          "correct": 10,
+          "recall": 0.22727272727272727,
+          "f1": 0.35714285714285715
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 3,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 75,
+          "predicted": 104,
+          "correct": 73,
+          "recall": 0.9733333333333334,
+          "f1": 0.8156424581005587
+        }
+      ]
+    },
+    "gain": 0.01680672268907557,
+    "correct_gain": 2
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-2",
+    "text": "Confidential Information shall only include technical information.",
+    "q0": {
+      "questions": 119,
+      "correct": 36,
+      "accuracy": 0.3025210084033613,
+      "macro_f1": 0.19454475605071073,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 10,
+          "correct": 9,
+          "recall": 0.10588235294117647,
+          "f1": 0.18947368421052632
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 109,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.39416058394160586
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 37,
+      "accuracy": 0.31092436974789917,
+      "macro_f1": 0.201797385620915,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 6,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 85,
+          "predicted": 11,
+          "correct": 10,
+          "recall": 0.11764705882352941,
+          "f1": 0.20833333333333334
+        },
+        {
+          "label": "NotMentioned",
+          "support": 28,
+          "predicted": 108,
+          "correct": 27,
+          "recall": 0.9642857142857143,
+          "f1": 0.39705882352941174
+        }
+      ]
+    },
+    "gain": 0.00840336134453784,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-1",
+    "text": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+    "q0": {
+      "questions": 119,
+      "correct": 66,
+      "accuracy": 0.5546218487394958,
+      "macro_f1": 0.34396099024756194,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 8,
+          "correct": 5,
+          "recall": 0.21739130434782608,
+          "f1": 0.3225806451612903
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 111,
+          "correct": 61,
+          "recall": 1,
+          "f1": 0.7093023255813954
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 64,
+      "accuracy": 0.5378151260504201,
+      "macro_f1": 0.3185796449112278,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 23,
+          "predicted": 8,
+          "correct": 4,
+          "recall": 0.17391304347826086,
+          "f1": 0.25806451612903225
+        },
+        {
+          "label": "Contradiction",
+          "support": 35,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 61,
+          "predicted": 111,
+          "correct": 60,
+          "recall": 0.9836065573770492,
+          "f1": 0.6976744186046512
+        }
+      ]
+    },
+    "gain": -0.01680672268907568,
+    "correct_gain": -2
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-19",
+    "text": "Some obligations of Agreement may survive termination of Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 91,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.494081050721507,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 87,
+          "correct": 68,
+          "recall": 0.8947368421052632,
+          "f1": 0.8343558282208589
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 32,
+          "correct": 23,
+          "recall": 0.5897435897435898,
+          "f1": 0.647887323943662
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 86,
+      "accuracy": 0.7226890756302521,
+      "macro_f1": 0.46486486486486484,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 76,
+          "predicted": 84,
+          "correct": 64,
+          "recall": 0.8421052631578947,
+          "f1": 0.8
+        },
+        {
+          "label": "Contradiction",
+          "support": 4,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 39,
+          "predicted": 35,
+          "correct": 22,
+          "recall": 0.5641025641025641,
+          "f1": 0.5945945945945946
+        }
+      ]
+    },
+    "gain": -0.04201680672268904,
+    "correct_gain": -5
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-12",
+    "text": "Receiving Party may independently develop information similar to Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 65,
+      "accuracy": 0.5462184873949579,
+      "macro_f1": 0.346543172385869,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 18,
+          "correct": 18,
+          "recall": 0.2535211267605634,
+          "f1": 0.4044943820224719
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 1,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 100,
+          "correct": 47,
+          "recall": 0.9791666666666666,
+          "f1": 0.6351351351351351
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 61,
+      "accuracy": 0.5126050420168067,
+      "macro_f1": 0.31730944033242436,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 14,
+          "correct": 14,
+          "recall": 0.19718309859154928,
+          "f1": 0.32941176470588235
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 2,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 48,
+          "predicted": 103,
+          "correct": 47,
+          "recall": 0.9791666666666666,
+          "f1": 0.6225165562913907
+        }
+      ]
+    },
+    "gain": -0.03361344537815125,
+    "correct_gain": -4
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-20",
+    "text": "Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 75,
+      "accuracy": 0.6302521008403361,
+      "macro_f1": 0.5357066632518035,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 32,
+          "correct": 21,
+          "recall": 0.6774193548387096,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 8,
+          "correct": 4,
+          "recall": 0.13333333333333333,
+          "f1": 0.21052631578947367
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 79,
+          "correct": 50,
+          "recall": 0.8620689655172413,
+          "f1": 0.7299270072992701
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 76,
+      "accuracy": 0.6386554621848739,
+      "macro_f1": 0.5875728474103258,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 31,
+          "predicted": 31,
+          "correct": 20,
+          "recall": 0.6451612903225806,
+          "f1": 0.6451612903225806
+        },
+        {
+          "label": "Contradiction",
+          "support": 30,
+          "predicted": 15,
+          "correct": 9,
+          "recall": 0.3,
+          "f1": 0.4
+        },
+        {
+          "label": "NotMentioned",
+          "support": 58,
+          "predicted": 73,
+          "correct": 47,
+          "recall": 0.8103448275862069,
+          "f1": 0.7175572519083969
+        }
+      ]
+    },
+    "gain": 0.008403361344537785,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-3",
+    "text": "Confidential Information may include verbally conveyed information.",
+    "q0": {
+      "questions": 119,
+      "correct": 88,
+      "accuracy": 0.7394957983193278,
+      "macro_f1": 0.4967214719123116,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 60,
+          "correct": 51,
+          "recall": 0.7183098591549296,
+          "f1": 0.7786259541984732
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 59,
+          "correct": 37,
+          "recall": 0.8222222222222222,
+          "f1": 0.7115384615384616
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 67,
+      "accuracy": 0.5630252100840336,
+      "macro_f1": 0.3754484249840287,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 71,
+          "predicted": 31,
+          "correct": 26,
+          "recall": 0.36619718309859156,
+          "f1": 0.5098039215686274
+        },
+        {
+          "label": "Contradiction",
+          "support": 3,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 45,
+          "predicted": 88,
+          "correct": 41,
+          "recall": 0.9111111111111111,
+          "f1": 0.6165413533834586
+        }
+      ]
+    },
+    "gain": -0.17647058823529416,
+    "correct_gain": -21
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-18",
+    "text": "Receiving Party shall not solicit some of Disclosing Party's representatives.",
+    "q0": {
+      "questions": 119,
+      "correct": 100,
+      "accuracy": 0.8403361344537815,
+      "macro_f1": 0.44385316580438533,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 8,
+          "correct": 7,
+          "recall": 0.28,
+          "f1": 0.42424242424242425
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 111,
+          "correct": 93,
+          "recall": 0.9893617021276596,
+          "f1": 0.9073170731707317
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 102,
+      "accuracy": 0.8571428571428571,
+      "macro_f1": 0.4673072185267307,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 25,
+          "predicted": 8,
+          "correct": 8,
+          "recall": 0.32,
+          "f1": 0.48484848484848486
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 94,
+          "predicted": 111,
+          "correct": 94,
+          "recall": 1,
+          "f1": 0.9170731707317074
+        }
+      ]
+    },
+    "gain": 0.01680672268907557,
+    "correct_gain": 2
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-7",
+    "text": "Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors).",
+    "q0": {
+      "questions": 119,
+      "correct": 46,
+      "accuracy": 0.3865546218487395,
+      "macro_f1": 0.3855097594593393,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 24,
+          "correct": 20,
+          "recall": 0.2702702702702703,
+          "f1": 0.40816326530612246
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 43,
+          "correct": 16,
+          "recall": 0.64,
+          "f1": 0.47058823529411764
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 52,
+          "correct": 10,
+          "recall": 0.5,
+          "f1": 0.2777777777777778
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 47,
+      "accuracy": 0.3949579831932773,
+      "macro_f1": 0.3933865215329746,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 74,
+          "predicted": 21,
+          "correct": 20,
+          "recall": 0.2702702702702703,
+          "f1": 0.42105263157894735
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 44,
+          "correct": 15,
+          "recall": 0.6,
+          "f1": 0.43478260869565216
+        },
+        {
+          "label": "NotMentioned",
+          "support": 20,
+          "predicted": 54,
+          "correct": 12,
+          "recall": 0.6,
+          "f1": 0.32432432432432434
+        }
+      ]
+    },
+    "gain": 0.008403361344537785,
+    "correct_gain": 1
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-17",
+    "text": "Receiving Party may create a copy of some Confidential Information in some circumstances.",
+    "q0": {
+      "questions": 119,
+      "correct": 83,
+      "accuracy": 0.6974789915966386,
+      "macro_f1": 0.49673202614379086,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 36,
+          "correct": 20,
+          "recall": 0.8333333333333334,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 83,
+          "correct": 63,
+          "recall": 0.9,
+          "f1": 0.8235294117647058
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 77,
+      "accuracy": 0.6470588235294118,
+      "macro_f1": 0.4540340383109022,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 24,
+          "predicted": 38,
+          "correct": 18,
+          "recall": 0.75,
+          "f1": 0.5806451612903226
+        },
+        {
+          "label": "Contradiction",
+          "support": 25,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 70,
+          "predicted": 81,
+          "correct": 59,
+          "recall": 0.8428571428571429,
+          "f1": 0.7814569536423841
+        }
+      ]
+    },
+    "gain": -0.05042016806722682,
+    "correct_gain": -6
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-8",
+    "text": "Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+    "q0": {
+      "questions": 119,
+      "correct": 96,
+      "accuracy": 0.8067226890756303,
+      "macro_f1": 0.5364914032959978,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 56,
+          "correct": 54,
+          "recall": 0.72,
+          "f1": 0.8244274809160306
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 63,
+          "correct": 42,
+          "recall": 0.9545454545454546,
+          "f1": 0.7850467289719626
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 90,
+      "accuracy": 0.7563025210084033,
+      "macro_f1": 0.5037876106194691,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 75,
+          "predicted": 50,
+          "correct": 48,
+          "recall": 0.64,
+          "f1": 0.768
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 44,
+          "predicted": 69,
+          "correct": 42,
+          "recall": 0.9545454545454546,
+          "f1": 0.7433628318584071
+        }
+      ]
+    },
+    "gain": -0.050420168067226934,
+    "correct_gain": -6
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-13",
+    "text": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+    "q0": {
+      "questions": 119,
+      "correct": 25,
+      "accuracy": 0.21008403361344538,
+      "macro_f1": 0.11574074074074074,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 119,
+          "correct": 25,
+          "recall": 1,
+          "f1": 0.3472222222222222
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 27,
+      "accuracy": 0.226890756302521,
+      "macro_f1": 0.13125978090766824,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 94,
+          "predicted": 2,
+          "correct": 2,
+          "recall": 0.02127659574468085,
+          "f1": 0.041666666666666664
+        },
+        {
+          "label": "Contradiction",
+          "support": 0,
+          "predicted": 0,
+          "correct": 0,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 25,
+          "predicted": 117,
+          "correct": 25,
+          "recall": 1,
+          "f1": 0.352112676056338
+        }
+      ]
+    },
+    "gain": 0.016806722689075626,
+    "correct_gain": 2
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-5",
+    "text": "Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "q0": {
+      "questions": 119,
+      "correct": 53,
+      "accuracy": 0.44537815126050423,
+      "macro_f1": 0.30981432360742706,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 39,
+          "correct": 38,
+          "recall": 0.4175824175824176,
+          "f1": 0.5846153846153846
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 20,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 60,
+          "correct": 15,
+          "recall": 0.5555555555555556,
+          "f1": 0.3448275862068966
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 59,
+      "accuracy": 0.4957983193277311,
+      "macro_f1": 0.36933955499663546,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 91,
+          "predicted": 43,
+          "correct": 42,
+          "recall": 0.46153846153846156,
+          "f1": 0.6268656716417911
+        },
+        {
+          "label": "Contradiction",
+          "support": 1,
+          "predicted": 21,
+          "correct": 1,
+          "recall": 1,
+          "f1": 0.09090909090909091
+        },
+        {
+          "label": "NotMentioned",
+          "support": 27,
+          "predicted": 55,
+          "correct": 16,
+          "recall": 0.5925925925925926,
+          "f1": 0.3902439024390244
+        }
+      ]
+    },
+    "gain": 0.05042016806722688,
+    "correct_gain": 6
+  },
+  {
+    "condition": "extractive_priority",
+    "hypothesis": "nda-4",
+    "text": "Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.",
+    "q0": {
+      "questions": 119,
+      "correct": 97,
+      "accuracy": 0.8151260504201681,
+      "macro_f1": 0.44170771756978655,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 102,
+          "correct": 91,
+          "recall": 0.900990099009901,
+          "f1": 0.896551724137931
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 17,
+          "correct": 6,
+          "recall": 0.5454545454545454,
+          "f1": 0.42857142857142855
+        }
+      ]
+    },
+    "q17": {
+      "questions": 119,
+      "correct": 87,
+      "accuracy": 0.7310924369747899,
+      "macro_f1": 0.4115158636897767,
+      "by_class": [
+        {
+          "label": "Entailment",
+          "support": 101,
+          "predicted": 84,
+          "correct": 78,
+          "recall": 0.7722772277227723,
+          "f1": 0.8432432432432433
+        },
+        {
+          "label": "Contradiction",
+          "support": 7,
+          "predicted": 0,
+          "correct": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "NotMentioned",
+          "support": 11,
+          "predicted": 35,
+          "correct": 9,
+          "recall": 0.8181818181818182,
+          "f1": 0.391304347826087
+        }
+      ]
+    },
+    "gain": -0.08403361344537819,
+    "correct_gain": -10
+  }
+]

@@ -1,0 +1,1210 @@
+{
+  "source": "runs/questions17",
+  "main": "runs/test_memory_safe",
+  "date": "2026-11-16",
+  "documents": 119,
+  "hypotheses": {
+    "nda-11": "Receiving Party shall not reverse engineer any objects which embody Disclosing Party's Confidential Information.",
+    "nda-16": "Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.",
+    "nda-15": "Agreement shall not grant Receiving Party any right to Confidential Information.",
+    "nda-10": "Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.",
+    "nda-2": "Confidential Information shall only include technical information.",
+    "nda-1": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+    "nda-19": "Some obligations of Agreement may survive termination of Agreement.",
+    "nda-12": "Receiving Party may independently develop information similar to Confidential Information.",
+    "nda-20": "Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+    "nda-3": "Confidential Information may include verbally conveyed information.",
+    "nda-18": "Receiving Party shall not solicit some of Disclosing Party's representatives.",
+    "nda-7": "Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors).",
+    "nda-17": "Receiving Party may create a copy of some Confidential Information in some circumstances.",
+    "nda-8": "Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+    "nda-13": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+    "nda-5": "Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "nda-4": "Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement."
+  },
+  "integrity": {
+    "unique_complete_keys": true,
+    "same_gold": true,
+    "identical_reused_original": true,
+    "latest_diagnostics": true,
+    "original_reused": 2023,
+    "new_compressions": 476,
+    "new_model_judgments": 8092
+  },
+  "bootstrap": {
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 42,
+    "unit": "document",
+    "paired": true,
+    "ci": "percentile 95%",
+    "multiple_comparison_adjustment": false
+  },
+  "original": {
+    "questions": 2023,
+    "correct": 1289,
+    "accuracy": 0.6371725160652496,
+    "macro_f1": 0.5255498652470344,
+    "by_class": [
+      {
+        "label": "Entailment",
+        "support": 941,
+        "predicted": 706,
+        "correct": 549,
+        "recall": 0.5834218916046758,
+        "f1": 0.6666666666666666
+      },
+      {
+        "label": "Contradiction",
+        "support": 216,
+        "predicted": 125,
+        "correct": 39,
+        "recall": 0.18055555555555555,
+        "f1": 0.2287390029325513
+      },
+      {
+        "label": "NotMentioned",
+        "support": 866,
+        "predicted": 1192,
+        "correct": 701,
+        "recall": 0.8094688221709007,
+        "f1": 0.6812439261418853
+      }
+    ]
+  },
+  "methods": [
+    {
+      "condition": "generative_general",
+      "name": "생성형·일반 (Naive)",
+      "q0": {
+        "questions": 2023,
+        "correct": 1235,
+        "accuracy": 0.6104794859120118,
+        "macro_f1": 0.5101123309126607,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 631,
+            "correct": 487,
+            "recall": 0.5175345377258236,
+            "f1": 0.6195928753180662
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 131,
+            "correct": 43,
+            "recall": 0.19907407407407407,
+            "f1": 0.2478386167146974
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1261,
+            "correct": 705,
+            "recall": 0.8140877598152425,
+            "f1": 0.6629055007052186
+          }
+        ]
+      },
+      "q17": {
+        "questions": 2023,
+        "correct": 1288,
+        "accuracy": 0.6366782006920415,
+        "macro_f1": 0.5449792282429479,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 692,
+            "correct": 530,
+            "recall": 0.563230605738576,
+            "f1": 0.6491120636864667
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 144,
+            "correct": 54,
+            "recall": 0.25,
+            "f1": 0.3
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1187,
+            "correct": 704,
+            "recall": 0.812933025404157,
+            "f1": 0.685825621042377
+          }
+        ]
+      },
+      "gain": 0.026198714780029664,
+      "accuracy_gain_ci": [
+        0.005931784478497293,
+        0.04745427582797823
+      ],
+      "macro_f1_gain_ci": [
+        0.008552623928775743,
+        0.06192963870103068
+      ],
+      "lengths": [
+        {
+          "valid": 119,
+          "mean": 0.6276780792768476,
+          "median": 0.6626311541565779,
+          "aggregate_ratio": 0.5483961577414863
+        },
+        {
+          "valid": 119,
+          "mean": 0.6251298104868862,
+          "median": 0.6122961104140527,
+          "aggregate_ratio": 0.543027598430181
+        }
+      ],
+      "gains": 192,
+      "losses": 139,
+      "flags": [
+        {
+          "cap": [
+            "test:41",
+            "test:68",
+            "test:546",
+            "test:549"
+          ],
+          "empty": [],
+          "failed": [],
+          "above_original": [
+            "test:41",
+            "test:47",
+            "test:60",
+            "test:127",
+            "test:138",
+            "test:446",
+            "test:493"
+          ],
+          "duplicate_ids": [],
+          "line_start_id_marker": [
+            "test:127"
+          ]
+        },
+        {
+          "cap": [
+            "test:58",
+            "test:227",
+            "test:591"
+          ],
+          "empty": [],
+          "failed": [],
+          "above_original": [
+            "test:1",
+            "test:4",
+            "test:43",
+            "test:46",
+            "test:51",
+            "test:65",
+            "test:80",
+            "test:117",
+            "test:310",
+            "test:357",
+            "test:452",
+            "test:558",
+            "test:600"
+          ],
+          "duplicate_ids": [],
+          "line_start_id_marker": [
+            "test:1",
+            "test:2",
+            "test:4",
+            "test:5",
+            "test:8",
+            "test:11",
+            "test:18",
+            "test:21",
+            "test:22",
+            "test:23",
+            "test:24",
+            "test:25",
+            "test:26",
+            "test:30",
+            "test:31",
+            "test:36",
+            "test:38",
+            "test:40",
+            "test:41",
+            "test:42",
+            "test:43",
+            "test:46",
+            "test:47",
+            "test:48",
+            "test:49",
+            "test:50",
+            "test:51",
+            "test:52",
+            "test:53",
+            "test:55",
+            "test:57",
+            "test:58",
+            "test:59",
+            "test:60",
+            "test:62",
+            "test:65",
+            "test:66",
+            "test:67",
+            "test:68",
+            "test:74",
+            "test:76",
+            "test:77",
+            "test:78",
+            "test:80",
+            "test:83",
+            "test:84",
+            "test:85",
+            "test:99",
+            "test:117",
+            "test:127",
+            "test:129",
+            "test:138",
+            "test:157",
+            "test:181",
+            "test:190",
+            "test:212",
+            "test:213",
+            "test:218",
+            "test:225",
+            "test:227",
+            "test:289",
+            "test:296",
+            "test:301",
+            "test:307",
+            "test:310",
+            "test:321",
+            "test:336",
+            "test:354",
+            "test:357",
+            "test:361",
+            "test:387",
+            "test:389",
+            "test:392",
+            "test:395",
+            "test:400",
+            "test:401",
+            "test:408",
+            "test:412",
+            "test:413",
+            "test:429",
+            "test:432",
+            "test:433",
+            "test:451",
+            "test:452",
+            "test:465",
+            "test:471",
+            "test:476",
+            "test:493",
+            "test:496",
+            "test:497",
+            "test:498",
+            "test:521",
+            "test:523",
+            "test:526",
+            "test:540",
+            "test:542",
+            "test:544",
+            "test:546",
+            "test:549",
+            "test:552",
+            "test:555",
+            "test:558",
+            "test:564",
+            "test:565",
+            "test:584",
+            "test:585",
+            "test:591",
+            "test:596",
+            "test:600",
+            "test:606",
+            "test:611"
+          ]
+        }
+      ],
+      "docs_improved": 54,
+      "docs_worse": 39,
+      "docs_tied": 26,
+      "output_length_changed_more_than_5pp": 107,
+      "posthoc_same_length_5pp": {
+        "documents": 12,
+        "question_count": 204,
+        "gain": 0.09313725490196079
+      },
+      "length_delta_accuracy_delta_pearson": 0.15807968545091444,
+      "posthoc_common_normal": {
+        "excluded_documents": [
+          "test:41",
+          "test:68",
+          "test:546",
+          "test:549",
+          "test:58",
+          "test:227",
+          "test:591"
+        ],
+        "documents": 112,
+        "q0": {
+          "questions": 1904,
+          "correct": 1173,
+          "accuracy": 0.6160714285714286,
+          "macro_f1": 0.5162942354061025,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 877,
+              "predicted": 597,
+              "correct": 459,
+              "recall": 0.5233751425313569,
+              "f1": 0.6227951153324288
+            },
+            {
+              "label": "Contradiction",
+              "support": 201,
+              "predicted": 127,
+              "correct": 42,
+              "recall": 0.208955223880597,
+              "f1": 0.25609756097560976
+            },
+            {
+              "label": "NotMentioned",
+              "support": 826,
+              "predicted": 1180,
+              "correct": 672,
+              "recall": 0.8135593220338984,
+              "f1": 0.6699900299102692
+            }
+          ]
+        },
+        "q17": {
+          "questions": 1904,
+          "correct": 1216,
+          "accuracy": 0.6386554621848739,
+          "macro_f1": 0.5474198385188146,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 877,
+              "predicted": 649,
+              "correct": 494,
+              "recall": 0.5632839224629419,
+              "f1": 0.6474442988204456
+            },
+            {
+              "label": "Contradiction",
+              "support": 201,
+              "predicted": 141,
+              "correct": 52,
+              "recall": 0.25870646766169153,
+              "f1": 0.30409356725146197
+            },
+            {
+              "label": "NotMentioned",
+              "support": 826,
+              "predicted": 1114,
+              "correct": 670,
+              "recall": 0.8111380145278451,
+              "f1": 0.6907216494845361
+            }
+          ]
+        }
+      },
+      "q17_vs_original": {
+        "original_correct_to_wrong": 146,
+        "original_wrong_to_correct": 145,
+        "prediction_flips": 323
+      },
+      "time_seconds": [
+        {
+          "compression": 7392.015089400069,
+          "judgment": 2069.1444583998527
+        },
+        {
+          "compression": 8760.9214350002,
+          "judgment": 2114.8265026003646
+        }
+      ]
+    },
+    {
+      "condition": "generative_priority",
+      "name": "생성형·보존 우선 (Contextualized)",
+      "q0": {
+        "questions": 2023,
+        "correct": 1241,
+        "accuracy": 0.6134453781512605,
+        "macro_f1": 0.5118530583674886,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 621,
+            "correct": 481,
+            "recall": 0.5111583421891605,
+            "f1": 0.615877080665813
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 129,
+            "correct": 43,
+            "recall": 0.19907407407407407,
+            "f1": 0.2492753623188406
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1273,
+            "correct": 717,
+            "recall": 0.8279445727482679,
+            "f1": 0.6704067321178121
+          }
+        ]
+      },
+      "q17": {
+        "questions": 2023,
+        "correct": 1230,
+        "accuracy": 0.6080079090459714,
+        "macro_f1": 0.5089237193205608,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 763,
+            "correct": 543,
+            "recall": 0.5770456960680127,
+            "f1": 0.6373239436619719
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 129,
+            "correct": 42,
+            "recall": 0.19444444444444445,
+            "f1": 0.24347826086956523
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1131,
+            "correct": 645,
+            "recall": 0.7448036951501155,
+            "f1": 0.6459689534301453
+          }
+        ]
+      },
+      "gain": -0.005437469105289194,
+      "accuracy_gain_ci": [
+        -0.026693030153237762,
+        0.015818091942659485
+      ],
+      "macro_f1_gain_ci": [
+        -0.030365720907581398,
+        0.023809720556395474
+      ],
+      "lengths": [
+        {
+          "valid": 119,
+          "mean": 0.46149853939377466,
+          "median": 0.4090328078397955,
+          "aggregate_ratio": 0.3798423851120395
+        },
+        {
+          "valid": 119,
+          "mean": 0.5076906617357704,
+          "median": 0.503382949932341,
+          "aggregate_ratio": 0.4622499683504241
+        }
+      ],
+      "gains": 211,
+      "losses": 222,
+      "flags": [
+        {
+          "cap": [],
+          "empty": [],
+          "failed": [],
+          "above_original": [],
+          "duplicate_ids": [],
+          "line_start_id_marker": [
+            "test:127"
+          ]
+        },
+        {
+          "cap": [
+            "test:58",
+            "test:227",
+            "test:521"
+          ],
+          "empty": [],
+          "failed": [],
+          "above_original": [
+            "test:1",
+            "test:43",
+            "test:46",
+            "test:55",
+            "test:301"
+          ],
+          "duplicate_ids": [],
+          "line_start_id_marker": [
+            "test:1",
+            "test:2",
+            "test:4",
+            "test:5",
+            "test:8",
+            "test:11",
+            "test:18",
+            "test:21",
+            "test:22",
+            "test:24",
+            "test:25",
+            "test:26",
+            "test:30",
+            "test:31",
+            "test:36",
+            "test:38",
+            "test:40",
+            "test:42",
+            "test:43",
+            "test:46",
+            "test:47",
+            "test:48",
+            "test:49",
+            "test:51",
+            "test:52",
+            "test:53",
+            "test:55",
+            "test:57",
+            "test:58",
+            "test:59",
+            "test:60",
+            "test:65",
+            "test:67",
+            "test:68",
+            "test:74",
+            "test:76",
+            "test:77",
+            "test:78",
+            "test:80",
+            "test:83",
+            "test:84",
+            "test:85",
+            "test:99",
+            "test:117",
+            "test:127",
+            "test:129",
+            "test:138",
+            "test:157",
+            "test:181",
+            "test:190",
+            "test:212",
+            "test:218",
+            "test:225",
+            "test:227",
+            "test:228",
+            "test:289",
+            "test:296",
+            "test:301",
+            "test:307",
+            "test:310",
+            "test:321",
+            "test:336",
+            "test:354",
+            "test:357",
+            "test:361",
+            "test:387",
+            "test:392",
+            "test:395",
+            "test:400",
+            "test:408",
+            "test:412",
+            "test:413",
+            "test:432",
+            "test:433",
+            "test:451",
+            "test:452",
+            "test:455",
+            "test:465",
+            "test:493",
+            "test:496",
+            "test:497",
+            "test:498",
+            "test:521",
+            "test:523",
+            "test:540",
+            "test:542",
+            "test:544",
+            "test:546",
+            "test:549",
+            "test:552",
+            "test:555",
+            "test:558",
+            "test:564",
+            "test:565",
+            "test:584",
+            "test:585",
+            "test:591",
+            "test:596",
+            "test:600",
+            "test:606",
+            "test:611"
+          ]
+        }
+      ],
+      "docs_improved": 42,
+      "docs_worse": 44,
+      "docs_tied": 33,
+      "output_length_changed_more_than_5pp": 101,
+      "posthoc_same_length_5pp": {
+        "documents": 18,
+        "question_count": 306,
+        "gain": -3.854941057726238e-18
+      },
+      "length_delta_accuracy_delta_pearson": 0.3023219739290617,
+      "posthoc_common_normal": {
+        "excluded_documents": [
+          "test:58",
+          "test:227",
+          "test:521"
+        ],
+        "documents": 116,
+        "q0": {
+          "questions": 1972,
+          "correct": 1213,
+          "accuracy": 0.6151115618661258,
+          "macro_f1": 0.5116155217651434,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 911,
+              "predicted": 602,
+              "correct": 466,
+              "recall": 0.5115257958287596,
+              "f1": 0.6159947124917383
+            },
+            {
+              "label": "Contradiction",
+              "support": 209,
+              "predicted": 125,
+              "correct": 41,
+              "recall": 0.19617224880382775,
+              "f1": 0.24550898203592814
+            },
+            {
+              "label": "NotMentioned",
+              "support": 852,
+              "predicted": 1245,
+              "correct": 706,
+              "recall": 0.8286384976525821,
+              "f1": 0.6733428707677634
+            }
+          ]
+        },
+        "q17": {
+          "questions": 1972,
+          "correct": 1201,
+          "accuracy": 0.609026369168357,
+          "macro_f1": 0.5109465674824042,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 911,
+              "predicted": 734,
+              "correct": 522,
+              "recall": 0.5729967069154775,
+              "f1": 0.6346504559270517
+            },
+            {
+              "label": "Contradiction",
+              "support": 209,
+              "predicted": 129,
+              "correct": 42,
+              "recall": 0.20095693779904306,
+              "f1": 0.2485207100591716
+            },
+            {
+              "label": "NotMentioned",
+              "support": 852,
+              "predicted": 1109,
+              "correct": 637,
+              "recall": 0.7476525821596244,
+              "f1": 0.6496685364609893
+            }
+          ]
+        }
+      },
+      "q17_vs_original": {
+        "original_correct_to_wrong": 219,
+        "original_wrong_to_correct": 160,
+        "prediction_flips": 421
+      },
+      "time_seconds": [
+        {
+          "compression": 5087.279138800004,
+          "judgment": 1539.7714705995895
+        },
+        {
+          "compression": 7750.501867700019,
+          "judgment": 2182.126123300084
+        }
+      ]
+    },
+    {
+      "condition": "extractive_general",
+      "name": "추출형·일반",
+      "q0": {
+        "questions": 2023,
+        "correct": 1251,
+        "accuracy": 0.6183885318833415,
+        "macro_f1": 0.5000295999752409,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 646,
+            "correct": 503,
+            "recall": 0.5345377258235919,
+            "f1": 0.6339004410838059
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 97,
+            "correct": 30,
+            "recall": 0.1388888888888889,
+            "f1": 0.19169329073482427
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1263,
+            "correct": 718,
+            "recall": 0.8290993071593533,
+            "f1": 0.6744950681070925
+          }
+        ]
+      },
+      "q17": {
+        "questions": 2023,
+        "correct": 1222,
+        "accuracy": 0.6040533860603065,
+        "macro_f1": 0.49578419205678487,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 553,
+            "correct": 436,
+            "recall": 0.463336875664187,
+            "f1": 0.5836680053547524
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 101,
+            "correct": 37,
+            "recall": 0.1712962962962963,
+            "f1": 0.2334384858044164
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1369,
+            "correct": 749,
+            "recall": 0.8648960739030023,
+            "f1": 0.6702460850111857
+          }
+        ]
+      },
+      "gain": -0.014335145823035078,
+      "accuracy_gain_ci": [
+        -0.03509639149777555,
+        0.007414730598121699
+      ],
+      "macro_f1_gain_ci": [
+        -0.028262164728161152,
+        0.019299181761146773
+      ],
+      "lengths": [
+        {
+          "valid": 118,
+          "mean": 0.8395790007657019,
+          "median": 0.906042372743239,
+          "aggregate_ratio": 0.8612157935417726
+        },
+        {
+          "valid": 119,
+          "mean": 0.48515584736631134,
+          "median": 0.469770253929867,
+          "aggregate_ratio": 0.5283065894417015
+        }
+      ],
+      "gains": 140,
+      "losses": 169,
+      "flags": [
+        {
+          "cap": [],
+          "empty": [],
+          "failed": [
+            "test:1"
+          ],
+          "above_original": [
+            "test:8",
+            "test:26",
+            "test:43",
+            "test:49",
+            "test:51",
+            "test:68",
+            "test:77",
+            "test:84",
+            "test:129",
+            "test:412",
+            "test:433",
+            "test:493",
+            "test:496",
+            "test:540",
+            "test:558"
+          ],
+          "duplicate_ids": [
+            "test:549"
+          ],
+          "line_start_id_marker": []
+        },
+        {
+          "cap": [],
+          "empty": [
+            "test:90",
+            "test:336",
+            "test:455"
+          ],
+          "failed": [],
+          "above_original": [],
+          "duplicate_ids": [
+            "test:21"
+          ],
+          "line_start_id_marker": []
+        }
+      ],
+      "docs_improved": 33,
+      "docs_worse": 52,
+      "docs_tied": 34,
+      "output_length_changed_more_than_5pp": 112,
+      "posthoc_same_length_5pp": {
+        "documents": 6,
+        "question_count": 102,
+        "gain": 0.00980392156862745
+      },
+      "length_delta_accuracy_delta_pearson": 0.32271231368792774,
+      "posthoc_common_normal": {
+        "excluded_documents": [
+          "test:1",
+          "test:90",
+          "test:336",
+          "test:455"
+        ],
+        "documents": 115,
+        "q0": {
+          "questions": 1955,
+          "correct": 1210,
+          "accuracy": 0.618925831202046,
+          "macro_f1": 0.5005156323542296,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 923,
+              "predicted": 637,
+              "correct": 498,
+              "recall": 0.5395449620801733,
+              "f1": 0.6384615384615384
+            },
+            {
+              "label": "Contradiction",
+              "support": 213,
+              "predicted": 94,
+              "correct": 30,
+              "recall": 0.14084507042253522,
+              "f1": 0.19543973941368079
+            },
+            {
+              "label": "NotMentioned",
+              "support": 819,
+              "predicted": 1224,
+              "correct": 682,
+              "recall": 0.8327228327228328,
+              "f1": 0.6676456191874695
+            }
+          ]
+        },
+        "q17": {
+          "questions": 1955,
+          "correct": 1168,
+          "accuracy": 0.5974424552429668,
+          "macro_f1": 0.49342231926333974,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 923,
+              "predicted": 546,
+              "correct": 429,
+              "recall": 0.4647887323943662,
+              "f1": 0.584070796460177
+            },
+            {
+              "label": "Contradiction",
+              "support": 213,
+              "predicted": 100,
+              "correct": 37,
+              "recall": 0.17370892018779344,
+              "f1": 0.2364217252396166
+            },
+            {
+              "label": "NotMentioned",
+              "support": 819,
+              "predicted": 1309,
+              "correct": 702,
+              "recall": 0.8571428571428571,
+              "f1": 0.6597744360902256
+            }
+          ]
+        }
+      },
+      "q17_vs_original": {
+        "original_correct_to_wrong": 195,
+        "original_wrong_to_correct": 128,
+        "prediction_flips": 368
+      },
+      "time_seconds": [
+        {
+          "compression": 1740.8829307999113,
+          "judgment": 3410.782201199778
+        },
+        {
+          "compression": 1242.6039512002026,
+          "judgment": 2752.082653900521
+        }
+      ]
+    },
+    {
+      "condition": "extractive_priority",
+      "name": "추출형·보존 우선",
+      "q0": {
+        "questions": 2023,
+        "correct": 1257,
+        "accuracy": 0.6213544241225902,
+        "macro_f1": 0.49777084297157365,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 616,
+            "correct": 486,
+            "recall": 0.5164718384697131,
+            "f1": 0.6242774566473989
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 91,
+            "correct": 29,
+            "recall": 0.13425925925925927,
+            "f1": 0.18892508143322476
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1316,
+            "correct": 742,
+            "recall": 0.8568129330254042,
+            "f1": 0.6801099908340972
+          }
+        ]
+      },
+      "q17": {
+        "questions": 2023,
+        "correct": 1213,
+        "accuracy": 0.5996045477014336,
+        "macro_f1": 0.4890614250002252,
+        "by_class": [
+          {
+            "label": "Entailment",
+            "support": 941,
+            "predicted": 552,
+            "correct": 432,
+            "recall": 0.45908607863974493,
+            "f1": 0.578700602813128
+          },
+          {
+            "label": "Contradiction",
+            "support": 216,
+            "predicted": 100,
+            "correct": 35,
+            "recall": 0.16203703703703703,
+            "f1": 0.22151898734177214
+          },
+          {
+            "label": "NotMentioned",
+            "support": 866,
+            "predicted": 1371,
+            "correct": 746,
+            "recall": 0.8614318706697459,
+            "f1": 0.6669646848457756
+          }
+        ]
+      },
+      "gain": -0.021749876421156666,
+      "accuracy_gain_ci": [
+        -0.04102817597627284,
+        -0.002965892239248591
+      ],
+      "macro_f1_gain_ci": [
+        -0.03705589492599918,
+        0.019545396373777002
+      ],
+      "lengths": [
+        {
+          "valid": 119,
+          "mean": 0.7691239808600878,
+          "median": 0.7989167230873392,
+          "aggregate_ratio": 0.8160170591214078
+        },
+        {
+          "valid": 119,
+          "mean": 0.4937477564400572,
+          "median": 0.49768875192604006,
+          "aggregate_ratio": 0.5583341245727307
+        }
+      ],
+      "gains": 126,
+      "losses": 170,
+      "flags": [
+        {
+          "cap": [],
+          "empty": [],
+          "failed": [],
+          "above_original": [],
+          "duplicate_ids": [],
+          "line_start_id_marker": []
+        },
+        {
+          "cap": [],
+          "empty": [
+            "test:90",
+            "test:336",
+            "test:455"
+          ],
+          "failed": [],
+          "above_original": [],
+          "duplicate_ids": [],
+          "line_start_id_marker": []
+        }
+      ],
+      "docs_improved": 33,
+      "docs_worse": 47,
+      "docs_tied": 39,
+      "output_length_changed_more_than_5pp": 108,
+      "posthoc_same_length_5pp": {
+        "documents": 11,
+        "question_count": 187,
+        "gain": -0.0106951871657754
+      },
+      "length_delta_accuracy_delta_pearson": 0.29381711311478154,
+      "posthoc_common_normal": {
+        "excluded_documents": [
+          "test:90",
+          "test:336",
+          "test:455"
+        ],
+        "documents": 116,
+        "q0": {
+          "questions": 1972,
+          "correct": 1214,
+          "accuracy": 0.6156186612576064,
+          "macro_f1": 0.49538962956549115,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 934,
+              "predicted": 611,
+              "correct": 482,
+              "recall": 0.5160599571734475,
+              "f1": 0.623948220064725
+            },
+            {
+              "label": "Contradiction",
+              "support": 215,
+              "predicted": 88,
+              "correct": 29,
+              "recall": 0.13488372093023257,
+              "f1": 0.19141914191419143
+            },
+            {
+              "label": "NotMentioned",
+              "support": 823,
+              "predicted": 1273,
+              "correct": 703,
+              "recall": 0.8541919805589308,
+              "f1": 0.6708015267175572
+            }
+          ]
+        },
+        "q17": {
+          "questions": 1972,
+          "correct": 1170,
+          "accuracy": 0.5933062880324543,
+          "macro_f1": 0.4865794883235623,
+          "by_class": [
+            {
+              "label": "Entailment",
+              "support": 934,
+              "predicted": 552,
+              "correct": 432,
+              "recall": 0.4625267665952891,
+              "f1": 0.5814266487213997
+            },
+            {
+              "label": "Contradiction",
+              "support": 215,
+              "predicted": 100,
+              "correct": 35,
+              "recall": 0.16279069767441862,
+              "f1": 0.2222222222222222
+            },
+            {
+              "label": "NotMentioned",
+              "support": 823,
+              "predicted": 1320,
+              "correct": 703,
+              "recall": 0.8541919805589308,
+              "f1": 0.6560895940270649
+            }
+          ]
+        }
+      },
+      "q17_vs_original": {
+        "original_correct_to_wrong": 204,
+        "original_wrong_to_correct": 128,
+        "prediction_flips": 378
+      },
+      "time_seconds": [
+        {
+          "compression": 1576.3089027000824,
+          "judgment": 3353.5838185999164
+        },
+        {
+          "compression": 1343.9166016002127,
+          "judgment": 2740.740277199686
+        }
+      ]
+    }
+  ],
+  "source_hashes": {
+    "runs/test_memory_safe/contexts.jsonl": "0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813",
+    "runs/test_memory_safe/predictions.jsonl": "4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b",
+    "runs/test_memory_safe/dataset.json": "99782de5d0f7f50c7aa736ffa5e31db8de4c56978d6327c5ed3cf9625d8e05c3",
+    "runs/questions17/contexts.jsonl": "197e2ebe7c12f940a14e7a1302f16410344318c7c5d3ae0f5bb3ce31242fbb99",
+    "runs/questions17/predictions.jsonl": "c6c132bd7464d19633645a15dbd5b349f1c6babf1b4716ba35633e2cd7b4780c",
+    "runs/questions17/dataset.json": "99782de5d0f7f50c7aa736ffa5e31db8de4c56978d6327c5ed3cf9625d8e05c3"
+  }
+}

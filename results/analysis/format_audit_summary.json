@@ -1,0 +1,41 @@
+{
+  "definition": "Line-start [integer] markers; count complete indexed units whose whitespace-normalized text exactly matches their source. Ratio is verified copied-unit character count divided by whitespace-normalized output characters after removing line-start markers. This is a lower bound, not semantic similarity or Gold Evidence preservation. The >=80% grouping is a post-hoc descriptive threshold.",
+  "summary": [
+    {
+      "arm": "Q0",
+      "condition": "generative_general",
+      "documents": 119,
+      "with_id_markers": 1,
+      "with_exact_complete_unit": 1,
+      "verified_copy_at_least_80_percent": 0,
+      "mean_verified_copy_lower_bound": 0.003445450345086488
+    },
+    {
+      "arm": "Q17",
+      "condition": "generative_general",
+      "documents": 119,
+      "with_id_markers": 111,
+      "with_exact_complete_unit": 104,
+      "verified_copy_at_least_80_percent": 19,
+      "mean_verified_copy_lower_bound": 0.37132203587772733
+    },
+    {
+      "arm": "Q0",
+      "condition": "generative_priority",
+      "documents": 119,
+      "with_id_markers": 1,
+      "with_exact_complete_unit": 1,
+      "verified_copy_at_least_80_percent": 0,
+      "mean_verified_copy_lower_bound": 0.0020323113955062148
+    },
+    {
+      "arm": "Q17",
+      "condition": "generative_priority",
+      "documents": 119,
+      "with_id_markers": 101,
+      "with_exact_complete_unit": 89,
+      "verified_copy_at_least_80_percent": 11,
+      "mean_verified_copy_lower_bound": 0.2769074652770833
+    }
+  ]
+}

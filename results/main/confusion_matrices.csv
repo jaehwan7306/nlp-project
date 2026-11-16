@@ -1,0 +1,16 @@
+﻿condition,gold,Entailment,Contradiction,NotMentioned,Invalid
+original,Entailment,549,44,348,0
+original,Contradiction,34,39,143,0
+original,NotMentioned,123,42,701,0
+generative_general,Entailment,487,46,408,0
+generative_general,Contradiction,25,43,148,0
+generative_general,NotMentioned,119,42,705,0
+generative_priority,Entailment,481,50,410,0
+generative_priority,Contradiction,27,43,146,0
+generative_priority,NotMentioned,113,36,717,0
+extractive_general,Entailment,503,39,388,11
+extractive_general,Contradiction,27,30,157,2
+extractive_general,NotMentioned,116,28,718,4
+extractive_priority,Entailment,486,35,420,0
+extractive_priority,Contradiction,33,29,154,0
+extractive_priority,NotMentioned,97,27,742,0

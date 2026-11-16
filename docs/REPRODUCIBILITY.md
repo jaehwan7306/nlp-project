@@ -1,6 +1,6 @@
 # 재현 및 터미널 실행 명령
 
-[프로젝트 개요](../README.md) · [현재까지의 실험 결과](RESULTS.md)
+[프로젝트 개요](../README.md) · [현재까지의 실험 결과](RESULTS.md) · [공개 결과 파일](../results/README.md)
 
 README와 세 실행 파일이 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널**에서 실행한다. 모든 경로는 프로젝트 루트 기준이며 아래 명령은 Windows PowerShell용이다.
 
@@ -208,6 +208,8 @@ Q17 preflight 도중 중단했다면 같은 preflight 명령에 `--resume`을 �
 <a id="outputs"></a>
 
 ## D. 결과와 재현 자료
+
+완료한 결과만 확인하려면 [공개 결과 폴더](../results/README.md)의 CSV·JSON·보고서·그림을 열면 된다. 아래 명령은 원시 run을 보관한 로컬 프로젝트에서 집계를 다시 만들 때 사용한다.
 
 이미 모델 실행이 끝났다면 다음은 저장된 결과를 읽는 진단·분석 명령이다.
 

@@ -1,0 +1,239 @@
+{
+  "snapshot_date": "2026-11-16",
+  "dataset": "ContractNLI",
+  "documents": 119,
+  "hypotheses_per_document": 17,
+  "questions_per_condition": 2023,
+  "main_prediction_records": 10115,
+  "q17_prediction_records": 10115,
+  "q17_reused_original_records": 2023,
+  "q17_new_model_judgments": 8092,
+  "per_question_predictions_published": false,
+  "source_journal_sha256": {
+    "runs/test_memory_safe/contexts.jsonl": "0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813",
+    "runs/test_memory_safe/predictions.jsonl": "4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b",
+    "runs/test_memory_safe/dataset.json": "99782de5d0f7f50c7aa736ffa5e31db8de4c56978d6327c5ed3cf9625d8e05c3",
+    "runs/questions17/contexts.jsonl": "197e2ebe7c12f940a14e7a1302f16410344318c7c5d3ae0f5bb3ce31242fbb99",
+    "runs/questions17/predictions.jsonl": "c6c132bd7464d19633645a15dbd5b349f1c6babf1b4716ba35633e2cd7b4780c",
+    "runs/questions17/dataset.json": "99782de5d0f7f50c7aa736ffa5e31db8de4c56978d6327c5ed3cf9625d8e05c3"
+  },
+  "files": [
+    {
+      "path": "results/README.md",
+      "bytes": 3414,
+      "sha256": "52743eac94930dc7c1c30d43115da7e188cc16efd0c23cab59e19e8da133911a",
+      "source": null,
+      "source_sha256": null,
+      "transformation": "generated artifact index"
+    },
+    {
+      "path": "results/analysis/QUESTION_EFFECTS.md",
+      "bytes": 14754,
+      "sha256": "5a43bf87909da5572d099a531ce9f9daaafb68613cdf3f51d0341cec3d2fb745",
+      "source": "analysis/questions17_2026-11-16/REPORT.md",
+      "source_sha256": "95802f77d121fa3b21766b30c8368fba0b84bf84f15718c896c1318e293e9248",
+      "transformation": "preserve findings; replace local-only source appendix with links to published artifacts"
+    },
+    {
+      "path": "results/analysis/comparison.pdf",
+      "bytes": 34527,
+      "sha256": "eb9a1c9517cbc5e1cca33b1539f398c5ad761d42e2df22ca39cc1ac794cb8374",
+      "source": "analysis/questions17_2026-11-16/comparison.pdf",
+      "source_sha256": "eb9a1c9517cbc5e1cca33b1539f398c5ad761d42e2df22ca39cc1ac794cb8374",
+      "transformation": "none"
+    },
+    {
+      "path": "results/analysis/comparison.png",
+      "bytes": 188332,
+      "sha256": "82fede2c35d9cc0302c25cecb741bbb2b428acbc3eb43979da357867089f744b",
+      "source": "analysis/questions17_2026-11-16/comparison.png",
+      "source_sha256": "82fede2c35d9cc0302c25cecb741bbb2b428acbc3eb43979da357867089f744b",
+      "transformation": "none"
+    },
+    {
+      "path": "results/analysis/document_effects.json",
+      "bytes": 149174,
+      "sha256": "fc8f6c347740835388facf30ddfa603634855f55bdb2f579dba6c74ee9d7e84e",
+      "source": "analysis/questions17_2026-11-16/documents.json",
+      "source_sha256": "fc8f6c347740835388facf30ddfa603634855f55bdb2f579dba6c74ee9d7e84e",
+      "transformation": "none"
+    },
+    {
+      "path": "results/analysis/format_audit_summary.json",
+      "bytes": 1516,
+      "sha256": "a5bfe5fd774d38dc2edcb52c35c293c796ffa82b97d13f6b30fef02a297d5997",
+      "source": "analysis/questions17_2026-11-16/format_audit.json",
+      "source_sha256": "fec4dcf411749b07f849a8d42d2ec4575e31a563391ff8d023b430b21968c492",
+      "transformation": "publish the format-audit definition and summary; leave source/output excerpts in the local raw run"
+    },
+    {
+      "path": "results/analysis/hypothesis_effects.json",
+      "bytes": 118982,
+      "sha256": "98f779a537ab3a01cfdf9d09e84f55518f25c5f8fa48253ad49db1e8a2956a98",
+      "source": "analysis/questions17_2026-11-16/hypotheses.json",
+      "source_sha256": "98f779a537ab3a01cfdf9d09e84f55518f25c5f8fa48253ad49db1e8a2956a98",
+      "transformation": "none"
+    },
+    {
+      "path": "results/analysis/prompt_check.json",
+      "bytes": 1937,
+      "sha256": "911ce2a70c8d76cbb764822a2d4c0375ea492d034814b7fd98100123f4a272b3",
+      "source": "analysis/questions17_2026-11-16/prompt_check.json",
+      "source_sha256": "911ce2a70c8d76cbb764822a2d4c0375ea492d034814b7fd98100123f4a272b3",
+      "transformation": "none"
+    },
+    {
+      "path": "results/analysis/summary.json",
+      "bytes": 33159,
+      "sha256": "c1120c6d4c5a1c3ede36b45c6abf58a4792ba2ef91ee39cbe7e307775d390d42",
+      "source": "analysis/questions17_2026-11-16/summary.json",
+      "source_sha256": "0a97faa2cc39e7139f32c47ba82962a744596270f6abe93fdc1cb6fd27f4ace7",
+      "transformation": "replace local paths in values and source-hash keys with project-relative paths; preserve computed values"
+    },
+    {
+      "path": "results/main/analysis.json",
+      "bytes": 7770,
+      "sha256": "75ab7f9cdc51059a51bf14d5ea8cf2cd426788a754ed248ff66ac105a3815ab6",
+      "source": "runs/test_memory_safe/results/analysis.json",
+      "source_sha256": "75ab7f9cdc51059a51bf14d5ea8cf2cd426788a754ed248ff66ac105a3815ab6",
+      "transformation": "none"
+    },
+    {
+      "path": "results/main/comparisons.csv",
+      "bytes": 822,
+      "sha256": "91c705b4909c0b21f68327b563cde8b8050da68a4134f937eb25dba699ae0d44",
+      "source": "runs/test_memory_safe/results/comparisons.csv",
+      "source_sha256": "91c705b4909c0b21f68327b563cde8b8050da68a4134f937eb25dba699ae0d44",
+      "transformation": "none"
+    },
+    {
+      "path": "results/main/confusion_matrices.csv",
+      "bytes": 721,
+      "sha256": "b1507c852390ba90b65f4c4fc7278a21c8368b809ee4f5d47f9d28c7a9f71137",
+      "source": "runs/test_memory_safe/results/confusion_matrices.csv",
+      "source_sha256": "b1507c852390ba90b65f4c4fc7278a21c8368b809ee4f5d47f9d28c7a9f71137",
+      "transformation": "none"
+    },
+    {
+      "path": "results/main/lengths.csv",
+      "bytes": 40404,
+      "sha256": "4888b0f1b612222467d94e1cd33013e40a174bbd18f8926168ebd4b72edf7e81",
+      "source": "runs/test_memory_safe/results/lengths.csv",
+      "source_sha256": "4888b0f1b612222467d94e1cd33013e40a174bbd18f8926168ebd4b72edf7e81",
+      "transformation": "none"
+    },
+    {
+      "path": "results/main/metrics.csv",
+      "bytes": 2099,
+      "sha256": "15d697d7390375fe8a76a77e90bb09ec9feb897edd1da988173969b3a8ffeec6",
+      "source": "runs/test_memory_safe/results/metrics.csv",
+      "source_sha256": "15d697d7390375fe8a76a77e90bb09ec9feb897edd1da988173969b3a8ffeec6",
+      "transformation": "none"
+    },
+    {
+      "path": "results/main/report.md",
+      "bytes": 1479,
+      "sha256": "23866fabd58f60def0eae968f521904c9c8c6a82480c93fa2349011b0d144eb8",
+      "source": "runs/test_memory_safe/results/report.md",
+      "source_sha256": "23866fabd58f60def0eae968f521904c9c8c6a82480c93fa2349011b0d144eb8",
+      "transformation": "none"
+    },
+    {
+      "path": "results/main/times.csv",
+      "bytes": 420,
+      "sha256": "50beadf2beb343302ff6c727a752ba92071d752c4ec9b8f3620715f9e560f78d",
+      "source": "runs/test_memory_safe/results/times.csv",
+      "source_sha256": "50beadf2beb343302ff6c727a752ba92071d752c4ec9b8f3620715f9e560f78d",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/analysis.json",
+      "bytes": 7846,
+      "sha256": "039adafe1980f841402389d9f2456d63a95d93affd01910190ebae684857ce83",
+      "source": "runs/questions17/results/analysis.json",
+      "source_sha256": "a5e17226a2e3ecddb46e672132c76d37f6e6ec431ce812874065e83fd4d07d41",
+      "transformation": "replace local project paths with project-relative paths; JSON formatting only otherwise"
+    },
+    {
+      "path": "results/questions17/comparisons.csv",
+      "bytes": 823,
+      "sha256": "bd2ffec6cdd8b9755fd6ca614dfc2e5c57384bd6594cc70eafcc486e49747dfa",
+      "source": "runs/questions17/results/comparisons.csv",
+      "source_sha256": "bd2ffec6cdd8b9755fd6ca614dfc2e5c57384bd6594cc70eafcc486e49747dfa",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/confusion_matrices.csv",
+      "bytes": 719,
+      "sha256": "327a1d6c2c21acd6d9b2f068f905fb62b3169a2eb9a7c3c4844fa4210d5a264f",
+      "source": "runs/questions17/results/confusion_matrices.csv",
+      "source_sha256": "327a1d6c2c21acd6d9b2f068f905fb62b3169a2eb9a7c3c4844fa4210d5a264f",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/lengths.csv",
+      "bytes": 40231,
+      "sha256": "8ec3f965601f606e40b665afc7c7161b6b1fafae136624deab04f68c9b88ccd9",
+      "source": "runs/questions17/results/lengths.csv",
+      "source_sha256": "8ec3f965601f606e40b665afc7c7161b6b1fafae136624deab04f68c9b88ccd9",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/metrics.csv",
+      "bytes": 2037,
+      "sha256": "e4598093119651e071a2d798d4978f7c5ffa54ee3df80d04a6da0a2dcd84b67a",
+      "source": "runs/questions17/results/metrics.csv",
+      "source_sha256": "e4598093119651e071a2d798d4978f7c5ffa54ee3df80d04a6da0a2dcd84b67a",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/question_analysis.json",
+      "bytes": 5352,
+      "sha256": "3abaaadf38f6d07447cb286e8e0b0ebe7a362cf36e49fe03281c3e16ad48f6af",
+      "source": "runs/questions17/results/question_analysis.json",
+      "source_sha256": "44bbb1bccb27f77142ef44d9cbb2d80327fc777ab6248c82e32e9717aff606c5",
+      "transformation": "replace local project paths with project-relative paths; JSON formatting only otherwise"
+    },
+    {
+      "path": "results/questions17/question_effects.csv",
+      "bytes": 2029,
+      "sha256": "c5812f36e911df0f1b3eed108f2c4ac91b97dadc772db7b1483af88cb49d6455",
+      "source": "runs/questions17/results/question_effects.csv",
+      "source_sha256": "c5812f36e911df0f1b3eed108f2c4ac91b97dadc772db7b1483af88cb49d6455",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/question_label_effects.csv",
+      "bytes": 1017,
+      "sha256": "7470691cf258df669fa61c6d50360235c40ed907283a10027eb8a77ff4d65aa3",
+      "source": "runs/questions17/results/question_label_effects.csv",
+      "source_sha256": "7470691cf258df669fa61c6d50360235c40ed907283a10027eb8a77ff4d65aa3",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/question_times.csv",
+      "bytes": 688,
+      "sha256": "933b262862f467e7465d4933941ec3689a0d3a8c5f91ba9979bd95ca322c131a",
+      "source": "runs/questions17/results/question_times.csv",
+      "source_sha256": "933b262862f467e7465d4933941ec3689a0d3a8c5f91ba9979bd95ca322c131a",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/report.md",
+      "bytes": 2236,
+      "sha256": "0cc0c7e66fc7646e49c0c9e6db601e5928132f5de00ca3d94920e020678dec4e",
+      "source": "runs/questions17/results/report.md",
+      "source_sha256": "0cc0c7e66fc7646e49c0c9e6db601e5928132f5de00ca3d94920e020678dec4e",
+      "transformation": "none"
+    },
+    {
+      "path": "results/questions17/times.csv",
+      "bytes": 419,
+      "sha256": "809dbed63c60f177721fd4888a1d1e05420b48dad0369f9688ade57c05db5a29",
+      "source": "runs/questions17/results/times.csv",
+      "source_sha256": "809dbed63c60f177721fd4888a1d1e05420b48dad0369f9688ade57c05db5a29",
+      "transformation": "none"
+    }
+  ],
+  "note": "CSV bytes and computed values are preserved. Local paths are made relative; full raw run and model/data caches are retained separately."
+}
