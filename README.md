@@ -62,4 +62,4 @@ Main과 추가 분석 1은 완료했다. 코드로 길이를 제약하는 추가
 
 프롬프트는 [Main](contract_experiment/prompts.py)과 [질문 제공 블록](question_support/prompts.py), 고정 모델 버전은 [모델 리비전](docs/model_revisions.json)에서 확인한다. 실행 당시 전문과 실제 설정은 각 run에 보관한다.
 
-변경 이유는 [의사결정 기록](docs/DECISIONS.md), 수정 내역은 [CHANGELOG](CHANGELOG.md), 구현·검증 범위는 [구현 문서](docs/IMPLEMENTATION.md)에 남긴다. 기존 발표자료와의 차이는 [설계 비교](design/DESIGN_COMPARISON.md), 이전 오류 복구 과정은 [과거 실행 기록](docs/archive/EXECUTION_HISTORY.md)을 참고한다.
+변경 이유는 [의사결정 기록](docs/DECISIONS.md), 수정 내역은 [CHANGELOG](CHANGELOG.md), 구현·검증 범위는 [구현 문서](docs/IMPLEMENTATION.md)에 남긴다. 기존 발표자료와의 차이는 [설계 비교: 과거 자료](design/DESIGN_COMPARISON.md), 이전 오류 복구 과정은 [과거 실행 기록](docs/archive/EXECUTION_HISTORY.md)을 참고한다.
