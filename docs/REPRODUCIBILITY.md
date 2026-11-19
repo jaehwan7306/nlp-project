@@ -2,14 +2,15 @@
 
 [프로젝트 개요](../README.md) · [현재까지의 실험 결과](RESULTS.md) · [공개 결과 파일](../results/README.md)
 
-README와 세 실행 파일이 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널**에서 실행한다. 모든 경로는 프로젝트 루트 기준이며 아래 명령은 Windows PowerShell용이다.
+README가 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널**에서 실행한다. 모든 경로는 프로젝트 루트 기준이며 아래 명령은 Windows PowerShell용이다.
 
 | 현재 상태 | 시작할 곳 |
 |---|---|
 | 처음부터 재현 | [A. 환경·전처리·Dev·Main](#from-scratch) |
 | Main을 완료했고 질문 제공 실험을 실행 | [B. 추가 분석 1](#questions17) |
 | 실행 도중 중단 | [C. 중단 후 재개](#resume) |
-| Main·Q17 모두 완료 | [D. 결과와 재현 자료](#outputs). 필요할 때 진단·분석만 다시 실행 |
+| Main·Q17 모두 완료 | [B-2. Q8 후속 실험](#questions8) |
+| 저장된 결과를 확인 | [D. 결과와 재현 자료](#outputs) |
 
 이미 완료한 현재 실험에 신규 초기화 명령을 반복할 필요는 없다. 코드를 업데이트할 때 `.venv`, 데이터·검수 자료·prepared·model_lock.json, 기존 run·protocol을 보존한다. 이전 오류 복구 절차는 [과거 실행 기록](archive/EXECUTION_HISTORY.md)에 분리했다.
 
@@ -153,7 +154,9 @@ python run_memory_safe.py analyze --run runs/test_memory_safe
 
 <a id="questions17"></a>
 
-## B. 추가 분석 1: 17개 가설 목록 제공
+## B. 추가 분석 1
+
+### B-1. Q17 가설 목록 제공
 
 완료한 `runs/test_memory_safe`와 같은 코드·환경·모델 잠금을 유지한다. 설치·데이터 감사·전체 Dev·Main을 반복하는 단계가 아니다. 아래는 A에서 Dev를 `runs/dev`로 만든 재현 경로다. 기존 실행이 `runs/dev_greedy`라면 첫 명령의 `--dev-run`만 그 경로로 지정한다.
 
@@ -182,6 +185,41 @@ python run_question_analysis.py show-prompts --main-run runs/test_memory_safe --
 
 실행 당시 전문·가설 순서·삽입 형식은 각 run의 `prompts.json`이 기준이다. Main system·기본 작업 지시는 유지하고 Q17 압축 user 입력에 공통 안내와 가설 목록만 더한다. 판단 입력에는 가설 한 개씩 넣으며 Gold는 압축에 넣지 않는다.
 
+<a id="questions8"></a>
+
+### B-2. Q8 가설 목록 제공
+
+최신 코드를 기존 프로젝트에 가져오고, 같은 Python 3.11 가상환경을 활성화한 IDE 터미널에서 실행한다. Git으로 받은 프로젝트는 `git pull --ff-only`로 갱신할 수 있다. ZIP으로 받은 프로젝트는 최신 코드와 문서를 기존 프로젝트에 병합한다. 완료한 `runs/test_memory_safe`와 `runs/questions17` 폴더 전체가 필요하다. 다른 이름으로 저장했다면 첫 명령의 `--main-run`과 `--q17-run`을 실제 경로로 바꾼다.
+
+```powershell
+python run_question_subset.py init --main-run runs/test_memory_safe --q17-run runs/questions17 --out runs/questions8
+```
+
+초기화는 GPU 없이 두 참조 run의 문서·가설·Gold·설정·완료 기록을 검증한다. `runs/questions8/assignment.json`에 seed 42, 문서별 제공 ID와 가설별 제공 횟수가 저장된다. 119문서에서 각 가설은 56회 제공되고 63회 빠진다. 같은 문서의 네 압축 방법에는 같은 목록이 들어간다. Q17 프롬프트에서 미제공 가설 9줄을 제거하고 남은 가설의 원래 H 번호와 순서를 유지한다. `prompts.json`에 사용 형식과 예시가 들어 있다.
+
+아래 명령은 앞 단계가 끝난 뒤 한 줄씩 실행한다.
+
+```powershell
+python run_question_subset.py --debug compress --run runs/questions8
+python run_question_subset.py --debug judge --run runs/questions8
+python run_question_subset.py diagnose --run runs/questions8
+python run_question_subset.py analyze --run runs/questions8
+```
+
+119문서 기준 Q8 압축 476회와 판단 기록 8,092건을 새로 만든다. 모든 조건은 문서당 가설 17개를 평가한다. Original 2,023건은 복사하고 Q0·Q17 압축 결과와 판단 기록은 참조한다. 모델 호출이 필요한 단계는 `compress`와 `judge`다. 압축 실패 문항은 오답으로 기록하며 실제 판단 호출은 생략된다.
+
+결과는 `runs/questions8/results/`에서 확인한다.
+
+| 파일 | 내용 |
+|---|---|
+| `subset_report.md`, `subset_analysis.json` | 정확도 요약과 분석 설정 |
+| `subset_effects.csv` | 전체 2,023문항, Q8 제공 952문항, 미제공 1,071문항의 방법별 정확도·Macro-F1. 같은 문항에서 Q8−Q0·Q8−Q17 차이와 paired 문서 부트스트랩 95% CI |
+| `subset_hypothesis_effects.csv` | 각 가설에서 제공된 문서와 미제공 문서의 동일 문항 비교 |
+| `paired_predictions.csv` | 문서·방법·가설별 Q8 제공 여부, Gold, 세 조건 예측과 상태 |
+| `subset_resources.csv` | 보존율·실패·시간. Q0·Q17의 시간은 기존 실행 기록 |
+
+제공·미제공별 결과를 볼 때 각 묶음 내에서 Q0·Q8·Q17을 비교한다. 세 조건 모두 동일한 문서·가설 조합을 쓴다. 원문과 평가용 Gold는 동일하게 유지하고 Gold는 압축 프롬프트에 들어가지 않는다. 길이와 가설 조합이 결과에 미친 영향도 해석에 포함한다.
+
 <a id="resume"></a>
 
 ## C. 중단 후 재개
@@ -202,6 +240,13 @@ python run_question_analysis.py --debug judge --run runs/questions17 --resume
 ```
 
 Q17 preflight 도중 중단했다면 같은 preflight 명령에 `--resume`을 붙인다. Dev 단계에는 `run_experiment.py`의 해당 압축·판단 명령에 `--resume`을 붙인다.
+
+Q8은 아래 중 중단된 단계만 이어서 실행한다.
+
+```powershell
+python run_question_subset.py --debug compress --run runs/questions8 --resume
+python run_question_subset.py --debug judge --run runs/questions8 --resume
+```
 
 완료한 성공·실패 행은 모두 유지한다. OOM 같은 실행 오류로 미완료인 항목부터 재개하며 마지막 불완전 JSONL 행만 백업 후 복구한다. 소스·프롬프트·설정·모델·환경이 바뀌면 동일 run에 섞어 재개할 수 없다. 로그가 설명하는 원인을 먼저 확인하고 manifest·protocol 해시를 임의 수정하지 않는다. `--debug`는 항상 하위 명령 앞에 둔다.
 
@@ -238,6 +283,6 @@ CSV 비율은 `0.30 = 30%`다. 파싱·압축 실패 문항을 성능 분모에 
 - `model_lock.json`, `environment-lock.txt`: 고정 모델·환경. 실제 패키지는 run의 `environment.json`에도 기록.
 - 각 run의 `dataset.json`, `prepared_manifest.json`, `prompts.json`, `config.json`, `models.json`, `manifest.json`, `frozen_protocol.json`.
 - `contexts.jsonl`, `predictions.jsonl`, `runtime_compressor.json`, `runtime_judge.json`, `events.jsonl`: 원본 출력·시간·종료·실제 생성 설정·GPU·템플릿.
-- `source/`, Main의 `memory_extension_source/`·`runtime_memory_policy.json`, Q17의 `lineage.json`: 소스·정책·참조 Main과 재사용 내역.
+- `source/`, Main의 `memory_extension_source/`·`runtime_memory_policy.json`, Q8·Q17의 `lineage.json`, Q8의 `assignment.json`: 소스·정책·참조 run·배정표.
 
-seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 다른 GPU·라이브러리에서 모든 토큰이 비트 단위로 같음을 보장하지 않는다. Q17은 참조 Main의 변경도 검사하므로 상대적 폴더 관계를 유지해 함께 보관한다. 변경 이유는 [DECISIONS](DECISIONS.md), 수정 내역은 [CHANGELOG](../CHANGELOG.md)에 남긴다.
+seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 다른 GPU·라이브러리에서 모든 토큰이 비트 단위로 같음을 보장하지 않는다. Q8·Q17은 참조 run의 해시를 검사하므로 상대적 폴더 관계를 유지해 함께 보관한다. 변경 이유는 [DECISIONS](DECISIONS.md), 수정 내역은 [CHANGELOG](../CHANGELOG.md)에 남긴다.
