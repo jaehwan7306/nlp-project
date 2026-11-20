@@ -1,16 +1,18 @@
 # 재현 및 터미널 실행 명령
 
-[프로젝트 개요](../README.md) · [현재까지의 실험 결과](RESULTS.md) · [공개 결과 파일](../results/README.md)
+[프로젝트 개요](../README.md) · [연구 질문별 결과 보고서](RESEARCH_QUESTION_RESULTS.md) · [공개 결과 파일](../results/README.md)
 
 README가 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널**에서 실행한다. 모든 경로는 프로젝트 루트 기준이며 아래 명령은 Windows PowerShell용이다.
 
 | 현재 상태 | 시작할 곳 |
 |---|---|
 | 처음부터 재현 | [A. 환경·전처리·Dev·Main](#from-scratch) |
-| Main을 완료했고 질문 제공 실험을 실행 | [B. 추가 분석 1](#questions17) |
+| Main을 완료했고 Q17을 실행 | [B-1. 가설 17개 제공](#questions17) |
 | 실행 도중 중단 | [C. 중단 후 재개](#resume) |
 | Main·Q17 모두 완료 | [B-2. Q8 후속 실험](#questions8) |
 | 저장된 결과를 확인 | [D. 결과와 재현 자료](#outputs) |
+
+이 가이드는 완료한 Main과 Analysis 1을 재현하는 절차다. [Analysis 2](../design/EXPERIMENT_DESIGN.md#analysis-2)와 [Analysis 3](../design/EXPERIMENT_DESIGN.md#analysis-3)의 예정 분석은 설계서에서 확인할 수 있다.
 
 이미 완료한 현재 실험에 신규 초기화 명령을 반복할 필요는 없다. 코드를 업데이트할 때 `.venv`, 데이터·검수 자료·prepared·model_lock.json, 기존 run·protocol을 보존한다. 이전 오류 복구 절차는 [과거 실행 기록](archive/EXECUTION_HISTORY.md)에 분리했다.
 
@@ -263,12 +265,15 @@ python run_memory_safe.py diagnose --run runs/test_memory_safe
 python run_memory_safe.py analyze --run runs/test_memory_safe
 python run_question_analysis.py diagnose --run runs/questions17
 python run_question_analysis.py analyze --run runs/questions17
+python run_question_subset.py diagnose --run runs/questions8
+python run_question_subset.py analyze --run runs/questions8
 ```
 
 | 파일·위치 | 내용 |
 |---|---|
 | `runs/test_memory_safe/results/` | Main 결과 |
 | `runs/questions17/results/` | Q17 결과와 Main 대비 질문 효과 |
+| `runs/questions8/results/` | [Q8 집계](../results/questions8/report.md)와 동일 문항 Q0·Q8·Q17 비교 |
 | `metrics.csv` | 정확도·Macro-F1·클래스 Recall·정답 유지율·실패율·보존율 |
 | `comparisons.csv` | Original − 해당 압축 조건의 성능 차이·CI |
 | `question_effects.csv` | **Q17 − Q0** 질문 효과·CI·실제 길이·실패·정답 전환 |

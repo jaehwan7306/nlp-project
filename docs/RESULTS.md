@@ -1,8 +1,8 @@
-# 현재까지의 실험 결과
+# Main과 Q17 상세 결과
 
-[프로젝트 개요](../README.md) · [공개 결과 파일·그림](../results/README.md) · [재현 및 실행 명령](REPRODUCIBILITY.md)
+[프로젝트 개요](../README.md) · [연구 질문별 결과 보고서](RESEARCH_QUESTION_RESULTS.md) · [공개 결과 파일·그림](../results/README.md)
 
-정리일: 2026-11-16. 질문 없는 Main과 고정 17개 가설 목록을 제공하는 추가 분석 1을 완료했다. 아래 수치는 저장된 Test 결과를 확인해 정리한 값이다. 길이를 제약하는 추가 분석 2와 Gold Evidence 오류 분석 3은 아직 실행하지 않았다.
+질문 없이 압축한 Main(Q0)과 고정 17개 가설을 제공한 Q17의 설정·성능·출력 형식을 설명한다. 가설 8개를 제공했을 때의 변화는 별도 집계표에서 확인할 수 있다. [Q8 결과](../results/questions8/report.md)
 
 ## 데이터와 실행 범위
 
@@ -21,9 +21,9 @@
 | 실행 | 새 압축 | 새 판단 | 재사용 |
 |---|---:|---:|---|
 | Main | 476회 | 10,115개 판단 기록 | 이전 Test 모델 출력 재사용 없음 |
-| 추가 분석 1 | 476회 | 8,092회 | Main Original 2,023건, 질문 없는 결과는 비교 기준으로 참조 |
+| Analysis 1 · Q17 | 476회 | 8,092회 | Main Original 2,023건, 질문 없는 결과는 비교 기준으로 참조 |
 
-Main 판단 기록 중 기존 추출형·일반 압축 실패 문서의 17문항은 모델 판단을 생략하고 오답으로 기록했다. 저장된 기록 수와 실제 모델 호출 수를 구분한다. 추가 분석 1은 새 모델 판단 8,092회가 모두 완료됐다.
+Main에서 추출형·일반 압축에 실패한 문서의 17문항은 오답으로 기록했다. Q17은 새 모델 판단 8,092회를 완료했다.
 
 실행 모델은 Qwen2.5-7B-Instruct / Qwen3-8B이며 NF4 4bit·bfloat16·명시적 greedy를 사용했다. 실제 환경은 Python 3.11.9, PyTorch 2.8.0+cu128, NVIDIA GeForce RTX 5070이었다. 고정 리비전과 재현 절차는 [실행 안내](REPRODUCIBILITY.md)에 있다.
 
@@ -97,11 +97,11 @@ CI는 같은 문서의 17문항을 함께 추출하는 paired 문서 부트스�
 
 > 고정 17개 가설 목록 제공은 Naive의 판단 성능을 개선했지만, 다른 방법에서 일관된 개선은 나타나지 않았다. 추출형에서는 선택 분량과 Entailment Recall이 함께 감소했다. 질문 제공은 생성형의 원문 번호·본문 보존 등 출력 방식도 바꿨으므로, 같은 길이에서 관련 정보 선택 능력만 분리한 결과로 해석하지 않는다.
 
-다음 비교는 계획한 추가 분석 2의 길이 제약, 추가 분석 3의 Gold Evidence 대조다. 현재 결과를 사후에 유리한 출력으로 바꾸지 않고 출력 이상도 함께 보존한다.
+후속 분석은 실제 모델 입력에서 근거 위치와 판단 성능의 관계를 살피고, 압축 후 Gold Evidence가 남아 있는지를 대조한다. [Analysis 2 · 입력 위치](../design/EXPERIMENT_DESIGN.md#analysis-2) · [Analysis 3 · 근거 보존](../design/EXPERIMENT_DESIGN.md#analysis-3)
 
 ## 결과 출처와 재현 자료
 
-성능·길이·시간 CSV, 집계 JSON, 상세 분석과 PNG/PDF 그림은 [공개 결과 폴더](../results/README.md)에서 확인할 수 있다. 사용자의 명시적 공개 승인에 따라 [Main 문항별 Gold·예측](../results/main/predictions.csv)과 [Q17 문항별 Gold·예측](../results/questions17/predictions.csv)도 포함했다. 두 파일은 각각 10,115행이며 문서·조건·가설 ID, Gold, 예측, 상태, 판단 시간을 담고 있다.
+성능·길이·시간 CSV, 집계 JSON, 상세 분석과 PNG/PDF 그림을 공개했다. Main과 Q17의 문항별 예측 파일에는 각 10,115행이 있으며, 문서·조건·가설 ID, Gold, 예측, 상태, 판단 시간을 담고 있다. [공개 결과 폴더](../results/README.md) · [Main 문항별 예측](../results/main/predictions.csv) · [Q17 문항별 예측](../results/questions17/predictions.csv)
 
 CSV는 원본 바이트를 유지했고 JSON의 로컬 컴퓨터 경로와 보고서 링크는 공개 구조에 맞게 정리했다. 파일별 원본·공개본 SHA256과 변환 내역은 [manifest.json](../results/manifest.json)에 기록했다.
 

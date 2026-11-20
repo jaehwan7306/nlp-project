@@ -1,5 +1,6 @@
 {
   "snapshot_date": "2026-11-16",
+  "documentation_updated_date": "2026-11-20",
   "dataset": "ContractNLI",
   "documents": 119,
   "hypotheses_per_document": 17,
@@ -20,11 +21,11 @@
   "files": [
     {
       "path": "results/README.md",
-      "bytes": 3340,
-      "sha256": "40a78139918dca44f127619d8caae4826e70c8effad87c81055b5139d08515ff",
+      "bytes": 3203,
+      "sha256": "cf12dffc89561676cfd58b4c0542a08e13d0655e9893e1eb4896b69b92603a17",
       "source": null,
       "source_sha256": null,
-      "transformation": "generated artifact index"
+      "transformation": "Public results index updated with the Q8 aggregate report and analysis roadmap."
     },
     {
       "path": "results/analysis/QUESTION_EFFECTS.md",
@@ -249,6 +250,14 @@
       "source": "runs/questions17/results/times.csv",
       "source_sha256": "809dbed63c60f177721fd4888a1d1e05420b48dad0369f9688ade57c05db5a29",
       "transformation": "none"
+    },
+    {
+      "path": "results/questions8/report.md",
+      "bytes": 3207,
+      "sha256": "caa8eacd70f451b176f3ac9c9b8c3015b5488ca3c3a959949c757581898a5e7f",
+      "source": "runs/questions8/results/subset_report.md",
+      "source_sha256": "fc52a5f8a5f3589988557e94c448dd0d8deb10e689e8269f32c3a1f59581b0d5",
+      "transformation": "Portfolio Markdown formatting, aggregate execution counts, and navigation links. All accuracy and interval values preserved."
     }
   ],
   "note": "CSV bytes and computed values are preserved. Local paths are made relative; full raw run and model/data caches are retained separately."

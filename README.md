@@ -1,67 +1,57 @@
-# ContractNLI 문맥 압축과 계약 판단
+# 질문을 활용한 계약서 문맥 압축
 
-계약서를 압축했을 때 LLM의 판단 정확도가 얼마나 유지되는지 비교하는 Python 3.11 프로젝트다. 질문 없이 압축한 Main(Q0)과 17개 가설을 제공한 Q17을 완료했다. 추가 분석 1의 후속 실험인 Q8은 문서별로 균형 있게 선택한 가설 8개를 제공한다.
+**계약서를 압축하기 전에 판단할 질문을 알려 주면, 판단에 필요한 정보를 더 잘 남길 수 있을까?** ContractNLI의 계약서 119개와 고정 가설 17개를 사용해, 압축기에 보여주는 가설 수에 따라 판단 정확도가 어떻게 달라지는지 비교했다.
 
-| 문서 | 확인할 내용 |
-|---|---|
-| [실험 결과 요약](docs/RESULTS.md) · [결과 파일·그림](results/README.md) | Main·질문 제공 실험의 성능, 보존율, 문항별 Gold·예측과 분석 |
-| [재현 및 터미널 실행 명령](docs/REPRODUCIBILITY.md) | 환경 준비, 전처리, Dev, Main Test, 질문 제공, 중단 후 재개 |
-| [Q8 바로 실행](docs/REPRODUCIBILITY.md#questions8) | 완료한 Q0·Q17을 재사용해 Q8만 실행 |
-| [전체 실험 설계](design/EXPERIMENT_DESIGN.md) | 비교 목적, 변인 통제, 평가와 후속 분석의 범위 |
+[연구 질문별 결과 보고서](docs/RESEARCH_QUESTION_RESULTS.md) · [결과 파일과 그림](results/README.md) · [실험 설계](design/EXPERIMENT_DESIGN.md) · [재현 명령](docs/REPRODUCIBILITY.md)
 
-## 전체 파이프라인
+## 주요 결과
+
+원문을 그대로 판단한 **Original의 정확도는 63.72%**였다. 아래는 같은 2,023문항을 압축 문맥으로 판단한 결과다.
+
+| 압축 방법 | Q0 · 질문 없음 | Q8 · 질문 8개 | Q17 · 질문 17개 |
+|---|---:|---:|---:|
+| Naive · 일반 생성형 | 61.05% | 62.09% | **63.67%** |
+| Contextualized · 보존 우선 생성형 | 61.34% | 61.10% | 60.80% |
+| 추출형·일반 | 61.84% | 58.63% | 60.41% |
+| 추출형·보존 우선 | 62.14% | 59.52% | 59.96% |
+
+- Naive는 가설 17개를 미리 봤을 때 질문 없는 조건보다 **2.62%p** 더 정확했다. Q8에서는 Q0 대비 미리 본 가설에서 32문항을 더 맞혔고, 빠진 가설에서는 11문항을 덜 맞혔다. [연구 질문별 해석](docs/RESEARCH_QUESTION_RESULTS.md)
+- 두 추출형은 질문을 제공할 때 남기는 토큰과 정확도가 함께 줄었다. 성능 차이는 각 압축 방법이 자연스럽게 만든 길이에서 관찰한 결과다. [보존율과 해석](docs/RESEARCH_QUESTION_RESULTS.md#압축-길이를-함께-봐야-하는-이유)
+
+## 연구 진행 단계
+
+| 단계 | 연구 질문 | 상태와 자료 |
+|---|---|---|
+| Main · 기준선 | 질문 없이 압축했을 때 원문으로 판단한 결과와 얼마나 다른가? | 완료 · [Main 결과](results/main/report.md) |
+| Analysis 1 · 질문 제공 | 질문을 모두 또는 일부 알려 주면 같은 문항의 정답률이 어떻게 달라지는가? | 완료 · [Q17 결과](results/questions17/report.md) · [Q8 결과](results/questions8/report.md) |
+| Analysis 2 · Lost in the Middle | 실제 모델 입력에서 근거가 놓인 위치에 따라 판단 성능이 달라지는가? | 예정 · [입력 위치 분석](design/EXPERIMENT_DESIGN.md#analysis-2) |
+| Analysis 3 · Gold Evidence | 원문에서 판단에 필요한 근거가 압축 뒤에도 남아 있는가? | 예정 · [근거 보존과 오류 분석](design/EXPERIMENT_DESIGN.md#analysis-3) |
+
+## 실험 파이프라인
 
 ```mermaid
 flowchart TD
-    A["공식 ContractNLI 데이터"] --> B["중복 후보 탐색 → 사람이 유지·제외 결정"]
-    B --> C["Dev 기술 점검 → 설정·프롬프트 동결"]
-    C --> D["Test 계약서"]
-    D --> E["Original: 원문 그대로"]
-    D --> F["Main: 질문 없이 압축 4조건"]
-    D --> G["추가 분석 1: 가설 8개 또는 17개와 함께 압축 4조건"]
-    F --> H["Qwen2.5-7B-Instruct로 문맥 생성"]
-    G --> H
-    E --> I["Qwen3-8B: 가설 한 개씩 판단"]
-    H --> I
-    I --> J["정확도·Macro-F1·실제 길이·실패·시간 비교"]
+    A["ContractNLI 계약서"] --> B["중복 후보 탐색 및 사람 검토"]
+    B --> C["Dev 기술 점검과 설정 동결"]
+    C --> D["Original · 원문 그대로"]
+    C --> E["Q0 / Q8 / Q17 · Qwen2.5-7B-Instruct로 압축"]
+    D --> F["Qwen3-8B · 같은 가설 17개를 하나씩 판단"]
+    E --> F
+    F --> G["정확도 · Macro-F1 · 토큰 보존율 비교"]
 ```
 
-1. **데이터 준비:** 공식 Train/Dev/Test를 검증하고, 텍스트 유사도로 중복 후보를 찾는다. 사람이 원문·라벨·근거를 보고 한 문서 유지, 양쪽 제외, 별개 문서 유지를 결정한다. 코드는 그 결정을 적용하고 최종 문서 수를 계산한다.
-2. **Dev 점검:** 모델을 학습하지 않는 zero-shot 평가다. Train은 데이터 감사에만 사용하고, Dev는 입력·출력 형식과 실행 설정 점검에 사용한다. Dev 정확도를 높이는 방향으로 규칙을 고르지 않는다.
-3. **Main 평가:** 규칙을 동결한 후 Original을 먼저 판단하고, 같은 Test 계약서를 질문 없이 네 방법으로 압축해 평가한다.
-4. **질문 제공 비교:** Q17은 전체 가설을, Q8은 문서별로 배정한 가설 8개를 한꺼번에 제공한다. 문서·방법마다 압축문 하나로 17개 가설을 판단한다. Q8 분석은 완료한 Q0·Q17과 Original 결과를 사용한다.
-5. **결과 분석:** 동일한 문서·가설·Gold로 성능과 실제 보존율을 비교한다. 같은 계약서의 17문항을 묶는 문서 단위 부트스트랩으로 불확실성을 계산하고 실패 기록도 분모에 유지한다.
+생성형은 요약문을 쓰고, 추출형은 원문 단위를 골라 원래 순서로 연결한다. 두 방식에서 각각 일반 지시와 보존 우선 지시를 비교한다. 모델은 4bit NF4·greedy로 실행하고, 사용한 설정과 출력·실패를 기록한다. [공통 설정과 평가 기준](design/EXPERIMENT_DESIGN.md)
 
-## 비교 조건
+## 저장소 안내
 
-Original을 기준선으로 두고, 압축 4조건을 출력 방식과 보존 지시의 2×2로 구성한다.
-
-| 출력 방식 | 일반 지시 | 보존 우선 지시 |
-|---|---|---|
-| 생성형: 축약 본문 작성 | Naive | Contextualized |
-| 추출형: 원문 단위 선택 | 추출형·일반 | 추출형·보존 우선 |
-
-보존 우선 조건에는 의무 주체, 조건·예외, 부정·금지, 논리 연결과 진술 범위를 우선하라는 문장 하나를 더한다. 추출형은 선택한 문장·조항을 통째로 원문 순서대로 연결한다. 실제 출력이 의도한 형식을 지켰는지는 결과와 별도로 기록한다.
-
-## 공통 설정과 평가 원칙
-
-- **압축·선택:** Qwen2.5-7B-Instruct. **판단:** Qwen3-8B, thinking off. 두 모델에 NF4 4bit·bfloat16을 적용하고 greedy로 생성한다.
-- **질문 정보:** Main 압축에는 넣지 않는다. Q8·Q17은 압축 user 입력에 가설 목록과 공통 안내를 넣는다. 판단 입력은 항상 문맥과 가설 한 개다. 배정에는 문서·가설 ID만 사용하고 압축 입력에는 원문과 해당 가설 텍스트를 사용한다.
-- **길이:** 프롬프트에 목표 보존율·길이 지시를 넣지 않고 최소 생성 길이도 강제하지 않는다. 공통 안전 상한은 유지하며, 실제 판단 문맥의 Qwen3 토큰 수로 보존율을 측정한다. 방법 간 길이가 같다고 가정하지 않는다.
-- **실행·기록:** Main Test와 질문 제공 실험에 같은 전체 문맥 OOM 보완 정책을 적용한다. 모델 리비전·환경·프롬프트·소스 해시, 원본 출력·종료·실패를 저장하고 중단 후 같은 설정으로 재개한다.
-
-현재 공개된 결과는 Q0·Q17이다. Q8 실행은 로컬에서 진행한다. 동일 보존율 실험은 보류했고, 실제 출력 길이 차이는 해석의 한계로 기록한다. 질문 제공에 따른 출력 변화는 [결과 문서](docs/RESULTS.md)에 정리했다.
-
-## 코드와 기록
-
-| 위치 | 역할 |
+| 위치 | 확인할 내용 |
 |---|---|
-| `contract_experiment/`, `run_experiment.py` | 데이터 감사·전처리·Dev·공통 모델 및 평가 |
-| `memory_support/`, `run_memory_safe.py` | 전체 문맥을 유지하는 메모리 보완 Main Test |
-| `question_support/`, `run_question_analysis.py` | 고정 17가설 제공과 Main 대비 추가 분석 |
-| `question_subset/`, `run_question_subset.py` | 균형 잡힌 8가설 배정과 Q0·Q8·Q17 동일 문항 비교 |
-| `tests/` | CPU·합성 데이터 기반 최소 검증 |
+| [docs/](docs/) | 연구 질문별 보고서, 재현 절차, 구현 규칙, 의사결정 |
+| [design/](design/) | 실험 설계와 Analysis 2·3의 연구 계획 |
+| [results/](results/) | 완료한 실험의 표·그림·공개 결과 파일 |
+| [contract_experiment/](contract_experiment/) · [run_experiment.py](run_experiment.py) | 데이터 감사·전처리, Dev, 공통 프롬프트와 평가 |
+| [memory_support/](memory_support/) · [run_memory_safe.py](run_memory_safe.py) | 전체 문맥을 유지하는 Main Test 실행 |
+| [run_question_analysis.py](run_question_analysis.py) · [run_question_subset.py](run_question_subset.py) | Analysis 1의 Q17·Q8 실행 |
+| [tests/](tests/) | CPU와 합성 데이터로 확인하는 실행 규칙 |
 
-프롬프트는 [Main](contract_experiment/prompts.py)과 [질문 제공 블록](question_support/prompts.py), 고정 모델 버전은 [모델 리비전](docs/model_revisions.json)에서 확인한다. 실행 당시 전문과 실제 설정은 각 run에 보관한다.
-
-변경 이유는 [의사결정 기록](docs/DECISIONS.md), 수정 내역은 [CHANGELOG](CHANGELOG.md), 구현·검증 범위는 [구현 문서](docs/IMPLEMENTATION.md)에 남긴다. 기존 발표자료와의 차이는 [설계 비교: 과거 자료](design/DESIGN_COMPARISON.md), 이전 오류 복구 과정은 [과거 실행 기록](docs/archive/EXECUTION_HISTORY.md)을 참고한다.
+Python 3.11과 Windows PowerShell 기준 명령은 [재현 가이드](docs/REPRODUCIBILITY.md)에 있다. [구현 명세](docs/IMPLEMENTATION.md) · [의사결정 기록](docs/DECISIONS.md) · [변경 이력](CHANGELOG.md)

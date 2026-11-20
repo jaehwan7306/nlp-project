@@ -1,6 +1,8 @@
-# 메인 구현 규칙과 검증 범위
+# 구현 규칙과 검증 범위
 
-메인 5조건과 별도 실행 파일의 추가 분석 1(17가설 목록 제공)을 구현했다. 목표 보존율·허용오차·Gold Evidence 보존 지표는 아직 구현하지 않았다. Main을 처음 구성할 때 과거 결과나 제외 ID를 채워 넣지 않았다. 추가 분석 1은 사용자가 완료한 현재 Main의 데이터·설정과 Original을 검증해 참조한다.
+[프로젝트 개요](../README.md) · [실험 설계](../design/EXPERIMENT_DESIGN.md) · [재현 가이드](REPRODUCIBILITY.md)
+
+Main의 Original과 네 압축 방법, Analysis 1의 Q17·Q8을 구현했다. 질문 제공 단계는 완료한 Main의 데이터·설정·Original을 검증해 참조한다. 현재의 후속 범위는 실제 입력 위치와 Gold Evidence를 다루는 Analysis 2·3이다.
 
 ## 데이터 경계
 
@@ -8,7 +10,7 @@
 
 사람이 review.csv에서 `duplicate`·`exclude_both`·`distinct`를 선택한다. 최종 제외 처리는 이 명시적 선택만 적용하며 Gold 라벨 차이로 변경하지 않는다. 라벨 불일치 계산은 비교 자료의 표시용이다. 이전 자동 제외 정책의 prepared는 재사용하지 않고 새로 준비하며, 원본 데이터와 감사 자료는 유지한다.
 
-Main의 `compression_messages(condition, units)`는 가설이나 라벨을 매개변수로 받지 않는다. 모든 후보 단위를 같은 형식으로 제공한다. Q17의 별도 composer만 공식 가설 텍스트 목록을 받는다. Gold Evidence는 중복 검토와 원본 스냅샷에 남아 있지만 어느 압축 프롬프트에도 삽입하지 않는다. 선택 결과의 provenance는 ID와 문자 위치로 남긴다.
+Main은 모든 후보 원문 단위를 같은 형식으로 제공한다. Q17과 Q8은 별도 압축 프롬프트에 공식 가설 텍스트를 넣는다. Gold Evidence는 중복 검토와 사후 분석에 쓰는 스냅샷에 보관한다. 선택한 원문 단위의 출처는 ID와 문자 위치로 남긴다.
 
 ## 프롬프트 경계
 
@@ -97,3 +99,9 @@ Dev 출력 검사는 longest Original 문서 1개에서 판단 5개와 압축 4�
 새 CPU 검사 세 가지는 공통 질문 블록만 추가됐는지, paired bootstrap의 재계산·Gold 불일치 거부, 합성 Main → Dev preflight → Q17 Test → 압축·판단·재개·분석 전체를 확인한다. 합성 Main에는 의도한 추출 실패를 넣어 그 17개 오답이 질문 효과 분모에서 사라지지 않는지도 확인한다. 모델은 stub이고, attention은 CPU 검사 또는 stub으로 대체한다. 실제 모델 추론과 새 Dev/Test 실험은 사용자 로컬에서 수행한다.
 
 검증 결과: Python 3.11.9에서 전체 CPU 테스트 25개 통과. 새 파일 구문·CLI 인자와 torch/transformers를 로드하지 않는 기본 import 검사도 통과했다. 완료한 실제 Main의 119문서·10,115개 판단에 대해 reference loader, 환경 일치, Q17의 별도 프롬프트 식별자와 기존 메모리 소스 보존을 확인했다. Main contexts SHA256 `0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813`, predictions SHA256 `4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b`가 그대로다. 실제 모델 가중치 로드·새 Dev/Test 추론은 실행하지 않았다.
+
+## 문서마다 가설 8개 배정 · D020
+
+[Q8 실행 파일](../run_question_subset.py)이 완료한 Q0와 Q17의 동일 문서·가설·정답, 동결 설정, 실행 기록 해시를 확인한다. [배정 코드](../question_subset/assignment.py)는 seed 42로 문서마다 가설 8개를 뽑고 결과를 `assignment.json`에 동결한다. 압축 프롬프트는 Q17에서 미제공 가설 줄을 뺀 형태다.
+
+압축과 판단은 Main의 공통 단계를 사용한다. 비교에서는 같은 문서·방법·가설의 세 예측을 연결하고 Q8의 제공 여부를 세 조건 모두에 적용한다. Python 3.11에서 CPU 테스트 28개와 합성 모델의 중단·재개를 검증했다. [Q8 구현](../question_subset/) · [Q8 공개 집계](../results/questions8/report.md)
