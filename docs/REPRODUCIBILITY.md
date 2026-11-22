@@ -6,11 +6,12 @@ README가 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널*
 
 | 현재 상태 | 시작할 곳 |
 |---|---|
-| 처음부터 재현 | [A. 환경·전처리·Dev·Main](#from-scratch) |
-| Main을 완료했고 Q17을 실행 | [B-1. 가설 17개 제공](#questions17) |
-| 실행 도중 중단 | [C. 중단 후 재개](#resume) |
-| Main·Q17 모두 완료 | [B-2. Q8 후속 실험](#questions8) |
-| 저장된 결과를 확인 | [D. 결과와 재현 자료](#outputs) |
+| 처음부터 재현 | [A. 환경·전처리·Dev·Original·Q0](#from-scratch) |
+| Original·Q0 완료 후 메인 비교 실행 | [B. Main의 Q17](#questions17) |
+| Q0와 Q17을 완료하고 질문 8개를 실험 | [C. Analysis 1의 Q8](#questions8) |
+| 실행 도중 중단 | [D. 중단 후 재개](#resume) |
+| 저장된 결과를 확인 | [E. 결과와 재현 자료](#outputs) |
+| 팀원이 실제 압축문과 Gold Evidence를 사용 | [F. 팀 분석에 필요한 파일](#team-data) |
 
 이 가이드는 완료한 Main과 Analysis 1을 재현하는 절차다. [Analysis 2](../design/EXPERIMENT_DESIGN.md#analysis-2)와 [Analysis 3](../design/EXPERIMENT_DESIGN.md#analysis-3)의 예정 분석은 설계서에서 확인할 수 있다.
 
@@ -18,7 +19,7 @@ README가 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널*
 
 <a id="from-scratch"></a>
 
-## A. 처음부터 Main 재현
+## A. 메인 실험의 Original·Q0
 
 ### 1. Python 3.11 환경과 고정 의존성
 
@@ -127,9 +128,9 @@ python run_experiment.py diagnose --run runs/dev
 python run_experiment.py freeze --run runs/dev --out protocol
 ```
 
-### 6. 전체 문맥 OOM 정책 점검과 Main Test
+### 6. 전체 문맥 OOM 정책 점검과 Original·Q0 Test
 
-긴 입력의 attention을 head별로 계산하는 같은 정책을 Main Test의 첫 모델 호출부터 적용한다. 전체 query/key 토큰을 유지하며 원문을 자동으로 자르거나 CPU offload로 대체하지 않는다.
+긴 입력의 attention을 head별로 계산하는 정책을 Original·Q0 Test의 첫 모델 호출부터 적용한다. 전체 query/key 토큰을 유지한다.
 
 ```powershell
 python run_memory_safe.py check-dev --run runs/dev --out runs/memory_check_fresh
@@ -152,15 +153,13 @@ python run_memory_safe.py diagnose --run runs/test_memory_safe
 python run_memory_safe.py analyze --run runs/test_memory_safe
 ```
 
-`--resume`은 이미 완료한 Original을 건너뛴다. 한 새 protocol은 Test 하나만 초기화할 수 있다. 기존 판단·압축 출력을 새 Main에 가져오지 않으며, 메모리 보완 run의 모델 단계는 `run_memory_safe.py`로 통일한다.
+`--resume`은 이미 완료한 Original을 건너뛴다. 한 새 protocol은 Test 하나만 초기화할 수 있다. Original과 Q0의 모델 단계는 `run_memory_safe.py`로 실행한다.
 
 <a id="questions17"></a>
 
-## B. 추가 분석 1
+## B. 메인 실험의 Q17
 
-### B-1. Q17 가설 목록 제공
-
-완료한 `runs/test_memory_safe`와 같은 코드·환경·모델 잠금을 유지한다. 설치·데이터 감사·전체 Dev·Main을 반복하는 단계가 아니다. 아래는 A에서 Dev를 `runs/dev`로 만든 재현 경로다. 기존 실행이 `runs/dev_greedy`라면 첫 명령의 `--dev-run`만 그 경로로 지정한다.
+완료한 Original·Q0와 같은 코드·환경·모델 잠금을 사용한다. `--main-run`에는 Original과 Q0가 담긴 `runs/test_memory_safe`를 지정한다. 아래 명령은 A에서 Dev를 `runs/dev`로 만든 경우다. 기존 Dev가 `runs/dev_greedy`라면 첫 명령의 `--dev-run`에 그 경로를 지정한다.
 
 ```powershell
 python run_question_analysis.py --debug preflight --main-run runs/test_memory_safe --dev-run runs/dev --out runs/questions17_preflight --documents 1
@@ -176,7 +175,7 @@ python run_question_analysis.py diagnose --run runs/questions17
 python run_question_analysis.py analyze --run runs/questions17
 ```
 
-119문서 기준 새 압축 476회·새 판단 목표 8,092건이며 Original 2,023건을 그대로 복사한다. 질문 없는 네 조건은 Main을 참조해 비교한다. 참조 Main을 유지하고 Q17 실행에는 `run_question_analysis.py`를 사용한다. 다른 runner·소스·설정을 섞으면 무결성 검사에서 거부된다. 기록된 압축 실패는 오답으로 남고 실제 모델 판단이 생략될 수 있다.
+119문서 기준 새 압축 476회와 새 판단 기록 8,092건을 만들고, Original 2,023건을 재사용한다. `analyze`는 같은 문서·가설에서 **Q17−Q0**를 계산한다. Q17의 모델 단계는 `run_question_analysis.py`를 사용한다. 압축에 실패한 문항은 오답으로 기록한다.
 
 프롬프트 전문은 실행 전에도 모델 로딩 없이 볼 수 있다.
 
@@ -185,11 +184,11 @@ python run_experiment.py show-prompts --out runs/main_prompts.json
 python run_question_analysis.py show-prompts --main-run runs/test_memory_safe --out runs/questions17_prompts.json
 ```
 
-실행 당시 전문·가설 순서·삽입 형식은 각 run의 `prompts.json`이 기준이다. Main system·기본 작업 지시는 유지하고 Q17 압축 user 입력에 공통 안내와 가설 목록만 더한다. 판단 입력에는 가설 한 개씩 넣으며 Gold는 압축에 넣지 않는다.
+실행 당시 전문·가설 순서·삽입 형식은 각 run의 `prompts.json`이 기준이다. Q17 압축 입력은 Q0의 기본 지시와 원문에 공통 안내·가설 목록을 더한 형태다. 판단 입력에는 원문 또는 압축 문맥과 가설 한 개를 제공한다. Gold 주석은 채점과 사후 분석에 사용한다.
 
 <a id="questions8"></a>
 
-### B-2. Q8 가설 목록 제공
+## C. Analysis 1의 Q8
 
 최신 코드를 기존 프로젝트에 가져오고, 같은 Python 3.11 가상환경을 활성화한 IDE 터미널에서 실행한다. Git으로 받은 프로젝트는 `git pull --ff-only`로 갱신할 수 있다. ZIP으로 받은 프로젝트는 최신 코드와 문서를 기존 프로젝트에 병합한다. 완료한 `runs/test_memory_safe`와 `runs/questions17` 폴더 전체가 필요하다. 다른 이름으로 저장했다면 첫 명령의 `--main-run`과 `--q17-run`을 실제 경로로 바꾼다.
 
@@ -224,7 +223,7 @@ python run_question_subset.py analyze --run runs/questions8
 
 <a id="resume"></a>
 
-## C. 중단 후 재개
+## D. 중단 후 재개
 
 **중단된 단계만** 같은 run에서 재개한다. 초기화 명령을 반복하지 않는다.
 
@@ -254,7 +253,7 @@ python run_question_subset.py --debug judge --run runs/questions8 --resume
 
 <a id="outputs"></a>
 
-## D. 결과와 재현 자료
+## E. 결과와 재현 자료
 
 완료한 결과만 확인하려면 [공개 결과 폴더](../results/README.md)의 CSV·JSON·보고서·그림을 열면 된다. 아래 명령은 원시 run을 보관한 로컬 프로젝트에서 집계를 다시 만들 때 사용한다.
 
@@ -271,9 +270,9 @@ python run_question_subset.py analyze --run runs/questions8
 
 | 파일·위치 | 내용 |
 |---|---|
-| `runs/test_memory_safe/results/` | Main 결과 |
-| `runs/questions17/results/` | Q17 결과와 Main 대비 질문 효과 |
-| `runs/questions8/results/` | [Q8 집계](../results/questions8/report.md)와 동일 문항 Q0·Q8·Q17 비교 |
+| `runs/test_memory_safe/results/` | Main의 Original·Q0 결과 |
+| `runs/questions17/results/` | Main의 Q17 결과와 Q17−Q0 비교 |
+| `runs/questions8/results/` | Analysis 1의 [Q8 집계](../results/questions8/report.md)와 동일 문항 Q0·Q8·Q17 비교 |
 | `metrics.csv` | 정확도·Macro-F1·클래스 Recall·정답 유지율·실패율·보존율 |
 | `comparisons.csv` | Original − 해당 압축 조건의 성능 차이·CI |
 | `question_effects.csv` | **Q17 − Q0** 질문 효과·CI·실제 길이·실패·정답 전환 |
@@ -288,6 +287,25 @@ CSV 비율은 `0.30 = 30%`다. 파싱·압축 실패 문항을 성능 분모에 
 - `model_lock.json`, `environment-lock.txt`: 고정 모델·환경. 실제 패키지는 run의 `environment.json`에도 기록.
 - 각 run의 `dataset.json`, `prepared_manifest.json`, `prompts.json`, `config.json`, `models.json`, `manifest.json`, `frozen_protocol.json`.
 - `contexts.jsonl`, `predictions.jsonl`, `runtime_compressor.json`, `runtime_judge.json`, `events.jsonl`: 원본 출력·시간·종료·실제 생성 설정·GPU·템플릿.
-- `source/`, Main의 `memory_extension_source/`·`runtime_memory_policy.json`, Q8·Q17의 `lineage.json`, Q8의 `assignment.json`: 소스·정책·참조 run·배정표.
+- `source/`, Original·Q0의 `memory_extension_source/`·`runtime_memory_policy.json`, Q8·Q17의 `lineage.json`, Q8의 `assignment.json`: 소스·정책·참조 run·배정표.
 
 seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 다른 GPU·라이브러리에서 모든 토큰이 비트 단위로 같음을 보장하지 않는다. Q8·Q17은 참조 run의 해시를 검사하므로 상대적 폴더 관계를 유지해 함께 보관한다. 변경 이유는 [DECISIONS](DECISIONS.md), 수정 내역은 [CHANGELOG](../CHANGELOG.md)에 남긴다.
+
+<a id="team-data"></a>
+
+## F. 팀 분석에 필요한 파일
+
+**Gold Evidence가 압축 후에 남아 있는지 보려면** 원문의 근거 주석과 모델이 실제로 읽은 문맥을 대조한다. `contexts.jsonl`의 `text`는 판단 단계에 사용한 원문 또는 압축문이다. 추출형은 선택한 원문 위치를 `source_ranges`에도 기록한다. 공개 GitHub에는 집계와 Q0·Q17 예측 CSV가 있고, 아래 문맥과 데이터 스냅샷은 실행한 컴퓨터의 `runs/`에 있다.
+
+| 필요한 자료 | 파일 | 용도 |
+|---|---|---|
+| 공통 원문·Gold Evidence | `runs/test_memory_safe/dataset.json` | 실제 평가한 119문서의 원문·17개 가설·정답·근거 위치 |
+| Main의 Original·Q0 문맥 | `runs/test_memory_safe/contexts.jsonl` | 원문 기준선과 질문 없이 만든 압축문 |
+| Main의 Q17 문맥 | `runs/questions17/contexts.jsonl` | 질문 17개를 주고 만든 압축문 |
+| Analysis 1의 Q8 문맥 | `runs/questions8/contexts.jsonl` | Q8 근거까지 비교할 때 사용하는 압축문 |
+| Main 문항별 정답·예측 | [Original·Q0 CSV](../results/main/predictions.csv) · [Q17 CSV](../results/questions17/predictions.csv) | 오답에서 정답으로 바뀐 문항과 반대 사례 확인 |
+| Analysis 1의 문항별 비교 | `runs/questions8/results/paired_predictions.csv` | Q8에 제공한 가설인지와 Q0·Q8·Q17 예측 확인 |
+
+Q0와 Q17을 분석할 때는 공통 `dataset.json` 하나와 두 실행의 `contexts.jsonl`을 구분해 가져오면 된다. 세 실행의 데이터 스냅샷은 같은 119문서를 담고 있다. 가설별 근거 ID는 `annotations[가설 ID].spans`에서 읽고, 문서의 `spans` 목록에서 원문의 시작·끝 문자 위치를 찾는다. 문맥은 같은 실행 안에서 `document`와 `condition`으로, 판단 기록은 여기에 `hypothesis`까지 붙여 연결한다. 압축에 실패한 문맥은 `status`로 확인한다.
+
+**Analysis 2에서 Original 입력의 근거 위치만 볼 때는** 공통 `dataset.json`의 원문과 공개 CSV의 `condition=original` 행을 연결하면 된다. 공식 `data/test.json`을 사용할 때는 같은 공개 예측 행의 문서 ID로 119문서를 고른다. 전체 입력 토큰 위치를 계산할 때는 현재 가설을 포함한 판단 프롬프트와 고정 Qwen3 토크나이저를 사용한다. [판단 프롬프트](../contract_experiment/prompts.py) · [모델 리비전](model_revisions.json)

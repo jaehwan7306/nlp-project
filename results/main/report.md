@@ -1,4 +1,6 @@
-# Main experiment results
+# 메인 실험 · Original과 Q0 결과
+
+이 파일은 원문 기준선과 질문 없이 압축한 Q0의 결과다. 질문 17개를 모두 제공한 Q17과의 차이가 메인 비교다. [Q17−Q0 결과](../questions17/report.md) · [공개 결과 목록](../README.md#main)
 
 Documents: 119; judgments: 10115.
 

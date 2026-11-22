@@ -1,4 +1,6 @@
-# Additional analysis 1: fixed 17-hypothesis list
+# 메인 실험 · Q17 대 Q0
+
+같은 계약서와 가설에서 질문 17개를 모두 제공한 Q17을 질문 없이 압축한 Q0와 비교했다. Original은 원문 기준선으로 재사용했다. [Original·Q0 결과](../main/report.md) · [메인 실험 상세 해석](../../docs/RESULTS.md)
 
 Documents: 119. New compression: 476. New judgment records: 8092. Reused Original: 2023.
 

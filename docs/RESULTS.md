@@ -1,8 +1,8 @@
-# Main과 Q17 상세 결과
+# 메인 실험 상세 결과 · Q0 대 Q17
 
 [프로젝트 개요](../README.md) · [연구 질문별 결과 보고서](RESEARCH_QUESTION_RESULTS.md) · [공개 결과 파일·그림](../results/README.md)
 
-질문 없이 압축한 Main(Q0)과 고정 17개 가설을 제공한 Q17의 설정·성능·출력 형식을 설명한다. 가설 8개를 제공했을 때의 변화는 별도 집계표에서 확인할 수 있다. [Q8 결과](../results/questions8/report.md)
+메인 실험은 **질문 없이 압축한 Q0와 고정 17개 가설을 제공한 Q17**을 같은 문항에서 비교한다. 계약서 원문을 판단한 Original은 기준선이다. 가설을 8개만 제공했을 때의 변화는 Analysis 1에서 다룬다. [Analysis 1 · Q8](../results/questions8/report.md)
 
 ## 데이터와 실행 범위
 
@@ -20,14 +20,17 @@
 
 | 실행 | 새 압축 | 새 판단 | 재사용 |
 |---|---:|---:|---|
-| Main | 476회 | 10,115개 판단 기록 | 이전 Test 모델 출력 재사용 없음 |
-| Analysis 1 · Q17 | 476회 | 8,092회 | Main Original 2,023건, 질문 없는 결과는 비교 기준으로 참조 |
+| Original·Q0 | 476회 | 10,115개 판단 기록 | 원문과 질문 없는 압축을 각각 평가 |
+| Q17 | 476회 | 8,092회 | Original 2,023건과 Q0 비교 결과를 재사용 |
 
-Main에서 추출형·일반 압축에 실패한 문서의 17문항은 오답으로 기록했다. Q17은 새 모델 판단 8,092회를 완료했다.
+Q0의 추출형·일반 압축에 실패한 문서의 17문항은 오답으로 기록했다. Q17은 새 모델 판단 8,092회를 완료했다.
 
 실행 모델은 Qwen2.5-7B-Instruct / Qwen3-8B이며 NF4 4bit·bfloat16·명시적 greedy를 사용했다. 실제 환경은 Python 3.11.9, PyTorch 2.8.0+cu128, NVIDIA GeForce RTX 5070이었다. 고정 리비전과 재현 절차는 [실행 안내](REPRODUCIBILITY.md)에 있다.
 
-## Main: 질문 없는 압축
+<a id="main-질문-없는-압축"></a>
+<a id="q0"></a>
+
+## Q0 · 질문 없는 압축과 원문 기준선
 
 | 조건 | Accuracy | Macro-F1 | 평균 토큰 보존율 | 중앙 토큰 보존율 |
 |---|---:|---:|---:|---:|
@@ -43,11 +46,14 @@ Main에서 추출형·일반 압축에 실패한 문서의 17문항은 오답으
 - 추출형은 원문을 많이 남겼다. 높은 정확도를 압축 방식만의 장점으로 해석하기 어려운 이유다.
 - 보존 우선 생성형은 일반 생성형보다 짧았지만 비슷한 정확도를 보였다. 같은 길이를 맞춘 비교는 아니다.
 
-## 추가 분석 1: 고정 17가설 목록 제공
+<a id="추가-분석-1-고정-17가설-목록-제공"></a>
+<a id="q17"></a>
+
+## Q17 · 질문을 모두 제공한 결과
 
 압축 user 입력에 17개 가설과 공통 안내를 함께 넣고, 문서·방법별 한 번 압축했다. 판단은 기존과 같이 문맥과 가설 한 개씩 입력했다. 모델·정밀도·기본 지시·greedy·안전 상한·전체 문맥 OOM 정책을 유지했고 Gold Label·Gold Evidence와 목표 길이는 압축에 제공하지 않았다.
 
-Q0는 질문 없는 Main, Q17은 질문 목록 제공 실행이다. Original 결과는 Main과 동일한 기록을 재사용했다.
+두 압축 조건의 주 비교는 Q17−Q0다. Original은 Q0와 함께 평가한 기록을 Q17에서도 재사용했다.
 
 | 방법 | Q17 Accuracy | Q17 Macro-F1 | Q0 대비 정확도 차이 | 차이의 95% CI (%p) |
 |---|---:|---:|---:|---|
@@ -91,7 +97,7 @@ CI는 같은 문서의 17문항을 함께 추출하는 paired 문서 부트스�
 
 ## 비용과 현재 결론
 
-네 압축 조건의 저장된 압축·판단 시간 합은 Main 약 **7.27시간**, Q17 약 **8.02시간**이었다. Q17의 새 비용에는 재사용 Original을 넣지 않았다. 모델 로드·Dev preflight·중단·대기 시간은 제외한 관측이며 다른 실행 시점의 속도를 통제한 벤치마크는 아니다.
+네 압축 방법의 압축·판단 기록을 합하면 Q0는 약 **7.27시간**, Q17은 약 **8.02시간**이었다. Original, 모델 로드, Dev preflight, 중단·대기 시간은 제외한 관측값이다.
 
 현재 결과는 다음처럼 요약할 수 있다.
 
@@ -101,7 +107,7 @@ CI는 같은 문서의 17문항을 함께 추출하는 paired 문서 부트스�
 
 ## 결과 출처와 재현 자료
 
-성능·길이·시간 CSV, 집계 JSON, 상세 분석과 PNG/PDF 그림을 공개했다. Main과 Q17의 문항별 예측 파일에는 각 10,115행이 있으며, 문서·조건·가설 ID, Gold, 예측, 상태, 판단 시간을 담고 있다. [공개 결과 폴더](../results/README.md) · [Main 문항별 예측](../results/main/predictions.csv) · [Q17 문항별 예측](../results/questions17/predictions.csv)
+성능·길이·시간 CSV, 집계 JSON, 상세 분석과 PNG/PDF 그림을 공개했다. Q0와 Q17의 문항별 예측 파일에는 각 10,115행이 있으며, 문서·조건·가설 ID, Gold, 예측, 상태, 판단 시간을 담고 있다. [공개 결과 폴더](../results/README.md) · [Original·Q0 문항별 예측](../results/main/predictions.csv) · [Q17 문항별 예측](../results/questions17/predictions.csv)
 
 CSV는 원본 바이트를 유지했고 JSON의 로컬 컴퓨터 경로와 보고서 링크는 공개 구조에 맞게 정리했다. 파일별 원본·공개본 SHA256과 변환 내역은 [manifest.json](../results/manifest.json)에 기록했다.
 
@@ -109,7 +115,7 @@ CSV는 원본 바이트를 유지했고 JSON의 로컬 컴퓨터 경로와 보�
 
 | 위치 | 내용 |
 |---|---|
-| `runs/test_memory_safe/results/metrics.csv` | Main 성능과 길이 |
+| `runs/test_memory_safe/results/metrics.csv` | Original·Q0 성능과 길이 |
 | `runs/questions17/results/question_effects.csv` | Q17−Q0 성능·CI·길이·실패·정답 전환 |
 | `runs/questions17/results/metrics.csv` | Q17 성능과 재사용 Original |
 | `runs/questions17/results/question_label_effects.csv` | 라벨별 변화 |
@@ -117,6 +123,6 @@ CSV는 원본 바이트를 유지했고 JSON의 로컬 컴퓨터 경로와 보�
 | 각 run의 `contexts.jsonl`, `predictions.jsonl` | 원본 압축·판단 출력 |
 | 각 run의 `prompts.json`, `models.json`, `environment.json`, `manifest.json` | 실제 지시·버전·환경·해시 |
 
-평가에 사용한 공개 구현은 [Main/OOM 실행](https://github.com/jaehwan7306/nlp-project/commit/7c4b61b4cad5f8722fb12cb601be6d266db0d879)과 [Q17 추가 분석](https://github.com/jaehwan7306/nlp-project/commit/bfe6d21defba641ebfea59e5560c70d101b99116)이며, 실제 실행의 정체성은 보관된 run 스냅샷·소스 해시로 확인한다. 고정 모델 리비전은 [model_revisions.json](model_revisions.json)에 있다.
+평가에 사용한 공개 구현은 [Original·Q0 실행 구현](https://github.com/jaehwan7306/nlp-project/commit/7c4b61b4cad5f8722fb12cb601be6d266db0d879)과 [Q17 실행 구현](https://github.com/jaehwan7306/nlp-project/commit/bfe6d21defba641ebfea59e5560c70d101b99116)이며, 실제 실행의 정체성은 보관된 run 스냅샷·소스 해시로 확인한다. 고정 모델 리비전은 [model_revisions.json](model_revisions.json)에 있다.
 
 이번 문서 정리는 저장 결과의 읽기 전용 확인으로 진행했다. 모델 가중치를 로드하거나 새 실험을 실행하지 않았다.

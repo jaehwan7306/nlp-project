@@ -2,7 +2,7 @@
 
 [프로젝트 개요](../README.md) · [실험 설계](../design/EXPERIMENT_DESIGN.md) · [재현 가이드](REPRODUCIBILITY.md)
 
-Main의 Original과 네 압축 방법, Analysis 1의 Q17·Q8을 구현했다. 질문 제공 단계는 완료한 Main의 데이터·설정·Original을 검증해 참조한다. 현재의 후속 범위는 실제 입력 위치와 Gold Evidence를 다루는 Analysis 2·3이다.
+메인 실험의 Original·Q0·Q17과 Analysis 1의 Q8을 구현했다. 코드에서 Q17과 Q8의 `--main-run`이 가리키는 폴더는 Original과 Q0가 들어 있는 `runs/test_memory_safe`다. Q17은 그 실행의 데이터·설정과 Original을 검증해 재사용한다. Q8은 Q0와 Q17 두 실행의 기록을 참조한다. [실행 순서와 팀 분석 파일](REPRODUCIBILITY.md#team-data)
 
 ## 데이터 경계
 
@@ -84,23 +84,23 @@ Dev 출력 검사는 longest Original 문서 1개에서 판단 5개와 압축 4�
 
 검증 결과: Python 3.11.9 CPU 테스트 22개 통과. 합성 데이터로 새 동결과 초기화, native 진입 차단, 5조건의 모든 새 판단, 재개 중복 방지, 진단/분석, 새 protocol 덮어쓰기 차단과 이전 결과 비변경을 확인했다. 실제 GPU 모델 실험은 수행하지 않았다.
 
-## 17개 가설 목록 제공 · D015
+## 메인 실험의 Q17 · D015
 
 `question_support/prompts.py`는 Main composer의 system·작업 지시·계약서 본문을 재사용하고, user 메시지에 공통 안내와 17개 텍스트 목록을 한 번 삽입한다. Gold를 매개변수로 받지 않는다. 일반/보존 우선의 차이는 여전히 기존 우선 문장 하나다. 추출 원문 단위와 조합 함수는 Main 구현을 그대로 사용하며 판단 composer는 교체하지 않는다.
 
-`state.py`는 완료한 전체 Main을 참조하고 source·snapshots·context/prediction·실제 greedy·메모리 정책과 최신 진단을 검증한다. 별도 식별자는 기존 Main 정체성, 실제 Q17 프롬프트, core·memory·question 전체 소스, Main 참조 해시로 구성한다. 따라서 일반 Main loader는 Q17을 거부한다. Q17 loader는 이 정체성과 소스 아카이브·문서·가설·Gold·키·복사 Original·새 출력 marker를 검증한다. 원본 Main의 파일은 읽기만 한다.
+`state.py`는 완료한 Original·Q0의 소스, 스냅샷, 문맥·예측 기록, 실제 greedy·메모리 정책과 최신 진단을 검증한다. Q17의 실행 식별자에는 Q0 실행의 참조 해시와 Q17 프롬프트·소스가 들어간다. Q17 loader는 이 식별자와 문서·가설·Gold·키·재사용 Original·새 출력 marker를 검사한다.
 
 `runner.py`는 단일 프로세스 안에서 기존 단계 함수의 loader·압축 composer·모델을 Q17 버전으로 잠시 연결하고 `finally`로 복원한다. 모델은 기존 메모리 wrapper를 그대로 사용하고, 실제 runtime이 Main과 일치한 뒤 Q17 marker를 더한다. 기존 `model_details` 검사에서도 Q17 runtime과 frozen protocol이 일치해야 한다. 임의의 native Main entry point를 통해 Q17 예측을 섞을 수 없다.
 
 기술 preflight는 가장 긴 Q17 Dev 입력을 tokenizer로 정하며, 정확도를 계산하지 않고 형식·건수·동일 설정을 확인한다. 통과 기록·원본 journal 해시와 runtime을 검증한 뒤 별도 Test를 초기화한다. 실제 입력 전문·순서·삽입 형식과 전체 실행 소스는 별도로 동결한다. Main의 Original만 정확히 복사하고 네 압축 조건의 Q17 출력을 새로 생성한다. 재개는 완료된 실패를 재시도하지 않고 마지막 불완전 journal만 복구한다.
 
-`comparison.py`는 Main과 Q17의 완전히 같은 문서·가설·Gold 키를 요구한다. 두 조건에 같은 문서 복원표본을 사용하고 문서별 17문항 confusion counts를 함께 합쳐 Accuracy·Macro-F1을 매번 다시 계산한다. 실패는 별도의 예측 칸으로 분모에 남긴다. 길이 통계는 정상 문맥 수를 각각 밝히고, 성능 분모와 혼동하지 않는다. Main/Q17의 실패율 변화와 정답 전환을 함께 저장하고 Original 재사용 시간을 새 비용에서 제외한다.
+`comparison.py`는 Q0와 Q17의 완전히 같은 문서·가설·Gold 키를 요구한다. 두 조건에 같은 문서 복원표본을 사용하고 문서별 17문항 confusion counts를 함께 합쳐 Accuracy·Macro-F1을 매번 다시 계산한다. 실패 예측은 성능 분모에 남긴다. 길이 통계에는 측정할 수 있는 문맥 수를 보고한다. Q0에서 Q17로 바꿨을 때의 실패율과 정답 전환도 저장한다.
 
 새 CPU 검사 세 가지는 공통 질문 블록만 추가됐는지, paired bootstrap의 재계산·Gold 불일치 거부, 합성 Main → Dev preflight → Q17 Test → 압축·판단·재개·분석 전체를 확인한다. 합성 Main에는 의도한 추출 실패를 넣어 그 17개 오답이 질문 효과 분모에서 사라지지 않는지도 확인한다. 모델은 stub이고, attention은 CPU 검사 또는 stub으로 대체한다. 실제 모델 추론과 새 Dev/Test 실험은 사용자 로컬에서 수행한다.
 
 검증 결과: Python 3.11.9에서 전체 CPU 테스트 25개 통과. 새 파일 구문·CLI 인자와 torch/transformers를 로드하지 않는 기본 import 검사도 통과했다. 완료한 실제 Main의 119문서·10,115개 판단에 대해 reference loader, 환경 일치, Q17의 별도 프롬프트 식별자와 기존 메모리 소스 보존을 확인했다. Main contexts SHA256 `0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813`, predictions SHA256 `4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b`가 그대로다. 실제 모델 가중치 로드·새 Dev/Test 추론은 실행하지 않았다.
 
-## 문서마다 가설 8개 배정 · D020
+## Analysis 1의 Q8 · D020
 
 [Q8 실행 파일](../run_question_subset.py)이 완료한 Q0와 Q17의 동일 문서·가설·정답, 동결 설정, 실행 기록 해시를 확인한다. [배정 코드](../question_subset/assignment.py)는 seed 42로 문서마다 가설 8개를 뽑고 결과를 `assignment.json`에 동결한다. 압축 프롬프트는 Q17에서 미제공 가설 줄을 뺀 형태다.
 

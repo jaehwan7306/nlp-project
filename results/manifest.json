@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-11-16",
-  "documentation_updated_date": "2026-11-20",
+  "documentation_updated_date": "2026-11-22",
   "dataset": "ContractNLI",
   "documents": 119,
   "hypotheses_per_document": 17,
@@ -21,19 +21,19 @@
   "files": [
     {
       "path": "results/README.md",
-      "bytes": 3203,
-      "sha256": "cf12dffc89561676cfd58b4c0542a08e13d0655e9893e1eb4896b69b92603a17",
+      "bytes": 3636,
+      "sha256": "92a5ec593c543f62bfcb1f00b3705bf0158662869fc961b6ba12537d6ed90462",
       "source": null,
       "source_sha256": null,
-      "transformation": "Public results index updated with the Q8 aggregate report and analysis roadmap."
+      "transformation": "Public results index updated with the Q8 aggregate report and analysis roadmap. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8."
     },
     {
       "path": "results/analysis/QUESTION_EFFECTS.md",
-      "bytes": 14739,
-      "sha256": "f41ff855b7b201ce55b7f2e2006298701a2935805c3683cb253747f1b7612090",
+      "bytes": 14680,
+      "sha256": "70853eb27b6bdb2769f477cee39a8d7542cd3f5fa07df02510f30845ec5aa865",
       "source": "analysis/questions17_2026-11-16/REPORT.md",
       "source_sha256": "95802f77d121fa3b21766b30c8368fba0b84bf84f15718c896c1318e293e9248",
-      "transformation": "preserve findings; replace local-only source appendix with links to published artifacts"
+      "transformation": "preserve findings; replace local-only source appendix with links to published artifacts. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8."
     },
     {
       "path": "results/analysis/comparison.pdf",
@@ -141,11 +141,11 @@
     },
     {
       "path": "results/main/report.md",
-      "bytes": 1479,
-      "sha256": "23866fabd58f60def0eae968f521904c9c8c6a82480c93fa2349011b0d144eb8",
+      "bytes": 1732,
+      "sha256": "e6c5bd975d45b447612ceb2cda7d9a0128fcb53cf809a7185f412c7a173abf2f",
       "source": "runs/test_memory_safe/results/report.md",
       "source_sha256": "23866fabd58f60def0eae968f521904c9c8c6a82480c93fa2349011b0d144eb8",
-      "transformation": "none"
+      "transformation": "Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8."
     },
     {
       "path": "results/main/times.csv",
@@ -237,11 +237,11 @@
     },
     {
       "path": "results/questions17/report.md",
-      "bytes": 2236,
-      "sha256": "0cc0c7e66fc7646e49c0c9e6db601e5928132f5de00ca3d94920e020678dec4e",
+      "bytes": 2485,
+      "sha256": "218bb3921de1dd56dea46f16108d478664d17f654532ee15a71f6345cd451a76",
       "source": "runs/questions17/results/report.md",
       "source_sha256": "0cc0c7e66fc7646e49c0c9e6db601e5928132f5de00ca3d94920e020678dec4e",
-      "transformation": "none"
+      "transformation": "Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8."
     },
     {
       "path": "results/questions17/times.csv",
@@ -253,11 +253,11 @@
     },
     {
       "path": "results/questions8/report.md",
-      "bytes": 3207,
-      "sha256": "caa8eacd70f451b176f3ac9c9b8c3015b5488ca3c3a959949c757581898a5e7f",
+      "bytes": 3299,
+      "sha256": "3849ed6f262f76d8b338ecfb078b82652911e7f1e99d044d4ac15c82a37089fd",
       "source": "runs/questions8/results/subset_report.md",
       "source_sha256": "fc52a5f8a5f3589988557e94c448dd0d8deb10e689e8269f32c3a1f59581b0d5",
-      "transformation": "Portfolio Markdown formatting, aggregate execution counts, and navigation links. All accuracy and interval values preserved."
+      "transformation": "Portfolio Markdown formatting, aggregate execution counts, and navigation links. All accuracy and interval values preserved. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8."
     }
   ],
   "note": "CSV bytes and computed values are preserved. Local paths are made relative; full raw run and model/data caches are retained separately."
