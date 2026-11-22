@@ -1,0 +1,95 @@
+{
+  "accuracy_computed": false,
+  "context_count": 595,
+  "contexts_sha256": "0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813",
+  "predictions_sha256": "4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b",
+  "expected_context_count": 595,
+  "prediction_count": 10115,
+  "expected_prediction_count": 10115,
+  "conditions": {
+    "original": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {},
+      "cap_reached": 0,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    },
+    "generative_general": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {
+        "eos": 115,
+        "max_tokens": 4
+      },
+      "cap_reached": 4,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    },
+    "generative_priority": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {
+        "eos": 119
+      },
+      "cap_reached": 0,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    },
+    "extractive_general": {
+      "contexts": 119,
+      "compression_failed": 1,
+      "stop_reasons": {
+        "eos": 119
+      },
+      "cap_reached": 0,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 1,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2006
+      }
+    },
+    "extractive_priority": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {
+        "eos": 119
+      },
+      "cap_reached": 0,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    }
+  }
+}

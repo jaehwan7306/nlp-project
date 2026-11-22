@@ -1,0 +1,30 @@
+{
+  "experiment": "analysis1_q8_balanced",
+  "documents": 119,
+  "hypotheses_evaluated_per_document": 17,
+  "new_compressions": 476,
+  "new_judgment_records": 8092,
+  "new_model_judgments": 8058,
+  "reused_original_judgments": 2023,
+  "original": {
+    "accuracy": 0.6371725160652496,
+    "macro_f1": 0.5255498652470344,
+    "recall": [
+      0.5834218916046758,
+      0.18055555555555555,
+      0.8094688221709007
+    ]
+  },
+  "bootstrap": {
+    "unit": "document",
+    "paired": true,
+    "seed": 42,
+    "repetitions": 10000,
+    "interval": "percentile 95%",
+    "multiple_comparison_adjustment": false
+  },
+  "group_policy": "All arms use the same document/hypothesis keys and Q8 exposure mask.",
+  "failure_policy": "Compression failures and invalid predictions count as incorrect.",
+  "length_policy": "Natural output lengths; Qwen3 context tokens divided by original tokens.",
+  "time_policy": "Q0/Q17 times are historical references; all arms exclude model loading."
+}

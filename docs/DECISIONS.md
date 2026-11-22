@@ -205,6 +205,12 @@
 - 결과 색인과 보고서에서 Original·Q0는 `results/main/`, Q17은 `results/questions17/`, Q8은 `results/questions8/`로 연결했다. 이름은 연구 단계와 실행 폴더의 대응을 설명한다.
 - Gold Evidence 분석에 쓸 원문 스냅샷, 조건별 `contexts.jsonl`, 문항별 예측의 위치와 연결 키를 실행 안내에 기록했다. 실제 문맥과 주석은 로컬 실행 자료이고, 공개 결과에는 집계와 승인된 예측 CSV가 있다. [팀 분석에 필요한 파일](REPRODUCIBILITY.md#team-data)
 
+## D023 · 2026-11-22 · 완료한 Test 결과와 Gold Evidence 분석 자료 공개
+
+- Original·Q0, Q17, Q8의 저장된 결과와 진단, 문맥·예측 JSONL을 공개 결과 폴더에 넣는다. Q8은 문서별 가설 배정과 동일 문항 비교 CSV를 함께 보관한다.
+- 세 실행에서 동일함을 확인한 119문서 데이터 스냅샷 하나를 공개한다. ContractNLI의 출처, CC BY 4.0, 이 실험에 적용한 제외·원문 단위 처리 내역을 표시한다.
+- 완료 결과의 문서·조건·가설 키, Gold, Original 재사용 기록과 진단 해시를 대조한다. 원본과 공개본 SHA256, 공개용 문서 변경은 결과 manifest에 기록한다. [공개 결과와 원문 출처](../results/README.md)
+
 ## 이후 기록 양식
 
 ```text

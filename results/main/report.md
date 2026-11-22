@@ -2,6 +2,8 @@
 
 이 파일은 원문 기준선과 질문 없이 압축한 Q0의 결과다. 질문 17개를 모두 제공한 Q17과의 차이가 메인 비교다. [Q17−Q0 결과](../questions17/report.md) · [공개 결과 목록](../README.md#main)
 
+[실제 문맥](contexts.jsonl) · [문항별 판단 JSONL](predictions.jsonl) · [Original 세부 결과](baseline/report.md) · [공통 Gold Evidence](../dataset.json)
+
 Documents: 119; judgments: 10115.
 
 | Condition | Accuracy | Macro-F1 | Median retention | Parsing failures |

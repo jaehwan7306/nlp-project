@@ -29,4 +29,4 @@
 
 Q8에서 476건을 새로 압축했고, 네 압축 방법의 판단 기록 8,092건을 만들었다. 압축 실패에 해당하는 34문항은 오답으로 기록했으며, 새 판단 모델 호출은 8,058회였다. 원문 기준선의 2,023건은 Main에서 재사용했다.
 
-표의 출처는 로컬 실행 결과 `runs/questions8/results/subset_report.md`다. [결과 파일 출처와 해시](../manifest.json)
+표의 출처는 `runs/questions8/results/subset_report.md`에 저장된 집계다. [원본 집계](subset_report.md) · [실제 문맥](contexts.jsonl) · [문항별 판단 JSONL](predictions.jsonl) · [문항별 비교 CSV](paired_predictions.csv) · [공통 Gold Evidence](../dataset.json) · [결과 파일 출처와 해시](../manifest.json)

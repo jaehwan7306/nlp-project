@@ -1,0 +1,4 @@
+﻿condition,gold,Entailment,Contradiction,NotMentioned,Invalid
+original,Entailment,549,44,348,0
+original,Contradiction,34,39,143,0
+original,NotMentioned,123,42,701,0

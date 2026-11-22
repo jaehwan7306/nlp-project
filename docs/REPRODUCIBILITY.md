@@ -281,7 +281,9 @@ python run_question_subset.py analyze --run runs/questions8
 
 CSV 비율은 `0.30 = 30%`다. 파싱·압축 실패 문항을 성능 분모에 포함한다. 길이를 알 수 없는 압축 실패는 결측이며 `[]`는 정상 빈 선택이라 보존율 0으로 측정한다.
 
-재현을 위해 다음을 팀에서 함께 보관한다. 큰 데이터·모델 캐시·run은 GitHub에 포함하지 않는다.
+팀 분석에 필요한 Test 결과, 문맥과 데이터 스냅샷은 공개 결과 폴더에서 내려받을 수 있다. 모델 가중치 캐시와 실행을 재개하는 데 쓰는 전체 `runs/`는 실행 환경에서 관리한다. [팀 분석용 공개 파일](#team-data)
+
+재현에 필요한 로컬 기록은 다음과 같다.
 
 - `data_audit/review.csv`, `prepared/exclusions.csv`, `prepared/manifest.json`: 사람의 결정·사유·제외·원본 해시.
 - `model_lock.json`, `environment-lock.txt`: 고정 모델·환경. 실제 패키지는 run의 `environment.json`에도 기록.
@@ -295,17 +297,17 @@ seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 �
 
 ## F. 팀 분석에 필요한 파일
 
-**Gold Evidence가 압축 후에 남아 있는지 보려면** 원문의 근거 주석과 모델이 실제로 읽은 문맥을 대조한다. `contexts.jsonl`의 `text`는 판단 단계에 사용한 원문 또는 압축문이다. 추출형은 선택한 원문 위치를 `source_ranges`에도 기록한다. 공개 GitHub에는 집계와 Q0·Q17 예측 CSV가 있고, 아래 문맥과 데이터 스냅샷은 실행한 컴퓨터의 `runs/`에 있다.
+**Gold Evidence가 압축 후에 남아 있는지 보려면** 원문의 근거 주석과 모델이 실제로 읽은 문맥을 대조한다. `contexts.jsonl`의 `text`는 판단 단계에 사용한 원문 또는 압축문이다. 추출형은 선택한 원문 위치를 `source_ranges`에도 기록한다. 아래 자료는 모두 저장소의 `results/`에서 받을 수 있다.
 
 | 필요한 자료 | 파일 | 용도 |
 |---|---|---|
-| 공통 원문·Gold Evidence | `runs/test_memory_safe/dataset.json` | 실제 평가한 119문서의 원문·17개 가설·정답·근거 위치 |
-| Main의 Original·Q0 문맥 | `runs/test_memory_safe/contexts.jsonl` | 원문 기준선과 질문 없이 만든 압축문 |
-| Main의 Q17 문맥 | `runs/questions17/contexts.jsonl` | 질문 17개를 주고 만든 압축문 |
-| Analysis 1의 Q8 문맥 | `runs/questions8/contexts.jsonl` | Q8 근거까지 비교할 때 사용하는 압축문 |
+| 공통 원문·Gold Evidence | [dataset.json](../results/dataset.json) | 실제 평가한 119문서의 원문·17개 가설·정답·근거 위치 |
+| Main의 Original·Q0 문맥 | [Original·Q0 contexts.jsonl](../results/main/contexts.jsonl) | 원문 기준선과 질문 없이 만든 압축문 |
+| Main의 Q17 문맥 | [Q17 contexts.jsonl](../results/questions17/contexts.jsonl) | 질문 17개를 주고 만든 압축문 |
+| Analysis 1의 Q8 문맥 | [Q8 contexts.jsonl](../results/questions8/contexts.jsonl) | Q8 근거까지 비교할 때 사용하는 압축문 |
 | Main 문항별 정답·예측 | [Original·Q0 CSV](../results/main/predictions.csv) · [Q17 CSV](../results/questions17/predictions.csv) | 오답에서 정답으로 바뀐 문항과 반대 사례 확인 |
-| Analysis 1의 문항별 비교 | `runs/questions8/results/paired_predictions.csv` | Q8에 제공한 가설인지와 Q0·Q8·Q17 예측 확인 |
+| Analysis 1의 문항별 비교 | [paired_predictions.csv](../results/questions8/paired_predictions.csv) | Q8에 제공한 가설인지와 Q0·Q8·Q17 예측 확인 |
 
-Q0와 Q17을 분석할 때는 공통 `dataset.json` 하나와 두 실행의 `contexts.jsonl`을 구분해 가져오면 된다. 세 실행의 데이터 스냅샷은 같은 119문서를 담고 있다. 가설별 근거 ID는 `annotations[가설 ID].spans`에서 읽고, 문서의 `spans` 목록에서 원문의 시작·끝 문자 위치를 찾는다. 문맥은 같은 실행 안에서 `document`와 `condition`으로, 판단 기록은 여기에 `hypothesis`까지 붙여 연결한다. 압축에 실패한 문맥은 `status`로 확인한다.
+Q0와 Q17을 분석할 때는 공통 `dataset.json` 하나와 두 실행의 `contexts.jsonl`을 구분해 가져오면 된다. 세 실행의 데이터 스냅샷은 같은 119문서를 담고 있다. 가설별 근거 ID는 `annotations[가설 ID].spans`에서 읽고, 문서의 `spans` 목록에서 원문의 시작·끝 문자 위치를 찾는다. 문맥은 같은 실행 안에서 `document`와 `condition`으로, 판단 기록은 여기에 `hypothesis`까지 붙여 연결한다. 압축에 실패한 문맥은 `status`로 확인한다. 각 문맥·예측 파일의 로컬 출처와 해시는 [결과 manifest](../results/manifest.json)에 있다.
 
 **Analysis 2에서 Original 입력의 근거 위치만 볼 때는** 공통 `dataset.json`의 원문과 공개 CSV의 `condition=original` 행을 연결하면 된다. 공식 `data/test.json`을 사용할 때는 같은 공개 예측 행의 문서 ID로 119문서를 고른다. 전체 입력 토큰 위치를 계산할 때는 현재 가설을 포함한 판단 프롬프트와 고정 Qwen3 토크나이저를 사용한다. [판단 프롬프트](../contract_experiment/prompts.py) · [모델 리비전](model_revisions.json)

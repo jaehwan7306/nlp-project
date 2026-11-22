@@ -1,0 +1,1286 @@
+{
+  "seed": 42,
+  "algorithm": "shuffled_document_blocks_and_hypothesis_cycles_v1",
+  "hypothesis_order": [
+    "nda-11",
+    "nda-16",
+    "nda-15",
+    "nda-10",
+    "nda-2",
+    "nda-1",
+    "nda-19",
+    "nda-12",
+    "nda-20",
+    "nda-3",
+    "nda-18",
+    "nda-7",
+    "nda-17",
+    "nda-8",
+    "nda-13",
+    "nda-5",
+    "nda-4"
+  ],
+  "shown_per_document": 8,
+  "by_document": {
+    "test:1": [
+      "nda-15",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-18",
+      "nda-17",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:11": [
+      "nda-11",
+      "nda-10",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:117": [
+      "nda-10",
+      "nda-2",
+      "nda-19",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:127": [
+      "nda-11",
+      "nda-15",
+      "nda-19",
+      "nda-3",
+      "nda-7",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:129": [
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-20",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:138": [
+      "nda-15",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-18",
+      "nda-17",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:157": [
+      "nda-16",
+      "nda-15",
+      "nda-2",
+      "nda-19",
+      "nda-20",
+      "nda-17",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:165": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-18",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:18": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-19",
+      "nda-18",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:181": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-3"
+    ],
+    "test:190": [
+      "nda-16",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:2": [
+      "nda-11",
+      "nda-2",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:21": [
+      "nda-11",
+      "nda-15",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-18",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:212": [
+      "nda-10",
+      "nda-2",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18",
+      "nda-17"
+    ],
+    "test:213": [
+      "nda-16",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:218": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:22": [
+      "nda-15",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-20",
+      "nda-7",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:225": [
+      "nda-10",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18",
+      "nda-17",
+      "nda-5"
+    ],
+    "test:227": [
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:228": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:23": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-1",
+      "nda-3",
+      "nda-7",
+      "nda-8",
+      "nda-13"
+    ],
+    "test:24": [
+      "nda-10",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:25": [
+      "nda-16",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-17",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:26": [
+      "nda-11",
+      "nda-15",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:289": [
+      "nda-11",
+      "nda-10",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:293": [
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-19",
+      "nda-12",
+      "nda-18",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:296": [
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:30": [
+      "nda-15",
+      "nda-2",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-4"
+    ],
+    "test:301": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-19",
+      "nda-7",
+      "nda-8",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:307": [
+      "nda-11",
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-20",
+      "nda-17",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:31": [
+      "nda-2",
+      "nda-1",
+      "nda-19",
+      "nda-7",
+      "nda-17",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:310": [
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18",
+      "nda-5"
+    ],
+    "test:321": [
+      "nda-11",
+      "nda-16",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:336": [
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-3",
+      "nda-7",
+      "nda-8",
+      "nda-13"
+    ],
+    "test:354": [
+      "nda-11",
+      "nda-16",
+      "nda-19",
+      "nda-3",
+      "nda-18",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:357": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-19",
+      "nda-7",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:36": [
+      "nda-16",
+      "nda-10",
+      "nda-2",
+      "nda-19",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-8"
+    ],
+    "test:361": [
+      "nda-11",
+      "nda-15",
+      "nda-19",
+      "nda-20",
+      "nda-18",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:38": [
+      "nda-11",
+      "nda-10",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:387": [
+      "nda-16",
+      "nda-10",
+      "nda-2",
+      "nda-12",
+      "nda-18",
+      "nda-7",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:389": [
+      "nda-11",
+      "nda-15",
+      "nda-19",
+      "nda-20",
+      "nda-3",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:392": [
+      "nda-11",
+      "nda-10",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:395": [
+      "nda-11",
+      "nda-16",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:4": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-1",
+      "nda-3",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:40": [
+      "nda-11",
+      "nda-15",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-18",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:400": [
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-3",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:401": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:408": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18"
+    ],
+    "test:41": [
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-7",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:412": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-2",
+      "nda-20",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:413": [
+      "nda-11",
+      "nda-10",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:42": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:429": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-17"
+    ],
+    "test:43": [
+      "nda-11",
+      "nda-15",
+      "nda-2",
+      "nda-19",
+      "nda-20",
+      "nda-3",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:432": [
+      "nda-11",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:433": [
+      "nda-16",
+      "nda-10",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:446": [
+      "nda-11",
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-3",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:451": [
+      "nda-15",
+      "nda-2",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:452": [
+      "nda-15",
+      "nda-10",
+      "nda-19",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:455": [
+      "nda-11",
+      "nda-16",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18",
+      "nda-13"
+    ],
+    "test:46": [
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-7",
+      "nda-8"
+    ],
+    "test:465": [
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:47": [
+      "nda-11",
+      "nda-15",
+      "nda-2",
+      "nda-20",
+      "nda-7",
+      "nda-8",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:471": [
+      "nda-11",
+      "nda-16",
+      "nda-1",
+      "nda-19",
+      "nda-18",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:476": [
+      "nda-15",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:48": [
+      "nda-11",
+      "nda-19",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:49": [
+      "nda-11",
+      "nda-16",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:493": [
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:496": [
+      "nda-16",
+      "nda-15",
+      "nda-2",
+      "nda-20",
+      "nda-7",
+      "nda-17",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:497": [
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-20",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:498": [
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-3",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:5": [
+      "nda-11",
+      "nda-2",
+      "nda-1",
+      "nda-20",
+      "nda-7",
+      "nda-17",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:50": [
+      "nda-11",
+      "nda-15",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:51": [
+      "nda-15",
+      "nda-19",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:52": [
+      "nda-2",
+      "nda-19",
+      "nda-7",
+      "nda-17",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:521": [
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-20",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:523": [
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-17",
+      "nda-5"
+    ],
+    "test:526": [
+      "nda-11",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-20",
+      "nda-17",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:53": [
+      "nda-15",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-7",
+      "nda-17",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:540": [
+      "nda-10",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:542": [
+      "nda-11",
+      "nda-2",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:543": [
+      "nda-11",
+      "nda-19",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-17",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:544": [
+      "nda-15",
+      "nda-10",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-7",
+      "nda-17",
+      "nda-13"
+    ],
+    "test:546": [
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-12",
+      "nda-18",
+      "nda-8",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:549": [
+      "nda-15",
+      "nda-10",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:55": [
+      "nda-11",
+      "nda-15",
+      "nda-2",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:552": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:555": [
+      "nda-2",
+      "nda-19",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:558": [
+      "nda-16",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-7",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:564": [
+      "nda-11",
+      "nda-2",
+      "nda-1",
+      "nda-19",
+      "nda-20",
+      "nda-3",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:565": [
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:57": [
+      "nda-11",
+      "nda-2",
+      "nda-1",
+      "nda-20",
+      "nda-3",
+      "nda-7",
+      "nda-17",
+      "nda-5"
+    ],
+    "test:58": [
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:584": [
+      "nda-15",
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:585": [
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-12",
+      "nda-20",
+      "nda-18",
+      "nda-8",
+      "nda-5"
+    ],
+    "test:59": [
+      "nda-2",
+      "nda-19",
+      "nda-18",
+      "nda-7",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:591": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18",
+      "nda-13"
+    ],
+    "test:596": [
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:6": [
+      "nda-11",
+      "nda-10",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:60": [
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-20",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:600": [
+      "nda-11",
+      "nda-2",
+      "nda-12",
+      "nda-20",
+      "nda-3",
+      "nda-18",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:606": [
+      "nda-16",
+      "nda-15",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:611": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-12",
+      "nda-3",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:62": [
+      "nda-15",
+      "nda-10",
+      "nda-19",
+      "nda-12",
+      "nda-20",
+      "nda-18",
+      "nda-17",
+      "nda-5"
+    ],
+    "test:65": [
+      "nda-11",
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:66": [
+      "nda-11",
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-20",
+      "nda-8",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:67": [
+      "nda-16",
+      "nda-10",
+      "nda-12",
+      "nda-18",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:68": [
+      "nda-10",
+      "nda-2",
+      "nda-19",
+      "nda-20",
+      "nda-18",
+      "nda-7",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:74": [
+      "nda-11",
+      "nda-10",
+      "nda-2",
+      "nda-18",
+      "nda-7",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:76": [
+      "nda-16",
+      "nda-15",
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-17",
+      "nda-13",
+      "nda-5"
+    ],
+    "test:77": [
+      "nda-10",
+      "nda-2",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:78": [
+      "nda-16",
+      "nda-15",
+      "nda-2",
+      "nda-1",
+      "nda-19",
+      "nda-20",
+      "nda-17",
+      "nda-8"
+    ],
+    "test:8": [
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-18",
+      "nda-8",
+      "nda-13",
+      "nda-5",
+      "nda-4"
+    ],
+    "test:80": [
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-19",
+      "nda-18",
+      "nda-7",
+      "nda-8",
+      "nda-4"
+    ],
+    "test:83": [
+      "nda-11",
+      "nda-16",
+      "nda-10",
+      "nda-1",
+      "nda-3",
+      "nda-7",
+      "nda-8",
+      "nda-13"
+    ],
+    "test:84": [
+      "nda-11",
+      "nda-16",
+      "nda-15",
+      "nda-1",
+      "nda-7",
+      "nda-8",
+      "nda-13",
+      "nda-4"
+    ],
+    "test:85": [
+      "nda-15",
+      "nda-2",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-7",
+      "nda-17"
+    ],
+    "test:90": [
+      "nda-10",
+      "nda-1",
+      "nda-19",
+      "nda-12",
+      "nda-3",
+      "nda-18",
+      "nda-17",
+      "nda-5"
+    ],
+    "test:99": [
+      "nda-10",
+      "nda-2",
+      "nda-1",
+      "nda-7",
+      "nda-17",
+      "nda-8",
+      "nda-5",
+      "nda-4"
+    ]
+  },
+  "exposure_counts": {
+    "nda-11": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-16": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-15": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-10": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-2": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-1": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-19": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-12": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-20": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-3": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-18": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-7": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-17": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-8": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-13": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-5": {
+      "shown": 56,
+      "omitted": 63
+    },
+    "nda-4": {
+      "shown": 56,
+      "omitted": 63
+    }
+  }
+}

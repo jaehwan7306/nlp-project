@@ -50,7 +50,7 @@ flowchart TD
 |---|---|
 | [docs/](docs/) | 연구 질문별 보고서, 재현 절차, 구현 규칙, 의사결정 |
 | [design/](design/) | 실험 설계와 Analysis 2·3의 연구 계획 |
-| [results/](results/) | 완료한 실험의 표·그림·공개 결과 파일 |
+| [results/](results/) | Q0·Q17·Q8의 집계표, 문항별 예측, 실제 압축문과 공통 Gold Evidence |
 | [contract_experiment/](contract_experiment/) · [run_experiment.py](run_experiment.py) | 데이터 감사·전처리, Dev, 공통 프롬프트와 평가 |
 | [memory_support/](memory_support/) · [run_memory_safe.py](run_memory_safe.py) | 메인 실험의 Original·Q0 실행 |
 | [run_question_analysis.py](run_question_analysis.py) | 메인 실험의 Q17 실행 및 Q17−Q0 비교 |

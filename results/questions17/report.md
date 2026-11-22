@@ -2,6 +2,8 @@
 
 같은 계약서와 가설에서 질문 17개를 모두 제공한 Q17을 질문 없이 압축한 Q0와 비교했다. Original은 원문 기준선으로 재사용했다. [Original·Q0 결과](../main/report.md) · [메인 실험 상세 해석](../../docs/RESULTS.md)
 
+[실제 문맥](contexts.jsonl) · [문항별 판단 JSONL](predictions.jsonl) · [Q17−Q0 집계표](question_effects.csv) · [공통 Gold Evidence](../dataset.json)
+
 Documents: 119. New compression: 476. New judgment records: 8092. Reused Original: 2023.
 
 All 17 hypotheses are provided together to the compressor once per document/method. The judge receives one hypothesis per call. Main model, quantization, decoder, memory implementation and base task prompts are preserved.

@@ -1,0 +1,98 @@
+{
+  "accuracy_computed": false,
+  "context_count": 595,
+  "contexts_sha256": "f2015f13b88fc3c6b8e31dba13c0323108cdf5fcd1b6e8f95aa639050298f33c",
+  "predictions_sha256": "6dee91d2799bfa2f0f138145ed5bf55bf5dbf12151719b80492f9f49f699cf49",
+  "expected_context_count": 595,
+  "prediction_count": 10115,
+  "expected_prediction_count": 10115,
+  "conditions": {
+    "original": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {},
+      "cap_reached": 0,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    },
+    "generative_general": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {
+        "eos": 114,
+        "max_tokens": 5
+      },
+      "cap_reached": 5,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    },
+    "generative_priority": {
+      "contexts": 119,
+      "compression_failed": 0,
+      "stop_reasons": {
+        "eos": 118,
+        "max_tokens": 1
+      },
+      "cap_reached": 1,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 0,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2023
+      }
+    },
+    "extractive_general": {
+      "contexts": 119,
+      "compression_failed": 1,
+      "stop_reasons": {
+        "eos": 118,
+        "max_tokens": 1
+      },
+      "cap_reached": 1,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 3,
+      "duplicate_id_outputs": 1,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2006
+      }
+    },
+    "extractive_priority": {
+      "contexts": 119,
+      "compression_failed": 1,
+      "stop_reasons": {
+        "eos": 118,
+        "max_tokens": 1
+      },
+      "cap_reached": 1,
+      "dialogue_flags": 0,
+      "full_source_copies": 0,
+      "empty_outputs": 1,
+      "duplicate_id_outputs": 0,
+      "judgments": 2023,
+      "parsing_failures": 0,
+      "judgment_stop_reasons": {
+        "eos": 2006
+      }
+    }
+  }
+}

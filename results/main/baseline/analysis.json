@@ -1,0 +1,58 @@
+{
+  "document_count": 119,
+  "conditions": [
+    "original"
+  ],
+  "judgment_count": 2023,
+  "failure_policy": "All questions retained; invalid predictions are incorrect.",
+  "length_policy": "Qwen3 context tokens only; failed contexts have unavailable length, not zero length.",
+  "bootstrap": {
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 42,
+    "unit": "document",
+    "ci": "percentile 95%, paired across conditions"
+  },
+  "time_policy": "Model loading excluded from condition times; see runtime_*.json and events.jsonl.",
+  "metrics": [
+    {
+      "condition": "original",
+      "name": "Original",
+      "questions": 2023,
+      "accuracy": 0.6371725160652496,
+      "accuracy_ci_low": 0.615916955017301,
+      "accuracy_ci_high": 0.6584280771131982,
+      "macro_f1": 0.5255498652470344,
+      "macro_f1_ci_low": 0.49611439576966243,
+      "macro_f1_ci_high": 0.5541873728842771,
+      "correct_decision_retention": 1.0,
+      "parse_failures": 0,
+      "parse_failure_rate": 0.0,
+      "compression_failed_documents": 0,
+      "length_available_documents": 119,
+      "retention_mean": 1.0,
+      "retention_median": 1.0,
+      "retention_p05": 1.0,
+      "retention_p95": 1.0,
+      "retention_min": 1.0,
+      "retention_max": 1.0,
+      "recall_Entailment": 0.5834218916046758,
+      "recall_Contradiction": 0.18055555555555555,
+      "recall_NotMentioned": 0.8094688221709007
+    }
+  ],
+  "comparisons": [],
+  "attention_memory_execution": {
+    "policy_id": "headwise_math_prefill_v1",
+    "policy_sha256": "6140d11cba2747bed5689cb116ccf216da693791c2236b93ce8df3c058c93630",
+    "execution_mode": "from_start",
+    "initial_journal_rows": {
+      "contexts.jsonl": 119,
+      "predictions.jsonl": 0
+    },
+    "previous_judgments_reused": 0,
+    "previous_compressed_contexts_reused": 0,
+    "provenance_file": "runtime_memory_policy.json",
+    "technical_check_scope": "9 Dev outputs on the longest Original Dev document; old output equality is informational",
+    "timing_note": "Same memory policy throughout this Test; operation counts depend on input length"
+  }
+}
