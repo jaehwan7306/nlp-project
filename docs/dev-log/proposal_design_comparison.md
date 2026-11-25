@@ -2,7 +2,7 @@
 
 > **과거 설계 변경을 설명하는 기록입니다.** 아래 LongLLMLingua는 이전 발표자료의 조건입니다. 현재 Main은 Original과 생성형·추출형 각각 일반·보존 우선의 총 5조건이며 LLMLingua를 사용하지 않습니다.
 >
-> 현재 내용은 [프로젝트 개요](../README.md), [현행 실험 설계](EXPERIMENT_DESIGN.md), [완료한 실험 결과](../docs/RESULTS.md), [공개 결과 파일](../results/README.md)에서 확인할 수 있습니다.
+> 현재 내용은 [프로젝트 개요](../../README.md), [현행 실험 설계](../01_design.md), [완료한 실험 결과](../02_main_q0_vs_q17.md), [공개 결과 파일](../../results/README.md)에서 확인할 수 있습니다.
 
 아래 본문은 당시 팀 공유용 비교 내용을 보존합니다.
 

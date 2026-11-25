@@ -1,6 +1,6 @@
 # 재현 및 터미널 실행 명령
 
-[프로젝트 개요](../README.md) · [연구 질문별 결과 보고서](RESEARCH_QUESTION_RESULTS.md) · [공개 결과 파일](../results/README.md)
+[프로젝트 개요](../README.md) · [실험 설계](01_design.md) · [메인 실험](02_main_q0_vs_q17.md) · [공개 결과 파일](../results/README.md)
 
 README가 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널**에서 실행한다. 모든 경로는 프로젝트 루트 기준이며 아래 명령은 Windows PowerShell용이다.
 
@@ -13,9 +13,9 @@ README가 있는 **프로젝트 폴더를 IDE에서 열고 그 IDE의 터미널*
 | 저장된 결과를 확인 | [E. 결과와 재현 자료](#outputs) |
 | 팀원이 실제 압축문과 Gold Evidence를 사용 | [F. 팀 분석에 필요한 파일](#team-data) |
 
-이 가이드는 완료한 Main과 Analysis 1을 재현하는 절차다. [Analysis 2](../design/EXPERIMENT_DESIGN.md#analysis-2)와 [Analysis 3](../design/EXPERIMENT_DESIGN.md#analysis-3)의 예정 분석은 설계서에서 확인할 수 있다.
+이 가이드는 완료한 Main과 Analysis 1을 재현하는 절차다. [Analysis 2](04_analysis2_position.md)와 [Analysis 3](05_analysis3_evidence.md)의 예정 분석은 각 문서에서 확인할 수 있다.
 
-이미 완료한 현재 실험에 신규 초기화 명령을 반복할 필요는 없다. 코드를 업데이트할 때 `.venv`, 데이터·검수 자료·prepared·model_lock.json, 기존 run·protocol을 보존한다. 이전 오류 복구 절차는 [과거 실행 기록](archive/EXECUTION_HISTORY.md)에 분리했다.
+이미 완료한 현재 실험에 신규 초기화 명령을 반복할 필요는 없다. 코드를 업데이트할 때 `.venv`, 데이터·검수 자료·prepared·model_lock.json, 기존 run·protocol을 보존한다. 당시의 오류 복구 절차는 [개발 기록 · 실행 이력](dev-log/execution_history.md)에 있다.
 
 <a id="from-scratch"></a>
 
@@ -62,7 +62,7 @@ Invoke-Item data_audit/review_report.html
 | `exclude_both` | 이 쌍의 두 문서를 모두 제외 |
 | `distinct` | 이 쌍을 이유로 추가 제외하지 않음 |
 
-`review_required=True`인 모든 행을 검토한 다음 진행한다. Gold 라벨 차이는 참고 자료이며 코드가 자동으로 제외 방식을 바꾸지 않는다. 현재 공개 결과의 결정은 [결과 문서](RESULTS.md#데이터와-실행-범위)에 기록했다. 같은 결과 집합을 재현하려면 같은 결정을 적용하고 검수 자료도 보관한다.
+`review_required=True`인 모든 행을 검토한 다음 진행한다. Gold 라벨 차이는 참고 자료이며 코드가 자동으로 제외 방식을 바꾸지 않는다. 현재 공개 결과의 결정은 [결과 문서](02_main_q0_vs_q17.md#데이터와-실행-범위)에 기록했다. 같은 결과 집합을 재현하려면 같은 결정을 적용하고 검수 자료도 보관한다.
 
 기존 audit 자료에서 HTML만 다시 만들 때는 다음 명령을 사용한다. 검수 CSV와 원본 데이터를 변경하지 않는다.
 
@@ -272,7 +272,7 @@ python run_question_subset.py analyze --run runs/questions8
 |---|---|
 | `runs/test_memory_safe/results/` | Main의 Original·Q0 결과 |
 | `runs/questions17/results/` | Main의 Q17 결과와 Q17−Q0 비교 |
-| `runs/questions8/results/` | Analysis 1의 [Q8 집계](../results/questions8/report.md)와 동일 문항 Q0·Q8·Q17 비교 |
+| `runs/questions8/results/` | Analysis 1의 [Q8 집계](03_analysis1_q8.md)와 동일 문항 Q0·Q8·Q17 비교 |
 | `metrics.csv` | 정확도·Macro-F1·클래스 Recall·정답 유지율·실패율·보존율 |
 | `comparisons.csv` | Original − 해당 압축 조건의 성능 차이·CI |
 | `question_effects.csv` | **Q17 − Q0** 질문 효과·CI·실제 길이·실패·정답 전환 |
@@ -291,7 +291,7 @@ CSV 비율은 `0.30 = 30%`다. 파싱·압축 실패 문항을 성능 분모에 
 - `contexts.jsonl`, `predictions.jsonl`, `runtime_compressor.json`, `runtime_judge.json`, `events.jsonl`: 원본 출력·시간·종료·실제 생성 설정·GPU·템플릿.
 - `source/`, Original·Q0의 `memory_extension_source/`·`runtime_memory_policy.json`, Q8·Q17의 `lineage.json`, Q8의 `assignment.json`: 소스·정책·참조 run·배정표.
 
-seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 다른 GPU·라이브러리에서 모든 토큰이 비트 단위로 같음을 보장하지 않는다. Q8·Q17은 참조 run의 해시를 검사하므로 상대적 폴더 관계를 유지해 함께 보관한다. 변경 이유는 [DECISIONS](DECISIONS.md), 수정 내역은 [CHANGELOG](../CHANGELOG.md)에 남긴다.
+seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 다른 GPU·라이브러리에서 모든 토큰이 비트 단위로 같음을 보장하지 않는다. Q8·Q17은 참조 run의 해시를 검사하므로 상대적 폴더 관계를 유지해 함께 보관한다. 변경 이유는 [DECISIONS](dev-log/decisions.md), 수정 내역은 [CHANGELOG](dev-log/changelog.md)에 남긴다.
 
 <a id="team-data"></a>
 
@@ -302,11 +302,11 @@ seed 42, 명시적 greedy, 패키지·리비전 고정은 재현을 돕지만 �
 | 필요한 자료 | 파일 | 용도 |
 |---|---|---|
 | 공통 원문·Gold Evidence | [dataset.json](../results/dataset.json) | 실제 평가한 119문서의 원문·17개 가설·정답·근거 위치 |
-| Main의 Original·Q0 문맥 | [Original·Q0 contexts.jsonl](../results/main/contexts.jsonl) | 원문 기준선과 질문 없이 만든 압축문 |
-| Main의 Q17 문맥 | [Q17 contexts.jsonl](../results/questions17/contexts.jsonl) | 질문 17개를 주고 만든 압축문 |
-| Analysis 1의 Q8 문맥 | [Q8 contexts.jsonl](../results/questions8/contexts.jsonl) | Q8 근거까지 비교할 때 사용하는 압축문 |
-| Main 문항별 정답·예측 | [Original·Q0 CSV](../results/main/predictions.csv) · [Q17 CSV](../results/questions17/predictions.csv) | 오답에서 정답으로 바뀐 문항과 반대 사례 확인 |
-| Analysis 1의 문항별 비교 | [paired_predictions.csv](../results/questions8/paired_predictions.csv) | Q8에 제공한 가설인지와 Q0·Q8·Q17 예측 확인 |
+| Main의 Original·Q0 문맥 | [Original·Q0 contexts.jsonl](../results/main/q0/contexts.jsonl) | 원문 기준선과 질문 없이 만든 압축문 |
+| Main의 Q17 문맥 | [Q17 contexts.jsonl](../results/main/q17/contexts.jsonl) | 질문 17개를 주고 만든 압축문 |
+| Analysis 1의 Q8 문맥 | [Q8 contexts.jsonl](../results/analysis1_q8/contexts.jsonl) | Q8 근거까지 비교할 때 사용하는 압축문 |
+| Main 문항별 정답·예측 | [Original·Q0 CSV](../results/main/q0/predictions.csv) · [Q17 CSV](../results/main/q17/predictions.csv) | 오답에서 정답으로 바뀐 문항과 반대 사례 확인 |
+| Analysis 1의 문항별 비교 | [paired_predictions.csv](../results/analysis1_q8/paired_predictions.csv) | Q8에 제공한 가설인지와 Q0·Q8·Q17 예측 확인 |
 
 Q0와 Q17을 분석할 때는 공통 `dataset.json` 하나와 두 실행의 `contexts.jsonl`을 구분해 가져오면 된다. 세 실행의 데이터 스냅샷은 같은 119문서를 담고 있다. 가설별 근거 ID는 `annotations[가설 ID].spans`에서 읽고, 문서의 `spans` 목록에서 원문의 시작·끝 문자 위치를 찾는다. 문맥은 같은 실행 안에서 `document`와 `condition`으로, 판단 기록은 여기에 `hypothesis`까지 붙여 연결한다. 압축에 실패한 문맥은 `status`로 확인한다. 각 문맥·예측 파일의 로컬 출처와 해시는 [결과 manifest](../results/manifest.json)에 있다.
 

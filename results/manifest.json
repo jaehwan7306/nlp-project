@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-11-16",
-  "documentation_updated_date": "2026-11-22",
+  "documentation_updated_date": "2026-11-26",
   "dataset": "ContractNLI",
   "documents": 119,
   "hypotheses_per_document": 17,
@@ -24,75 +24,74 @@
   "files": [
     {
       "path": "results/README.md",
-      "bytes": 5258,
-      "sha256": "67f72bc4f0f33c1595307d820deb147cca4d27d296472591854acbd9f22c47fc",
+      "bytes": 4568,
+      "sha256": "0d9cb112e7798988287ecd907f3a868c77716da2704f8dab98753599d3e9696f",
       "source": null,
       "source_sha256": null,
-      "transformation": "Public results index updated with the Q8 aggregate report and analysis roadmap. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records."
+      "transformation": "Public results index updated with the Q8 aggregate report and analysis roadmap. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records. Repository restructure (2026-11-26): relative links updated for the new folder layout."
     },
     {
-      "path": "results/analysis/QUESTION_EFFECTS.md",
-      "bytes": 14680,
-      "sha256": "70853eb27b6bdb2769f477cee39a8d7542cd3f5fa07df02510f30845ec5aa865",
-      "source": "analysis/questions17_2026-11-16/REPORT.md",
-      "source_sha256": "95802f77d121fa3b21766b30c8368fba0b84bf84f15718c896c1318e293e9248",
-      "transformation": "preserve findings; replace local-only source appendix with links to published artifacts. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8."
-    },
-    {
-      "path": "results/analysis/comparison.pdf",
+      "path": "results/main/analysis/comparison.pdf",
       "bytes": 34527,
       "sha256": "eb9a1c9517cbc5e1cca33b1539f398c5ad761d42e2df22ca39cc1ac794cb8374",
       "source": "analysis/questions17_2026-11-16/comparison.pdf",
       "source_sha256": "eb9a1c9517cbc5e1cca33b1539f398c5ad761d42e2df22ca39cc1ac794cb8374",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/analysis/comparison.pdf"
     },
     {
-      "path": "results/analysis/comparison.png",
+      "path": "results/main/analysis/comparison.png",
       "bytes": 188332,
       "sha256": "82fede2c35d9cc0302c25cecb741bbb2b428acbc3eb43979da357867089f744b",
       "source": "analysis/questions17_2026-11-16/comparison.png",
       "source_sha256": "82fede2c35d9cc0302c25cecb741bbb2b428acbc3eb43979da357867089f744b",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/analysis/comparison.png"
     },
     {
-      "path": "results/analysis/document_effects.json",
+      "path": "results/main/analysis/document_effects.json",
       "bytes": 149174,
       "sha256": "fc8f6c347740835388facf30ddfa603634855f55bdb2f579dba6c74ee9d7e84e",
       "source": "analysis/questions17_2026-11-16/documents.json",
       "source_sha256": "fc8f6c347740835388facf30ddfa603634855f55bdb2f579dba6c74ee9d7e84e",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/analysis/document_effects.json"
     },
     {
-      "path": "results/analysis/format_audit_summary.json",
+      "path": "results/main/analysis/format_audit_summary.json",
       "bytes": 1516,
       "sha256": "a5bfe5fd774d38dc2edcb52c35c293c796ffa82b97d13f6b30fef02a297d5997",
       "source": "analysis/questions17_2026-11-16/format_audit.json",
       "source_sha256": "fec4dcf411749b07f849a8d42d2ec4575e31a563391ff8d023b430b21968c492",
-      "transformation": "publish the format-audit definition and summary; leave source/output excerpts in the local raw run"
+      "transformation": "publish the format-audit definition and summary; leave source/output excerpts in the local raw run",
+      "previous_path": "results/analysis/format_audit_summary.json"
     },
     {
-      "path": "results/analysis/hypothesis_effects.json",
+      "path": "results/main/analysis/hypothesis_effects.json",
       "bytes": 118982,
       "sha256": "98f779a537ab3a01cfdf9d09e84f55518f25c5f8fa48253ad49db1e8a2956a98",
       "source": "analysis/questions17_2026-11-16/hypotheses.json",
       "source_sha256": "98f779a537ab3a01cfdf9d09e84f55518f25c5f8fa48253ad49db1e8a2956a98",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/analysis/hypothesis_effects.json"
     },
     {
-      "path": "results/analysis/prompt_check.json",
+      "path": "results/main/analysis/prompt_check.json",
       "bytes": 1937,
       "sha256": "911ce2a70c8d76cbb764822a2d4c0375ea492d034814b7fd98100123f4a272b3",
       "source": "analysis/questions17_2026-11-16/prompt_check.json",
       "source_sha256": "911ce2a70c8d76cbb764822a2d4c0375ea492d034814b7fd98100123f4a272b3",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/analysis/prompt_check.json"
     },
     {
-      "path": "results/analysis/summary.json",
+      "path": "results/main/analysis/summary.json",
       "bytes": 33159,
       "sha256": "c1120c6d4c5a1c3ede36b45c6abf58a4792ba2ef91ee39cbe7e307775d390d42",
       "source": "analysis/questions17_2026-11-16/summary.json",
       "source_sha256": "0a97faa2cc39e7139f32c47ba82962a744596270f6abe93fdc1cb6fd27f4ace7",
-      "transformation": "replace local paths in values and source-hash keys with project-relative paths; preserve computed values"
+      "transformation": "replace local paths in values and source-hash keys with project-relative paths; preserve computed values",
+      "previous_path": "results/analysis/summary.json"
     },
     {
       "path": "results/dataset.json",
@@ -103,385 +102,461 @@
       "transformation": "none"
     },
     {
-      "path": "results/main/analysis.json",
+      "path": "results/main/q0/analysis.json",
       "bytes": 7770,
       "sha256": "75ab7f9cdc51059a51bf14d5ea8cf2cd426788a754ed248ff66ac105a3815ab6",
       "source": "runs/test_memory_safe/results/analysis.json",
       "source_sha256": "75ab7f9cdc51059a51bf14d5ea8cf2cd426788a754ed248ff66ac105a3815ab6",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/analysis.json"
     },
     {
-      "path": "results/main/baseline/analysis.json",
+      "path": "results/main/original/analysis.json",
       "bytes": 2100,
       "sha256": "dec6a4e453d9901517429d52ab8c66958faa2d0738482bd41bee97cd184a7d7d",
       "source": "runs/test_memory_safe/results/baseline/analysis.json",
       "source_sha256": "dec6a4e453d9901517429d52ab8c66958faa2d0738482bd41bee97cd184a7d7d",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/analysis.json"
     },
     {
-      "path": "results/main/baseline/confusion_matrices.csv",
+      "path": "results/main/original/confusion_matrices.csv",
       "bytes": 171,
       "sha256": "5ae3e46175cff0e3aa76bf21b39c7b2398b85d215237f00abb4c6e304ad76fc5",
       "source": "runs/test_memory_safe/results/baseline/confusion_matrices.csv",
       "source_sha256": "5ae3e46175cff0e3aa76bf21b39c7b2398b85d215237f00abb4c6e304ad76fc5",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/confusion_matrices.csv"
     },
     {
-      "path": "results/main/baseline/lengths.csv",
+      "path": "results/main/original/lengths.csv",
       "bytes": 5969,
       "sha256": "66c9264bbf20bdc793e1404f80440a572989c14d46ba7e4dbd53df3d224f2f2e",
       "source": "runs/test_memory_safe/results/baseline/lengths.csv",
       "source_sha256": "66c9264bbf20bdc793e1404f80440a572989c14d46ba7e4dbd53df3d224f2f2e",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/lengths.csv"
     },
     {
-      "path": "results/main/baseline/metrics.csv",
+      "path": "results/main/original/metrics.csv",
       "bytes": 613,
       "sha256": "d8ed16b76fde2ab9e5a6a0c600dc8c3bbed317556e1ec3df138530aa36310bc3",
       "source": "runs/test_memory_safe/results/baseline/metrics.csv",
       "source_sha256": "d8ed16b76fde2ab9e5a6a0c600dc8c3bbed317556e1ec3df138530aa36310bc3",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/metrics.csv"
     },
     {
-      "path": "results/main/baseline/predictions.csv",
+      "path": "results/main/original/predictions.csv",
       "bytes": 144405,
       "sha256": "372c9f3c543cd956dd21810a180cf8dee7a4ed316e93869f5f57045daf18cd3b",
       "source": "runs/test_memory_safe/results/baseline/predictions.csv",
       "source_sha256": "372c9f3c543cd956dd21810a180cf8dee7a4ed316e93869f5f57045daf18cd3b",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/predictions.csv"
     },
     {
-      "path": "results/main/baseline/report.md",
+      "path": "results/main/original/report.md",
       "bytes": 1223,
       "sha256": "2c5512ad3969c30fd8f92a3851ef0a3c6d4203bfb4f49746df8969cbee8b7e7c",
       "source": "runs/test_memory_safe/results/baseline/report.md",
       "source_sha256": "2c5512ad3969c30fd8f92a3851ef0a3c6d4203bfb4f49746df8969cbee8b7e7c",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/report.md"
     },
     {
-      "path": "results/main/baseline/times.csv",
+      "path": "results/main/original/times.csv",
       "bytes": 117,
       "sha256": "58808233d133121114004b3bd24f2336a6c14afbed67fab72ae5a1694450b446",
       "source": "runs/test_memory_safe/results/baseline/times.csv",
       "source_sha256": "58808233d133121114004b3bd24f2336a6c14afbed67fab72ae5a1694450b446",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/baseline/times.csv"
     },
     {
-      "path": "results/main/comparisons.csv",
+      "path": "results/main/q0/comparisons.csv",
       "bytes": 822,
       "sha256": "91c705b4909c0b21f68327b563cde8b8050da68a4134f937eb25dba699ae0d44",
       "source": "runs/test_memory_safe/results/comparisons.csv",
       "source_sha256": "91c705b4909c0b21f68327b563cde8b8050da68a4134f937eb25dba699ae0d44",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/comparisons.csv"
     },
     {
-      "path": "results/main/confusion_matrices.csv",
+      "path": "results/main/q0/confusion_matrices.csv",
       "bytes": 721,
       "sha256": "b1507c852390ba90b65f4c4fc7278a21c8368b809ee4f5d47f9d28c7a9f71137",
       "source": "runs/test_memory_safe/results/confusion_matrices.csv",
       "source_sha256": "b1507c852390ba90b65f4c4fc7278a21c8368b809ee4f5d47f9d28c7a9f71137",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/confusion_matrices.csv"
     },
     {
-      "path": "results/main/contexts.jsonl",
+      "path": "results/main/q0/contexts.jsonl",
       "bytes": 9287736,
       "sha256": "0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813",
       "source": "runs/test_memory_safe/contexts.jsonl",
       "source_sha256": "0e043632ad951d3fd5faae96c741808057a5b4e10a10ba3ed9acd8a544b8d813",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/contexts.jsonl"
     },
     {
-      "path": "results/main/diagnostics/lengths.csv",
+      "path": "results/main/q0/diagnostics/lengths.csv",
       "bytes": 34049,
       "sha256": "95d6371e63d06a0927eb35e6a4bef52f54d71b964424086361b910a3ffc48055",
       "source": "runs/test_memory_safe/diagnostics/lengths.csv",
       "source_sha256": "95d6371e63d06a0927eb35e6a4bef52f54d71b964424086361b910a3ffc48055",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/diagnostics/lengths.csv"
     },
     {
-      "path": "results/main/diagnostics/technical_summary.json",
+      "path": "results/main/q0/diagnostics/technical_summary.json",
       "bytes": 2336,
       "sha256": "9d7ace18a6cfbe3ad91eef1e479746fb0cb66e5a5eab127d25bc888e03159ead",
       "source": "runs/test_memory_safe/diagnostics/technical_summary.json",
       "source_sha256": "9d7ace18a6cfbe3ad91eef1e479746fb0cb66e5a5eab127d25bc888e03159ead",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/diagnostics/technical_summary.json"
     },
     {
-      "path": "results/main/lengths.csv",
+      "path": "results/main/q0/lengths.csv",
       "bytes": 40404,
       "sha256": "4888b0f1b612222467d94e1cd33013e40a174bbd18f8926168ebd4b72edf7e81",
       "source": "runs/test_memory_safe/results/lengths.csv",
       "source_sha256": "4888b0f1b612222467d94e1cd33013e40a174bbd18f8926168ebd4b72edf7e81",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/lengths.csv"
     },
     {
-      "path": "results/main/metrics.csv",
+      "path": "results/main/q0/metrics.csv",
       "bytes": 2099,
       "sha256": "15d697d7390375fe8a76a77e90bb09ec9feb897edd1da988173969b3a8ffeec6",
       "source": "runs/test_memory_safe/results/metrics.csv",
       "source_sha256": "15d697d7390375fe8a76a77e90bb09ec9feb897edd1da988173969b3a8ffeec6",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/metrics.csv"
     },
     {
-      "path": "results/main/predictions.csv",
+      "path": "results/main/q0/predictions.csv",
       "bytes": 808033,
       "sha256": "ed2ff6dc315ebdc0313f07e666e91238314102017d8a98bdbdef7f920da615f3",
       "source": "runs/test_memory_safe/results/predictions.csv",
       "source_sha256": "ed2ff6dc315ebdc0313f07e666e91238314102017d8a98bdbdef7f920da615f3",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/predictions.csv"
     },
     {
-      "path": "results/main/predictions.jsonl",
+      "path": "results/main/q0/predictions.jsonl",
       "bytes": 8234820,
       "sha256": "4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b",
       "source": "runs/test_memory_safe/predictions.jsonl",
       "source_sha256": "4a68e338611cd4cda3850583d05a9457ab9904ae7d566acfcca6a480300bd80b",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/predictions.jsonl"
     },
     {
-      "path": "results/main/report.md",
-      "bytes": 1905,
-      "sha256": "de2802479d2e2e99b1a30498775cf097803a404dd3e692224b411b7ca01994d0",
+      "path": "results/main/q0/report.md",
+      "bytes": 1880,
+      "sha256": "94a1b53688ed88297250076b601f210d2179d5d5edeb5f01982c5fceaff435df",
       "source": "runs/test_memory_safe/results/report.md",
       "source_sha256": "23866fabd58f60def0eae968f521904c9c8c6a82480c93fa2349011b0d144eb8",
-      "transformation": "Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records."
+      "transformation": "Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records. Repository restructure (2026-11-26): relative links updated for the new folder layout.",
+      "previous_path": "results/main/report.md"
     },
     {
-      "path": "results/main/times.csv",
+      "path": "results/main/q0/times.csv",
       "bytes": 420,
       "sha256": "50beadf2beb343302ff6c727a752ba92071d752c4ec9b8f3620715f9e560f78d",
       "source": "runs/test_memory_safe/results/times.csv",
       "source_sha256": "50beadf2beb343302ff6c727a752ba92071d752c4ec9b8f3620715f9e560f78d",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/main/times.csv"
     },
     {
-      "path": "results/questions17/analysis.json",
+      "path": "results/main/q17/analysis.json",
       "bytes": 7846,
       "sha256": "039adafe1980f841402389d9f2456d63a95d93affd01910190ebae684857ce83",
       "source": "runs/questions17/results/analysis.json",
       "source_sha256": "a5e17226a2e3ecddb46e672132c76d37f6e6ec431ce812874065e83fd4d07d41",
-      "transformation": "replace local project paths with project-relative paths; JSON formatting only otherwise"
+      "transformation": "replace local project paths with project-relative paths; JSON formatting only otherwise",
+      "previous_path": "results/questions17/analysis.json"
     },
     {
-      "path": "results/questions17/comparisons.csv",
+      "path": "results/main/q17/comparisons.csv",
       "bytes": 823,
       "sha256": "bd2ffec6cdd8b9755fd6ca614dfc2e5c57384bd6594cc70eafcc486e49747dfa",
       "source": "runs/questions17/results/comparisons.csv",
       "source_sha256": "bd2ffec6cdd8b9755fd6ca614dfc2e5c57384bd6594cc70eafcc486e49747dfa",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/comparisons.csv"
     },
     {
-      "path": "results/questions17/confusion_matrices.csv",
+      "path": "results/main/q17/confusion_matrices.csv",
       "bytes": 719,
       "sha256": "327a1d6c2c21acd6d9b2f068f905fb62b3169a2eb9a7c3c4844fa4210d5a264f",
       "source": "runs/questions17/results/confusion_matrices.csv",
       "source_sha256": "327a1d6c2c21acd6d9b2f068f905fb62b3169a2eb9a7c3c4844fa4210d5a264f",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/confusion_matrices.csv"
     },
     {
-      "path": "results/questions17/contexts.jsonl",
+      "path": "results/main/q17/contexts.jsonl",
       "bytes": 8472741,
       "sha256": "197e2ebe7c12f940a14e7a1302f16410344318c7c5d3ae0f5bb3ce31242fbb99",
       "source": "runs/questions17/contexts.jsonl",
       "source_sha256": "197e2ebe7c12f940a14e7a1302f16410344318c7c5d3ae0f5bb3ce31242fbb99",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/contexts.jsonl"
     },
     {
-      "path": "results/questions17/diagnostics/lengths.csv",
+      "path": "results/main/q17/diagnostics/lengths.csv",
       "bytes": 33864,
       "sha256": "6ba7ad4193eb3bbd1d9243f74b009e3c81334658ba288da86eba7e95753fd10a",
       "source": "runs/questions17/diagnostics/lengths.csv",
       "source_sha256": "6ba7ad4193eb3bbd1d9243f74b009e3c81334658ba288da86eba7e95753fd10a",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/diagnostics/lengths.csv"
     },
     {
-      "path": "results/questions17/diagnostics/technical_summary.json",
+      "path": "results/main/q17/diagnostics/technical_summary.json",
       "bytes": 2610,
       "sha256": "1fa8209dfca15a9bc6b8649f64c71ae9dda715e12bde4273c27b4e904b583d2a",
       "source": "runs/questions17/diagnostics/technical_summary.json",
       "source_sha256": "1fa8209dfca15a9bc6b8649f64c71ae9dda715e12bde4273c27b4e904b583d2a",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/diagnostics/technical_summary.json"
     },
     {
-      "path": "results/questions17/lengths.csv",
+      "path": "results/main/q17/lengths.csv",
       "bytes": 40231,
       "sha256": "8ec3f965601f606e40b665afc7c7161b6b1fafae136624deab04f68c9b88ccd9",
       "source": "runs/questions17/results/lengths.csv",
       "source_sha256": "8ec3f965601f606e40b665afc7c7161b6b1fafae136624deab04f68c9b88ccd9",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/lengths.csv"
     },
     {
-      "path": "results/questions17/metrics.csv",
+      "path": "results/main/q17/metrics.csv",
       "bytes": 2037,
       "sha256": "e4598093119651e071a2d798d4978f7c5ffa54ee3df80d04a6da0a2dcd84b67a",
       "source": "runs/questions17/results/metrics.csv",
       "source_sha256": "e4598093119651e071a2d798d4978f7c5ffa54ee3df80d04a6da0a2dcd84b67a",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/metrics.csv"
     },
     {
-      "path": "results/questions17/predictions.csv",
+      "path": "results/main/q17/predictions.csv",
       "bytes": 808146,
       "sha256": "1d8436ee86f0f750f063b768af4b8a13cc5fb06dd91800c2c5257e2cef767215",
       "source": "runs/questions17/results/predictions.csv",
       "source_sha256": "1d8436ee86f0f750f063b768af4b8a13cc5fb06dd91800c2c5257e2cef767215",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/predictions.csv"
     },
     {
-      "path": "results/questions17/predictions.jsonl",
+      "path": "results/main/q17/predictions.jsonl",
       "bytes": 9353701,
       "sha256": "c6c132bd7464d19633645a15dbd5b349f1c6babf1b4716ba35633e2cd7b4780c",
       "source": "runs/questions17/predictions.jsonl",
       "source_sha256": "c6c132bd7464d19633645a15dbd5b349f1c6babf1b4716ba35633e2cd7b4780c",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/predictions.jsonl"
     },
     {
-      "path": "results/questions17/question_analysis.json",
+      "path": "results/main/q17/question_analysis.json",
       "bytes": 5352,
       "sha256": "3abaaadf38f6d07447cb286e8e0b0ebe7a362cf36e49fe03281c3e16ad48f6af",
       "source": "runs/questions17/results/question_analysis.json",
       "source_sha256": "44bbb1bccb27f77142ef44d9cbb2d80327fc777ab6248c82e32e9717aff606c5",
-      "transformation": "replace local project paths with project-relative paths; JSON formatting only otherwise"
+      "transformation": "replace local project paths with project-relative paths; JSON formatting only otherwise",
+      "previous_path": "results/questions17/question_analysis.json"
     },
     {
-      "path": "results/questions17/question_effects.csv",
+      "path": "results/main/q17/question_effects.csv",
       "bytes": 2029,
       "sha256": "c5812f36e911df0f1b3eed108f2c4ac91b97dadc772db7b1483af88cb49d6455",
       "source": "runs/questions17/results/question_effects.csv",
       "source_sha256": "c5812f36e911df0f1b3eed108f2c4ac91b97dadc772db7b1483af88cb49d6455",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/question_effects.csv"
     },
     {
-      "path": "results/questions17/question_label_effects.csv",
+      "path": "results/main/q17/question_label_effects.csv",
       "bytes": 1017,
       "sha256": "7470691cf258df669fa61c6d50360235c40ed907283a10027eb8a77ff4d65aa3",
       "source": "runs/questions17/results/question_label_effects.csv",
       "source_sha256": "7470691cf258df669fa61c6d50360235c40ed907283a10027eb8a77ff4d65aa3",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/question_label_effects.csv"
     },
     {
-      "path": "results/questions17/question_times.csv",
+      "path": "results/main/q17/question_times.csv",
       "bytes": 688,
       "sha256": "933b262862f467e7465d4933941ec3689a0d3a8c5f91ba9979bd95ca322c131a",
       "source": "runs/questions17/results/question_times.csv",
       "source_sha256": "933b262862f467e7465d4933941ec3689a0d3a8c5f91ba9979bd95ca322c131a",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/question_times.csv"
     },
     {
-      "path": "results/questions17/report.md",
-      "bytes": 2656,
-      "sha256": "5dd7153c014a21d72b8a8af281dcfec8e36ecc380463453fa9f4ae1663404b1b",
+      "path": "results/main/q17/report.md",
+      "bytes": 2639,
+      "sha256": "b922012f6648acdf1d2fc0f486681818a4d5586a1bfefeeaa30fde99fc0d91d9",
       "source": "runs/questions17/results/report.md",
       "source_sha256": "0cc0c7e66fc7646e49c0c9e6db601e5928132f5de00ca3d94920e020678dec4e",
-      "transformation": "Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records."
+      "transformation": "Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records. Repository restructure (2026-11-26): relative links updated for the new folder layout.",
+      "previous_path": "results/questions17/report.md"
     },
     {
-      "path": "results/questions17/times.csv",
+      "path": "results/main/q17/times.csv",
       "bytes": 419,
       "sha256": "809dbed63c60f177721fd4888a1d1e05420b48dad0369f9688ade57c05db5a29",
       "source": "runs/questions17/results/times.csv",
       "source_sha256": "809dbed63c60f177721fd4888a1d1e05420b48dad0369f9688ade57c05db5a29",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions17/times.csv"
     },
     {
-      "path": "results/questions8/assignment.json",
+      "path": "results/analysis1_q8/assignment.json",
       "bytes": 19108,
       "sha256": "7dbd0f43b0ac30ce138b186cabde31920551863fe56340faf3bd36cf71511804",
       "source": "runs/questions8/assignment.json",
       "source_sha256": "7dbd0f43b0ac30ce138b186cabde31920551863fe56340faf3bd36cf71511804",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/assignment.json"
     },
     {
-      "path": "results/questions8/contexts.jsonl",
+      "path": "results/analysis1_q8/contexts.jsonl",
       "bytes": 8569574,
       "sha256": "f2015f13b88fc3c6b8e31dba13c0323108cdf5fcd1b6e8f95aa639050298f33c",
       "source": "runs/questions8/contexts.jsonl",
       "source_sha256": "f2015f13b88fc3c6b8e31dba13c0323108cdf5fcd1b6e8f95aa639050298f33c",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/contexts.jsonl"
     },
     {
-      "path": "results/questions8/diagnostics/lengths.csv",
+      "path": "results/analysis1_q8/diagnostics/lengths.csv",
       "bytes": 33881,
       "sha256": "b84edec717017b54246775ae451667163dcadeebed0c3bb786df9bd53b834dfb",
       "source": "runs/questions8/diagnostics/lengths.csv",
       "source_sha256": "b84edec717017b54246775ae451667163dcadeebed0c3bb786df9bd53b834dfb",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/diagnostics/lengths.csv"
     },
     {
-      "path": "results/questions8/diagnostics/technical_summary.json",
+      "path": "results/analysis1_q8/diagnostics/technical_summary.json",
       "bytes": 2411,
       "sha256": "e6703feacfcfd6a7e437d9bb08d936244178366e1b9ac06579261028d00c1c6b",
       "source": "runs/questions8/diagnostics/technical_summary.json",
       "source_sha256": "e6703feacfcfd6a7e437d9bb08d936244178366e1b9ac06579261028d00c1c6b",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/diagnostics/technical_summary.json"
     },
     {
-      "path": "results/questions8/paired_predictions.csv",
+      "path": "results/analysis1_q8/paired_predictions.csv",
       "bytes": 806777,
       "sha256": "f6b99ac403adc16cbd0138fbaae927c3a621ccf89cae5b94db2032a0f8f3aa06",
       "source": "runs/questions8/results/paired_predictions.csv",
       "source_sha256": "f6b99ac403adc16cbd0138fbaae927c3a621ccf89cae5b94db2032a0f8f3aa06",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/paired_predictions.csv"
     },
     {
-      "path": "results/questions8/predictions.jsonl",
+      "path": "results/analysis1_q8/predictions.jsonl",
       "bytes": 9395166,
       "sha256": "6dee91d2799bfa2f0f138145ed5bf55bf5dbf12151719b80492f9f49f699cf49",
       "source": "runs/questions8/predictions.jsonl",
       "source_sha256": "6dee91d2799bfa2f0f138145ed5bf55bf5dbf12151719b80492f9f49f699cf49",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/predictions.jsonl"
     },
     {
-      "path": "results/questions8/report.md",
-      "bytes": 3510,
-      "sha256": "8fd5e7ef9a2d100d46066c53bcb581e6be36b6df404ac06e8ac51a29695c76b6",
-      "source": "runs/questions8/results/subset_report.md",
-      "source_sha256": "fc52a5f8a5f3589988557e94c448dd0d8deb10e689e8269f32c3a1f59581b0d5",
-      "transformation": "Portfolio Markdown formatting, aggregate execution counts, and navigation links. All accuracy and interval values preserved. Updated the study phase names and navigation for Main Q0 versus Q17 and Analysis 1 Q8. Added links to full experiment records."
-    },
-    {
-      "path": "results/questions8/subset_analysis.json",
+      "path": "results/analysis1_q8/subset_analysis.json",
       "bytes": 978,
       "sha256": "92672b454aae4e0ae90d7c74387db068350a85a23d907e4ff51ae5e4364709f8",
       "source": "runs/questions8/results/subset_analysis.json",
       "source_sha256": "92672b454aae4e0ae90d7c74387db068350a85a23d907e4ff51ae5e4364709f8",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/subset_analysis.json"
     },
     {
-      "path": "results/questions8/subset_effects.csv",
+      "path": "results/analysis1_q8/subset_effects.csv",
       "bytes": 5262,
       "sha256": "cb04fc540ce3a25b12a16b34d40b80994051cc753da29aee67554ce3ddef2fa4",
       "source": "runs/questions8/results/subset_effects.csv",
       "source_sha256": "cb04fc540ce3a25b12a16b34d40b80994051cc753da29aee67554ce3ddef2fa4",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/subset_effects.csv"
     },
     {
-      "path": "results/questions8/subset_hypothesis_effects.csv",
+      "path": "results/analysis1_q8/subset_hypothesis_effects.csv",
       "bytes": 31889,
       "sha256": "51d088841f2d71e559b68a30da5627d5261aab3dd2498818fdd8327c24164339",
       "source": "runs/questions8/results/subset_hypothesis_effects.csv",
       "source_sha256": "51d088841f2d71e559b68a30da5627d5261aab3dd2498818fdd8327c24164339",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/subset_hypothesis_effects.csv"
     },
     {
-      "path": "results/questions8/subset_report.md",
+      "path": "results/analysis1_q8/subset_report.md",
       "bytes": 2220,
       "sha256": "fc52a5f8a5f3589988557e94c448dd0d8deb10e689e8269f32c3a1f59581b0d5",
       "source": "runs/questions8/results/subset_report.md",
       "source_sha256": "fc52a5f8a5f3589988557e94c448dd0d8deb10e689e8269f32c3a1f59581b0d5",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/subset_report.md"
     },
     {
-      "path": "results/questions8/subset_resources.csv",
+      "path": "results/analysis1_q8/subset_resources.csv",
       "bytes": 1573,
       "sha256": "ba339272a6ed9b4a6c1c7bbb7e64658d13ad2b938c4b4a5a6c0e685669c2479a",
       "source": "runs/questions8/results/subset_resources.csv",
       "source_sha256": "ba339272a6ed9b4a6c1c7bbb7e64658d13ad2b938c4b4a5a6c0e685669c2479a",
-      "transformation": "none"
+      "transformation": "none",
+      "previous_path": "results/questions8/subset_resources.csv"
+    },
+    {
+      "path": "results/analysis2_position/README.md",
+      "bytes": 171,
+      "sha256": "a27f75d6a7b738f7fdba4a44d4faba85c1b8e5f6ca83396d1eb5e41a878c92e0",
+      "source": null,
+      "source_sha256": null,
+      "transformation": "placeholder for future analysis results"
+    },
+    {
+      "path": "results/analysis3_evidence/README.md",
+      "bytes": 171,
+      "sha256": "04b3778d91991efe5c1b32f486520497b301ad6e323c62cc273d2b5fc809f135",
+      "source": null,
+      "source_sha256": null,
+      "transformation": "placeholder for future analysis results"
     }
   ],
   "note": "Completed Test outputs from Q0, Q17 and Q8, the Q8 assignment, and one shared ContractNLI Test snapshot. Source and public hashes are recorded for all exported files.",
   "complete_test_results_published_date": "2026-11-22",
   "q8_prediction_records": 10115,
   "q8_paired_prediction_records": 8092,
-  "shared_dataset_path": "results/dataset.json"
+  "shared_dataset_path": "results/dataset.json",
+  "restructure_2026_11_26": {
+    "note": "Folders renamed to match study phases; data file bytes unchanged. Narrative reports merged into docs/.",
+    "folder_map": {
+      "results/main (Original+Q0 files)": "results/main/q0",
+      "results/main/baseline": "results/main/original",
+      "results/questions17": "results/main/q17",
+      "results/analysis": "results/main/analysis",
+      "results/questions8": "results/analysis1_q8"
+    },
+    "merged_reports": [
+      {
+        "previous_path": "results/analysis/QUESTION_EFFECTS.md",
+        "merged_into": "docs/02_main_q0_vs_q17.md",
+        "previous_sha256": "70853eb27b6bdb2769f477cee39a8d7542cd3f5fa07df02510f30845ec5aa865"
+      },
+      {
+        "previous_path": "results/questions8/report.md",
+        "merged_into": "docs/03_analysis1_q8.md",
+        "previous_sha256": "8fd5e7ef9a2d100d46066c53bcb581e6be36b6df404ac06e8ac51a29695c76b6"
+      }
+    ]
+  }
 }

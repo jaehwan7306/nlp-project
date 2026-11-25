@@ -1,8 +1,8 @@
 # 구현 규칙과 검증 범위
 
-[프로젝트 개요](../README.md) · [실험 설계](../design/EXPERIMENT_DESIGN.md) · [재현 가이드](REPRODUCIBILITY.md)
+[프로젝트 개요](../README.md) · [실험 설계](01_design.md) · [재현 가이드](reproducibility.md)
 
-메인 실험의 Original·Q0·Q17과 Analysis 1의 Q8을 구현했다. 코드에서 Q17과 Q8의 `--main-run`이 가리키는 폴더는 Original과 Q0가 들어 있는 `runs/test_memory_safe`다. Q17은 그 실행의 데이터·설정과 Original을 검증해 재사용한다. Q8은 Q0와 Q17 두 실행의 기록을 참조한다. [실행 순서와 팀 분석 파일](REPRODUCIBILITY.md#team-data)
+메인 실험의 Original·Q0·Q17과 Analysis 1의 Q8을 구현했다. 코드에서 Q17과 Q8의 `--main-run`이 가리키는 폴더는 Original과 Q0가 들어 있는 `runs/test_memory_safe`다. Q17은 그 실행의 데이터·설정과 Original을 검증해 재사용한다. Q8은 Q0와 Q17 두 실행의 기록을 참조한다. [실행 순서와 팀 분석 파일](reproducibility.md#team-data)
 
 ## 데이터 경계
 
@@ -104,4 +104,4 @@ Dev 출력 검사는 longest Original 문서 1개에서 판단 5개와 압축 4�
 
 [Q8 실행 파일](../run_question_subset.py)이 완료한 Q0와 Q17의 동일 문서·가설·정답, 동결 설정, 실행 기록 해시를 확인한다. [배정 코드](../question_subset/assignment.py)는 seed 42로 문서마다 가설 8개를 뽑고 결과를 `assignment.json`에 동결한다. 압축 프롬프트는 Q17에서 미제공 가설 줄을 뺀 형태다.
 
-압축과 판단은 Main의 공통 단계를 사용한다. 비교에서는 같은 문서·방법·가설의 세 예측을 연결하고 Q8의 제공 여부를 세 조건 모두에 적용한다. Python 3.11에서 CPU 테스트 28개와 합성 모델의 중단·재개를 검증했다. [Q8 구현](../question_subset/) · [Q8 공개 집계](../results/questions8/report.md)
+압축과 판단은 Main의 공통 단계를 사용한다. 비교에서는 같은 문서·방법·가설의 세 예측을 연결하고 Q8의 제공 여부를 세 조건 모두에 적용한다. Python 3.11에서 CPU 테스트 28개와 합성 모델의 중단·재개를 검증했다. [Q8 구현](../question_subset/) · [Q8 공개 집계](03_analysis1_q8.md)
